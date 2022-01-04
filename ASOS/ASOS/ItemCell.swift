@@ -102,7 +102,12 @@ final class ItemCell: UICollectionViewCell {
     private func setupLabelProperties(_ label: UILabel) {
         label.textAlignment = .center
         label.adjustsFontForContentSizeCategory = true
-        label.maximumContentSizeCategory = .large
+        if #available(iOS 15, *) {
+            label.maximumContentSizeCategory = .large
+        } else {
+            let fontDescriptor = label.font.fontDescriptor
+            label.font = UIFont(descriptor: fontDescriptor, size: min(fontDescriptor.pointSize, 30))
+        }
         label.adjustsFontSizeToFitWidth = true
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
