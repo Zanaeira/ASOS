@@ -20,6 +20,9 @@
 		1BFDFB572783C532000B8385 /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB562783C532000B8385 /* GradientBackgroundView.swift */; };
 		1BFDFB592783D703000B8385 /* UIFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB582783D703000B8385 /* UIFont+Ext.swift */; };
 		1BFDFB5B2783DB7A000B8385 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB5A2783DB7A000B8385 /* Section.swift */; };
+		1BFDFB63278405DA000B8385 /* ImageTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB62278405DA000B8385 /* ImageTextCell.swift */; };
+		1BFDFB6527840627000B8385 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB6427840627000B8385 /* UIImage+Ext.swift */; };
+		1BFDFB672784068F000B8385 /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB662784068F000B8385 /* UILabel+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +41,9 @@
 		1BFDFB562783C532000B8385 /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
 		1BFDFB582783D703000B8385 /* UIFont+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Ext.swift"; sourceTree = "<group>"; };
 		1BFDFB5A2783DB7A000B8385 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		1BFDFB62278405DA000B8385 /* ImageTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextCell.swift; sourceTree = "<group>"; };
+		1BFDFB6427840627000B8385 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
+		1BFDFB662784068F000B8385 /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */

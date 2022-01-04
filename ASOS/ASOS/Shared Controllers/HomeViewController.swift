@@ -47,15 +47,25 @@ final class HomeViewController: UIViewController {
 extension HomeViewController {
     
     private func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Item> {
-        let cellRegistration = UICollectionView.CellRegistration<ItemCell, Item> { (cell, indexPath, item) in
+        let itemCellRegistration = UICollectionView.CellRegistration<ItemCell, Item> { (cell, indexPath, item) in
             cell.configure(with: item)
             
             guard let section = self.dataSource.snapshot().sectionIdentifier(containingItem: item) else { return }
             cell.styleForSection(section)
         }
         
+        let imageTextCellRegistration = UICollectionView.CellRegistration<ImageTextCell, Item> { (cell, indexPath, item) in
+            cell.configure(with: item)
+        }
+        
+        
         return .init(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
-            return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
+            let section = self.dataSource.snapshot().sectionIdentifier(containingItem: itemIdentifier)
+            if section == .special {
+                return collectionView.dequeueConfiguredReusableCell(using: imageTextCellRegistration, for: indexPath, item: itemIdentifier)
+            }
+            
+            return collectionView.dequeueConfiguredReusableCell(using: itemCellRegistration, for: indexPath, item: itemIdentifier)
         }
     }
     

@@ -13,20 +13,20 @@ final class ItemCell: UICollectionViewCell {
         fatalError("Not implemented")
     }
     
-    private let primaryLabel = UILabel()
-    private let secondaryLabel = UILabel()
+    private let primaryLabel = UILabel(font: .preferredFont(forTextStyle: .body, weight: .bold))
+    private let secondaryLabel = UILabel(font: .preferredFont(forTextStyle: .body, weight: .regular))
     private let imageView = UIImageView(contentMode: .scaleAspectFill)
     
     private lazy var labelStackView = UIStackView(arrangedSubviews: [primaryLabel, secondaryLabel])
     private lazy var stackView = UIStackView(arrangedSubviews: [imageView, labelStackView])
     
-    private lazy var imageViewHeightConstraint = imageView.heightAnchor.constraint(lessThanOrEqualToConstant: 250)
+    private lazy var gridImageViewHeightConstraint = imageView.heightAnchor.constraint(lessThanOrEqualToConstant: 250)
+    private lazy var specialImageViewHeightConstraint = imageView.heightAnchor.constraint(lessThanOrEqualToConstant: 450)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         setupCellWithDefaultStyling()
-        setupLabels()
         setupStackViews()
     }
     
@@ -42,7 +42,7 @@ final class ItemCell: UICollectionViewCell {
         contentView.layer.borderColor = UIColor.clear.cgColor
         contentView.layer.borderWidth = 0
         imageView.contentMode = .scaleAspectFill
-        NSLayoutConstraint.deactivate([imageViewHeightConstraint])
+        NSLayoutConstraint.deactivate([gridImageViewHeightConstraint, specialImageViewHeightConstraint])
         configureFonts(primaryTextFont: .preferredFont(forTextStyle: .body, weight: .bold), secondaryTextFont: .preferredFont(forTextStyle: .callout))
         configureFontColors(primaryTextColor: .label, secondaryTextColor: .systemGray)
     }
@@ -62,7 +62,10 @@ final class ItemCell: UICollectionViewCell {
         case .featured: break
         case .grid:
             imageView.contentMode = .scaleAspectFit
-            NSLayoutConstraint.activate([imageViewHeightConstraint])
+            NSLayoutConstraint.activate([gridImageViewHeightConstraint])
+        case .special:
+            NSLayoutConstraint.activate([specialImageViewHeightConstraint])
+            break
         }
     }
     
@@ -92,27 +95,6 @@ final class ItemCell: UICollectionViewCell {
         setupCellWithDefaultStyling()
     }
     
-    private func setupLabels() {
-        [primaryLabel, secondaryLabel].forEach(setupLabelProperties)
-        
-        primaryLabel.font = .preferredFont(forTextStyle: .body, weight: .bold)
-        secondaryLabel.font = .preferredFont(forTextStyle: .body, weight: .regular)
-    }
-    
-    private func setupLabelProperties(_ label: UILabel) {
-        label.textAlignment = .center
-        label.adjustsFontForContentSizeCategory = true
-        if #available(iOS 15, *) {
-            label.maximumContentSizeCategory = .large
-        } else {
-            let fontDescriptor = label.font.fontDescriptor
-            label.font = UIFont(descriptor: fontDescriptor, size: min(fontDescriptor.pointSize, 30))
-        }
-        label.adjustsFontSizeToFitWidth = true
-        label.numberOfLines = 0
-        label.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
     private func setupStackViews() {
         [labelStackView, stackView].forEach({
             $0.axis = .vertical
@@ -133,18 +115,6 @@ final class ItemCell: UICollectionViewCell {
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
-    }
-    
-}
-
-private extension UIImageView {
-    
-    convenience init(contentMode: UIView.ContentMode) {
-        self.init()
-        
-        self.contentMode = contentMode
-        clipsToBounds = true
-        translatesAutoresizingMaskIntoConstraints = false
     }
     
 }
