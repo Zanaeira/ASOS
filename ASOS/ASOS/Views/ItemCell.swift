@@ -62,7 +62,7 @@ final class ItemCell: UICollectionViewCell {
         case .grid:
             imageView.contentMode = .scaleAspectFit
             NSLayoutConstraint.activate([gridImageViewHeightConstraint])
-        case .special, .yourEdit: break
+        case .special, .yourEdit, .recent: break
         }
     }
     

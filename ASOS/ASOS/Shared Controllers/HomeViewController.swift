@@ -26,7 +26,7 @@ final class HomeViewController: UIViewController {
     }
     
     private func updateSnapshot() {
-        let sections: [Section] = [.announcements, .sales, .featured, .grid, .special, .yourEdit]
+        let sections: [Section] = [.announcements, .sales, .featured, .grid, .special, .yourEdit, .recent]
         
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections(sections)
@@ -62,12 +62,18 @@ extension HomeViewController {
             cell.configure(with: item)
         }
         
+        let recentlyViewedCellRegistration = UICollectionView.CellRegistration<RecentlyViewedCell, Item> { (cell, indexPath, item) in
+            cell.configure(with: item)
+        }
+        
         return .init(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
             let section = self.dataSource.snapshot().sectionIdentifier(containingItem: itemIdentifier)
             if section == .special {
                 return collectionView.dequeueConfiguredReusableCell(using: imageTextCellRegistration, for: indexPath, item: itemIdentifier)
             } else if section == .yourEdit {
                 return collectionView.dequeueConfiguredReusableCell(using: yourEditCellRegistration, for: indexPath, item: itemIdentifier)
+            } else if section == .recent {
+                return collectionView.dequeueConfiguredReusableCell(using: recentlyViewedCellRegistration, for: indexPath, item: itemIdentifier)
             }
             
             return collectionView.dequeueConfiguredReusableCell(using: itemCellRegistration, for: indexPath, item: itemIdentifier)
@@ -89,6 +95,7 @@ extension HomeViewController {
             case .grid: return self.gridSection()
             case .special: return self.specialSection()
             case .yourEdit: return self.yourEditSection()
+            case .recent: return self.carouselSection()
             }
         }
         
@@ -139,6 +146,23 @@ extension HomeViewController {
     
     private func yourEditSection() -> NSCollectionLayoutSection {
         return announcementsSection()
+    }
+    
+    private func carouselSection() -> NSCollectionLayoutSection {
+        let itemHeight: NSCollectionLayoutDimension = .estimated(1)
+        
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: itemHeight)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: itemHeight)
+        
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
+        section.contentInsets = .init(top: 0, leading: spacing, bottom: spacing, trailing: spacing)
+        section.interGroupSpacing = spacing
+        
+        return section
     }
     
 }

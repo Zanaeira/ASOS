@@ -9,11 +9,11 @@ import UIKit
 
 extension UILabel {
     
-    convenience init(font: UIFont) {
+    convenience init(font: UIFont, textAlignment: NSTextAlignment = .center, numberOfLines: Int = 0, adjustsFontSizeToFitWidth: Bool = true) {
         self.init(frame: .zero)
         
         self.font = font
-        textAlignment = .center
+        self.textAlignment = textAlignment
         adjustsFontForContentSizeCategory = true
         if #available(iOS 15, *) {
             maximumContentSizeCategory = .large
@@ -21,8 +21,8 @@ extension UILabel {
             let fontDescriptor = self.font.fontDescriptor
             self.font = UIFont(descriptor: fontDescriptor, size: min(fontDescriptor.pointSize, 30))
         }
-        adjustsFontSizeToFitWidth = true
-        numberOfLines = 0
+        self.adjustsFontSizeToFitWidth = adjustsFontSizeToFitWidth
+        self.numberOfLines = numberOfLines
         translatesAutoresizingMaskIntoConstraints = false
     }
     
