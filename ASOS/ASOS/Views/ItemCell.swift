@@ -98,11 +98,11 @@ final class ItemCell: UICollectionViewCell {
             $0.distribution = .fill
         })
         
+        labelStackView.layoutMargins = .init(top: 0, left: 10, bottom: 10, right: 10)
+        labelStackView.isLayoutMarginsRelativeArrangement = true
         labelStackView.spacing = 6
         stackView.spacing = 10
         
-        stackView.layoutMargins = .init(top: 10, left: 0, bottom: 10, right: 0)
-        stackView.isLayoutMarginsRelativeArrangement = true
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         contentView.addSubview(stackView)
