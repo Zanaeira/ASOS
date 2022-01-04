@@ -14,7 +14,7 @@ final class ItemCell: UICollectionViewCell {
     }
     
     private let primaryLabel = UILabel(font: .preferredFont(forTextStyle: .body))
-    private let secondaryLabel = UILabel(font: .preferredFont(forTextStyle: .callout), textColor: .systemGray)
+    private let secondaryLabel = UILabel(font: .preferredFont(forTextStyle: .callout))
     private let imageView = UIImageView(contentMode: .scaleAspectFit)
     
     private lazy var stackView = UIStackView(arrangedSubviews: [imageView, primaryLabel, secondaryLabel])
@@ -31,17 +31,39 @@ final class ItemCell: UICollectionViewCell {
         imageView.image = item.image
     }
     
+    func configureFontColors(primaryTextColor: UIColor? = nil, secondaryTextColor: UIColor? = nil) {
+        if let primaryTextColor = primaryTextColor {
+            primaryLabel.textColor = primaryTextColor
+        }
+        
+        if let secondaryTextColor = secondaryTextColor {
+            secondaryLabel.textColor = secondaryTextColor
+        }
+    }
+    
+    func configureFonts(primaryTextFont: UIFont? = nil, secondaryTextFont: UIFont? = nil) {
+        if let primaryTextFont = primaryTextFont {
+            primaryLabel.font = primaryTextFont
+        }
+        
+        if let secondaryTextFont = secondaryTextFont {
+            secondaryLabel.font = secondaryTextFont
+        }
+    }
+    
     private func setupStackView() {
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.spacing = 10
+        stackView.layoutMargins = .init(top: 10, left: 0, bottom: 10, right: 0)
+        stackView.isLayoutMarginsRelativeArrangement = true
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         contentView.addSubview(stackView)
         NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }

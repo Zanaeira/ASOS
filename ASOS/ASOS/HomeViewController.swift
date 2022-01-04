@@ -11,12 +11,13 @@ final class HomeViewController: UIViewController {
     
     private enum Section: Int {
         case announcements
+        case sales
         
         static func items(forSection section: Section) -> [Item] {
             switch section {
-            case .announcements: return [.init(text: "Premier Delivery\nUnlimited free Next-Day Delivery for a whole year for £9.95",
-                                               secondaryText: "Ts&Cs apply"),
-                                         .init(text: "SALE:\nUP TO 80% OFF\nFINAL DISCOUNTS!",
+            case .announcements: return [.init(text: "Premier Delivery\n\nUnlimited free Next-Day Delivery for a whole year for £9.95",
+                                               secondaryText: "Ts&Cs apply")]
+            case .sales: return [.init(text: "SALE:\nUP TO 80% OFF\nFINAL DISCOUNTS!",
                                                secondaryText: "Limited time only. While stocks lack. Selected styles marked down on site.")]
             }
         }
@@ -39,7 +40,7 @@ final class HomeViewController: UIViewController {
     }
     
     private func updateSnapshot() {
-        let sections: [Section] = [.announcements]
+        let sections: [Section] = [.announcements, .sales]
         
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections(sections)
@@ -56,6 +57,20 @@ extension HomeViewController {
     private func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Item> {
         let cellRegistration = UICollectionView.CellRegistration<ItemCell, Item> { (cell, indexPath, item) in
             cell.configure(with: item)
+            
+            guard let section = self.dataSource.snapshot().sectionIdentifier(containingItem: item) else { return }
+            switch section {
+            case .announcements:
+                cell.contentView.backgroundColor = .black
+                cell.contentView.layer.borderColor = UIColor.white.cgColor
+                cell.contentView.layer.borderWidth = 1
+                cell.configureFontColors(primaryTextColor: .white, secondaryTextColor: .white)
+                cell.configureFonts(primaryTextFont: .preferredFont(forTextStyle: .body, weight: .bold), secondaryTextFont: .preferredFont(forTextStyle: .caption1))
+            case .sales:
+                cell.configureFonts(primaryTextFont: .preferredFont(forTextStyle: .title1, weight: .black), secondaryTextFont: .preferredFont(forTextStyle: .caption1))
+                cell.configureFontColors(primaryTextColor: .black, secondaryTextColor: .black)
+                cell.backgroundView = GradientBackgroundView(frame: .zero)
+            }
         }
         
         return .init(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
@@ -70,13 +85,13 @@ extension HomeViewController {
         config.interSectionSpacing = spacing
 
         let sectionProvider: UICollectionViewCompositionalLayoutSectionProvider = { (sectionNumber, environment) -> NSCollectionLayoutSection? in
-            let section = Section(rawValue: sectionNumber)
+            guard let section = Section(rawValue: sectionNumber) else { return nil }
             switch section {
             case .announcements: return self.announcementsSection(withTopSpacing: self.spacing)
-            default: return nil
+            case .sales: return self.salesSection()
             }
         }
-
+        
         return UICollectionViewCompositionalLayout(sectionProvider: sectionProvider, configuration: config)
     }
 
@@ -88,8 +103,24 @@ extension HomeViewController {
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = .init(top: topSpacing, leading: spacing, bottom: 0, trailing: spacing)
         section.interGroupSpacing = spacing
-
+        
         return section
     }
+    
+    private func salesSection() -> NSCollectionLayoutSection {
+        return announcementsSection()
+    }
 
+}
+
+private extension UIFont {
+    
+    static func preferredFont(forTextStyle style: TextStyle, weight: Weight) -> UIFont {
+        let fontMetrics = UIFontMetrics(forTextStyle: style)
+        let fontDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: style)
+        let font = UIFont.systemFont(ofSize: fontDescriptor.pointSize, weight: weight)
+        
+        return fontMetrics.scaledFont(for: font)
+    }
+    
 }
