@@ -26,7 +26,7 @@ final class HomeViewController: UIViewController {
     }
     
     private func updateSnapshot() {
-        let sections: [Section] = [.announcements, .sales, .featured]
+        let sections: [Section] = [.announcements, .sales, .featured, .grid]
         
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections(sections)
@@ -71,6 +71,7 @@ extension HomeViewController {
             case .announcements: return self.announcementsSection(withTopSpacing: self.spacing)
             case .sales: return self.salesSection()
             case .featured: return self.featuredSection()
+            case .grid: return self.gridSection()
             }
         }
         
@@ -95,6 +96,24 @@ extension HomeViewController {
     
     private func featuredSection() -> NSCollectionLayoutSection {
         return announcementsSection()
+    }
+    
+    private func gridSection() -> NSCollectionLayoutSection {
+        let itemHeight: NSCollectionLayoutDimension = .estimated(1)
+        
+        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: itemHeight)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: itemHeight)
+        
+        let numOfColumns = 2
+        
+        let item = NSCollectionLayoutItem(layoutSize: itemSize)
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: numOfColumns)
+        group.interItemSpacing = .fixed(spacing)
+        
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = .init(top: 0, leading: spacing, bottom: 0, trailing: spacing)
+        
+        return section
     }
 
 }

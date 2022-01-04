@@ -19,6 +19,8 @@ final class ItemCell: UICollectionViewCell {
     
     private lazy var stackView = UIStackView(arrangedSubviews: [imageView, primaryLabel, secondaryLabel])
     
+    private lazy var imageViewHeightConstraint = imageView.heightAnchor.constraint(lessThanOrEqualToConstant: 250)
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -38,6 +40,7 @@ final class ItemCell: UICollectionViewCell {
         contentView.backgroundColor = .clear
         contentView.layer.borderColor = UIColor.clear.cgColor
         contentView.layer.borderWidth = 0
+        NSLayoutConstraint.deactivate([imageViewHeightConstraint])
         configureFonts(primaryTextFont: .preferredFont(forTextStyle: .body, weight: .bold), secondaryTextFont: .preferredFont(forTextStyle: .callout))
         configureFontColors(primaryTextColor: .label, secondaryTextColor: .systemGray)
     }
@@ -55,6 +58,8 @@ final class ItemCell: UICollectionViewCell {
             configureFontColors(primaryTextColor: .black, secondaryTextColor: .black)
             backgroundView = GradientBackgroundView(frame: .zero)
         case .featured: break
+        case .grid:
+            NSLayoutConstraint.activate([imageViewHeightConstraint])
         }
     }
     
