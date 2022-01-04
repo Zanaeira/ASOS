@@ -21,7 +21,6 @@ final class ItemCell: UICollectionViewCell {
     private lazy var stackView = UIStackView(arrangedSubviews: [imageView, labelStackView])
     
     private lazy var gridImageViewHeightConstraint = imageView.heightAnchor.constraint(lessThanOrEqualToConstant: 250)
-    private lazy var specialImageViewHeightConstraint = imageView.heightAnchor.constraint(lessThanOrEqualToConstant: 450)
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -42,7 +41,7 @@ final class ItemCell: UICollectionViewCell {
         contentView.layer.borderColor = UIColor.clear.cgColor
         contentView.layer.borderWidth = 0
         imageView.contentMode = .scaleAspectFill
-        NSLayoutConstraint.deactivate([gridImageViewHeightConstraint, specialImageViewHeightConstraint])
+        NSLayoutConstraint.deactivate([gridImageViewHeightConstraint])
         configureFonts(primaryTextFont: .preferredFont(forTextStyle: .body, weight: .bold), secondaryTextFont: .preferredFont(forTextStyle: .callout))
         configureFontColors(primaryTextColor: .label, secondaryTextColor: .systemGray)
     }
@@ -63,9 +62,7 @@ final class ItemCell: UICollectionViewCell {
         case .grid:
             imageView.contentMode = .scaleAspectFit
             NSLayoutConstraint.activate([gridImageViewHeightConstraint])
-        case .special:
-            NSLayoutConstraint.activate([specialImageViewHeightConstraint])
-            break
+        case .special: break
         }
     }
     
