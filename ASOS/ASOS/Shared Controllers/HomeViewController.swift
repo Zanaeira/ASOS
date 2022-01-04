@@ -26,7 +26,7 @@ final class HomeViewController: UIViewController {
     }
     
     private func updateSnapshot() {
-        let sections: [Section] = [.announcements, .sales, .featured, .grid]
+        let sections: [Section] = [.announcements, .sales, .featured, .grid, .special]
         
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections(sections)
@@ -72,6 +72,7 @@ extension HomeViewController {
             case .sales: return self.salesSection()
             case .featured: return self.featuredSection()
             case .grid: return self.gridSection()
+            case .special: return self.specialSection()
             }
         }
         
@@ -115,5 +116,9 @@ extension HomeViewController {
         
         return section
     }
-
+    
+    private func specialSection() -> NSCollectionLayoutSection {
+        return announcementsSection()
+    }
+    
 }

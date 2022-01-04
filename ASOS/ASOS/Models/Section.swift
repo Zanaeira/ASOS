@@ -12,6 +12,7 @@ enum Section: Int {
     case sales
     case featured
     case grid
+    case special
     
     static func items(forSection section: Section) -> [Item] {
         switch section {
@@ -24,6 +25,8 @@ enum Section: Int {
                             .init(text: "LOGO LOVE", secondaryText: "Ft. ASOS Dark Future", image: UIImage(named: "logo-love")),
                             .init(text: "TOPMAN", secondaryText: "Join the cargo craze", image: UIImage(named: "topman")),
                             .init(text: "FEET FIRST", secondaryText: "Top-tier trainers", image: UIImage(named: "feet-first"))]
+        case .special: return [.init(text: "ADIDAS", secondaryText: "'das right", image: UIImage(named: "adidas")),
+                               .init(text: "COSY CLUB", secondaryText: "You do knit wanna miss this", image: UIImage(named: "cosy-club"))]
         }
     }
 }
