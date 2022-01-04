@@ -42,7 +42,7 @@ final class RecentlyViewedCell: UICollectionViewCell {
         button.setImage(UIImage(systemName: "heart"), for: .normal)
         button.setImage(UIImage(systemName: "heart.fill"), for: .selected)
         button.addTarget(self, action: #selector(favouritePressed), for: .touchUpInside)
-        imageView.heightAnchor.constraint(lessThanOrEqualToConstant: 250).isActive = true
+        imageView.heightAnchor.constraint(lessThanOrEqualToConstant: 200).isActive = true
     }
     
     @objc private func favouritePressed() {
