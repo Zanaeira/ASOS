@@ -94,6 +94,7 @@ final class ItemCell: UICollectionViewCell {
     private func setupLabelProperties(_ label: UILabel) {
         label.textAlignment = .center
         label.adjustsFontForContentSizeCategory = true
+        label.maximumContentSizeCategory = .large
         label.adjustsFontSizeToFitWidth = true
         label.numberOfLines = 0
         label.translatesAutoresizingMaskIntoConstraints = false
