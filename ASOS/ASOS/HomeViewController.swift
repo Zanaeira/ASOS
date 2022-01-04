@@ -9,22 +9,6 @@ import UIKit
 
 final class HomeViewController: UIViewController {
     
-    private enum Section: Int {
-        case announcements
-        case sales
-        case featured
-        
-        static func items(forSection section: Section) -> [Item] {
-            switch section {
-            case .announcements: return [.init(text: "Premier Delivery\n\nUnlimited free Next-Day Delivery for a whole year for £9.95",
-                                               secondaryText: "Ts&Cs apply")]
-            case .sales: return [.init(text: "SALE:\nUP TO 80% OFF\nFINAL DISCOUNTS!",
-                                               secondaryText: "Limited time only. While stocks lack. Selected styles marked down on site.")]
-            case .featured: return [.init(text: "PITCH PERFECT", secondaryText: "Shop ASOS 4505", image: UIImage(named: "pitch-perfect"))]
-            }
-        }
-    }
-    
     private lazy var collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: makeLayout())
     private lazy var dataSource: UICollectionViewDiffableDataSource<Section, Item> = makeDataSource()
     
@@ -61,19 +45,7 @@ extension HomeViewController {
             cell.configure(with: item)
             
             guard let section = self.dataSource.snapshot().sectionIdentifier(containingItem: item) else { return }
-            switch section {
-            case .announcements:
-                cell.contentView.backgroundColor = .black
-                cell.contentView.layer.borderColor = UIColor.white.cgColor
-                cell.contentView.layer.borderWidth = 1
-                cell.configureFontColors(primaryTextColor: .white, secondaryTextColor: .white)
-                cell.configureFonts(primaryTextFont: .preferredFont(forTextStyle: .body, weight: .bold), secondaryTextFont: .preferredFont(forTextStyle: .caption1))
-            case .sales:
-                cell.configureFonts(primaryTextFont: .preferredFont(forTextStyle: .title1, weight: .black), secondaryTextFont: .preferredFont(forTextStyle: .caption1))
-                cell.configureFontColors(primaryTextColor: .black, secondaryTextColor: .black)
-                cell.backgroundView = GradientBackgroundView(frame: .zero)
-            case .featured: break
-            }
+            cell.styleForSection(section)
         }
         
         return .init(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in

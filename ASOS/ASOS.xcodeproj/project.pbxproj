@@ -19,6 +19,7 @@
 		1BFDFB552783B0AD000B8385 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB542783B0AD000B8385 /* Item.swift */; };
 		1BFDFB572783C532000B8385 /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB562783C532000B8385 /* GradientBackgroundView.swift */; };
 		1BFDFB592783D703000B8385 /* UIFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB582783D703000B8385 /* UIFont+Ext.swift */; };
+		1BFDFB5B2783DB7A000B8385 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB5A2783DB7A000B8385 /* Section.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		1BFDFB542783B0AD000B8385 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		1BFDFB562783C532000B8385 /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
 		1BFDFB582783D703000B8385 /* UIFont+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Ext.swift"; sourceTree = "<group>"; };
+		1BFDFB5A2783DB7A000B8385 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -74,6 +76,7 @@
 				1BFDFB4C2783A309000B8385 /* Sidebar.swift */,
 				1BFDFB502783A355000B8385 /* MainTabBarController.swift */,
 				1BFDFB4E2783A32B000B8385 /* HomeViewController.swift */,
+				1BFDFB5A2783DB7A000B8385 /* Section.swift */,
 				1BFDFB582783D703000B8385 /* UIFont+Ext.swift */,
 				1BFDFB562783C532000B8385 /* GradientBackgroundView.swift */,
 				1BFDFB542783B0AD000B8385 /* Item.swift */,
@@ -159,6 +162,7 @@
 				1BFDFB372783A26B000B8385 /* AppDelegate.swift in Sources */,
 				1BFDFB512783A355000B8385 /* MainTabBarController.swift in Sources */,
 				1BFDFB392783A26B000B8385 /* SceneDelegate.swift in Sources */,
+				1BFDFB5B2783DB7A000B8385 /* Section.swift in Sources */,
 				1BFDFB592783D703000B8385 /* UIFont+Ext.swift in Sources */,
 				1BFDFB572783C532000B8385 /* GradientBackgroundView.swift in Sources */,
 				1BFDFB552783B0AD000B8385 /* Item.swift in Sources */,

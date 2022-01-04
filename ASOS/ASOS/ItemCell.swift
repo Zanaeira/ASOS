@@ -22,7 +22,7 @@ final class ItemCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setupLabels()
+        setupCellWithDefaultStyling()
         setupStackView()
     }
     
@@ -32,7 +32,32 @@ final class ItemCell: UICollectionViewCell {
         imageView.image = item.image
     }
     
-    func configureFontColors(primaryTextColor: UIColor? = nil, secondaryTextColor: UIColor? = nil) {
+    private func setupCellWithDefaultStyling() {
+        backgroundView = nil
+        contentView.backgroundColor = .clear
+        contentView.layer.borderColor = UIColor.clear.cgColor
+        contentView.layer.borderWidth = 0
+        configureFonts(primaryTextFont: .preferredFont(forTextStyle: .body, weight: .bold), secondaryTextFont: .preferredFont(forTextStyle: .callout))
+        configureFontColors(primaryTextColor: .label, secondaryTextColor: .systemGray)
+    }
+    
+    func styleForSection(_ section: Section) {
+        switch section {
+        case .announcements:
+            contentView.backgroundColor = .black
+            contentView.layer.borderColor = UIColor.white.cgColor
+            contentView.layer.borderWidth = 1
+            configureFontColors(primaryTextColor: .white, secondaryTextColor: .white)
+            configureFonts(primaryTextFont: .preferredFont(forTextStyle: .body, weight: .bold), secondaryTextFont: .preferredFont(forTextStyle: .caption1))
+        case .sales:
+            configureFonts(primaryTextFont: .preferredFont(forTextStyle: .title1, weight: .black), secondaryTextFont: .preferredFont(forTextStyle: .caption1))
+            configureFontColors(primaryTextColor: .black, secondaryTextColor: .black)
+            backgroundView = GradientBackgroundView(frame: .zero)
+        case .featured: break
+        }
+    }
+    
+    private func configureFontColors(primaryTextColor: UIColor? = nil, secondaryTextColor: UIColor? = nil) {
         if let primaryTextColor = primaryTextColor {
             primaryLabel.textColor = primaryTextColor
         }
@@ -42,7 +67,7 @@ final class ItemCell: UICollectionViewCell {
         }
     }
     
-    func configureFonts(primaryTextFont: UIFont? = nil, secondaryTextFont: UIFont? = nil) {
+    private func configureFonts(primaryTextFont: UIFont? = nil, secondaryTextFont: UIFont? = nil) {
         if let primaryTextFont = primaryTextFont {
             primaryLabel.font = primaryTextFont
         }
@@ -52,8 +77,10 @@ final class ItemCell: UICollectionViewCell {
         }
     }
     
-    private func setupLabels() {
-        configureFontColors(secondaryTextColor: .systemGray)
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        setupCellWithDefaultStyling()
     }
     
     private func setupStackView() {
