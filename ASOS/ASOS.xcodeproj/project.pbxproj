@@ -25,6 +25,8 @@
 		1BFDFB672784068F000B8385 /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB662784068F000B8385 /* UILabel+Ext.swift */; };
 		1BFDFB6927841C3D000B8385 /* YourEditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB6827841C3D000B8385 /* YourEditCell.swift */; };
 		1BFDFB6B2784AB56000B8385 /* RecentlyViewedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB6A2784AB56000B8385 /* RecentlyViewedCell.swift */; };
+		1BFDFB6D2784B02B000B8385 /* RecentlyViewedCellBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB6C2784B02B000B8385 /* RecentlyViewedCellBackgroundView.swift */; };
+		1BFDFB6F2784B375000B8385 /* RecentlyViewedBackgroundDecorationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB6E2784B375000B8385 /* RecentlyViewedBackgroundDecorationView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -48,6 +50,8 @@
 		1BFDFB662784068F000B8385 /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
 		1BFDFB6827841C3D000B8385 /* YourEditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourEditCell.swift; sourceTree = "<group>"; };
 		1BFDFB6A2784AB56000B8385 /* RecentlyViewedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyViewedCell.swift; sourceTree = "<group>"; };
+		1BFDFB6C2784B02B000B8385 /* RecentlyViewedCellBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyViewedCellBackgroundView.swift; sourceTree = "<group>"; };
+		1BFDFB6E2784B375000B8385 /* RecentlyViewedBackgroundDecorationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyViewedBackgroundDecorationView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -131,6 +135,8 @@
 				1BFDFB62278405DA000B8385 /* ImageTextCell.swift */,
 				1BFDFB6827841C3D000B8385 /* YourEditCell.swift */,
 				1BFDFB6A2784AB56000B8385 /* RecentlyViewedCell.swift */,
+				1BFDFB6C2784B02B000B8385 /* RecentlyViewedCellBackgroundView.swift */,
+				1BFDFB6E2784B375000B8385 /* RecentlyViewedBackgroundDecorationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -231,11 +237,13 @@
 				1BFDFB672784068F000B8385 /* UILabel+Ext.swift in Sources */,
 				1BFDFB6527840627000B8385 /* UIImage+Ext.swift in Sources */,
 				1BFDFB572783C532000B8385 /* GradientBackgroundView.swift in Sources */,
+				1BFDFB6D2784B02B000B8385 /* RecentlyViewedCellBackgroundView.swift in Sources */,
 				1BFDFB552783B0AD000B8385 /* Item.swift in Sources */,
 				1BFDFB532783AEEA000B8385 /* ItemCell.swift in Sources */,
 				1BFDFB4D2783A309000B8385 /* Sidebar.swift in Sources */,
 				1BFDFB63278405DA000B8385 /* ImageTextCell.swift in Sources */,
 				1BFDFB6927841C3D000B8385 /* YourEditCell.swift in Sources */,
+				1BFDFB6F2784B375000B8385 /* RecentlyViewedBackgroundDecorationView.swift in Sources */,
 				1BFDFB4B2783A2ED000B8385 /* MainSplitViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

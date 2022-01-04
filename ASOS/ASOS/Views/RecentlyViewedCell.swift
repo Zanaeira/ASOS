@@ -23,6 +23,7 @@ final class RecentlyViewedCell: UICollectionViewCell {
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        setupBackgroundView()
         setupSubviewProperties()
         setupSubviews()
     }
@@ -30,6 +31,10 @@ final class RecentlyViewedCell: UICollectionViewCell {
     func configure(with item: Item) {
         label.text = item.text
         imageView.image = item.image
+    }
+    
+    private func setupBackgroundView() {
+        backgroundView = RecentlyViewedCellBackgroundView(frame: .zero)
     }
     
     private func setupSubviewProperties() {

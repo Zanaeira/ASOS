@@ -99,7 +99,10 @@ extension HomeViewController {
             }
         }
         
-        return UICollectionViewCompositionalLayout(sectionProvider: sectionProvider, configuration: config)
+        let layout = UICollectionViewCompositionalLayout(sectionProvider: sectionProvider, configuration: config)
+        layout.register(RecentlyViewedBackgroundDecorationView.self, forDecorationViewOfKind: RecentlyViewedBackgroundDecorationView.sectionBackgroundDecorationElementKind)
+        
+        return layout
     }
 
     private func announcementsSection(withTopSpacing topSpacing: CGFloat = 0) -> NSCollectionLayoutSection {
@@ -159,8 +162,11 @@ extension HomeViewController {
         
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
-        section.contentInsets = .init(top: 0, leading: spacing, bottom: spacing, trailing: spacing)
+        section.contentInsets = .init(top: spacing, leading: spacing, bottom: spacing, trailing: spacing)
         section.interGroupSpacing = spacing
+        
+        let backgroundDecorationItem = NSCollectionLayoutDecorationItem.background(elementKind: RecentlyViewedBackgroundDecorationView.sectionBackgroundDecorationElementKind)
+        section.decorationItems = [backgroundDecorationItem]
         
         return section
     }
