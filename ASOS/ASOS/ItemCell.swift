@@ -13,15 +13,16 @@ final class ItemCell: UICollectionViewCell {
         fatalError("Not implemented")
     }
     
-    private let primaryLabel = UILabel(font: .preferredFont(forTextStyle: .body))
+    private let primaryLabel = UILabel(font: .preferredFont(forTextStyle: .body, weight: .bold))
     private let secondaryLabel = UILabel(font: .preferredFont(forTextStyle: .callout))
-    private let imageView = UIImageView(contentMode: .scaleAspectFit)
+    private let imageView = UIImageView(contentMode: .scaleAspectFill)
     
     private lazy var stackView = UIStackView(arrangedSubviews: [imageView, primaryLabel, secondaryLabel])
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
+        setupLabels()
         setupStackView()
     }
     
@@ -51,19 +52,23 @@ final class ItemCell: UICollectionViewCell {
         }
     }
     
+    private func setupLabels() {
+        configureFontColors(secondaryTextColor: .systemGray)
+    }
+    
     private func setupStackView() {
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.spacing = 10
-        stackView.layoutMargins = .init(top: 10, left: 0, bottom: 10, right: 0)
+        stackView.layoutMargins = .init(top: 10, left: 10, bottom: 10, right: 10)
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
         contentView.addSubview(stackView)
         NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
             stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
     }

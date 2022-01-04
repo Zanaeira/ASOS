@@ -12,6 +12,7 @@ final class HomeViewController: UIViewController {
     private enum Section: Int {
         case announcements
         case sales
+        case featured
         
         static func items(forSection section: Section) -> [Item] {
             switch section {
@@ -19,6 +20,7 @@ final class HomeViewController: UIViewController {
                                                secondaryText: "Ts&Cs apply")]
             case .sales: return [.init(text: "SALE:\nUP TO 80% OFF\nFINAL DISCOUNTS!",
                                                secondaryText: "Limited time only. While stocks lack. Selected styles marked down on site.")]
+            case .featured: return [.init(text: "PITCH PERFECT", secondaryText: "Shop ASOS 4505", image: UIImage(named: "pitch-perfect"))]
             }
         }
     }
@@ -40,7 +42,7 @@ final class HomeViewController: UIViewController {
     }
     
     private func updateSnapshot() {
-        let sections: [Section] = [.announcements, .sales]
+        let sections: [Section] = [.announcements, .sales, .featured]
         
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections(sections)
@@ -70,6 +72,7 @@ extension HomeViewController {
                 cell.configureFonts(primaryTextFont: .preferredFont(forTextStyle: .title1, weight: .black), secondaryTextFont: .preferredFont(forTextStyle: .caption1))
                 cell.configureFontColors(primaryTextColor: .black, secondaryTextColor: .black)
                 cell.backgroundView = GradientBackgroundView(frame: .zero)
+            case .featured: break
             }
         }
         
@@ -89,6 +92,7 @@ extension HomeViewController {
             switch section {
             case .announcements: return self.announcementsSection(withTopSpacing: self.spacing)
             case .sales: return self.salesSection()
+            case .featured: return self.featuredSection()
             }
         }
         
@@ -110,17 +114,9 @@ extension HomeViewController {
     private func salesSection() -> NSCollectionLayoutSection {
         return announcementsSection()
     }
-
-}
-
-private extension UIFont {
     
-    static func preferredFont(forTextStyle style: TextStyle, weight: Weight) -> UIFont {
-        let fontMetrics = UIFontMetrics(forTextStyle: style)
-        let fontDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: style)
-        let font = UIFont.systemFont(ofSize: fontDescriptor.pointSize, weight: weight)
-        
-        return fontMetrics.scaledFont(for: font)
+    private func featuredSection() -> NSCollectionLayoutSection {
+        return announcementsSection()
     }
-    
+
 }
