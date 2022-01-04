@@ -17,7 +17,8 @@ final class ItemCell: UICollectionViewCell {
     private let secondaryLabel = UILabel()
     private let imageView = UIImageView(contentMode: .scaleAspectFill)
     
-    private lazy var stackView = UIStackView(arrangedSubviews: [imageView, primaryLabel, secondaryLabel])
+    private lazy var labelStackView = UIStackView(arrangedSubviews: [primaryLabel, secondaryLabel])
+    private lazy var stackView = UIStackView(arrangedSubviews: [imageView, labelStackView])
     
     private lazy var imageViewHeightConstraint = imageView.heightAnchor.constraint(lessThanOrEqualToConstant: 250)
     
@@ -26,7 +27,7 @@ final class ItemCell: UICollectionViewCell {
         
         setupCellWithDefaultStyling()
         setupLabels()
-        setupStackView()
+        setupStackViews()
     }
     
     func configure(with item: Item) {
@@ -105,10 +106,15 @@ final class ItemCell: UICollectionViewCell {
         label.translatesAutoresizingMaskIntoConstraints = false
     }
     
-    private func setupStackView() {
-        stackView.axis = .vertical
-        stackView.distribution = .fill
+    private func setupStackViews() {
+        [labelStackView, stackView].forEach({
+            $0.axis = .vertical
+            $0.distribution = .fill
+        })
+        
+        labelStackView.spacing = 6
         stackView.spacing = 10
+        
         stackView.layoutMargins = .init(top: 10, left: 0, bottom: 10, right: 0)
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.translatesAutoresizingMaskIntoConstraints = false
