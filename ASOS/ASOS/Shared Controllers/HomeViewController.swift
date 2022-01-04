@@ -66,7 +66,9 @@ extension HomeViewController {
             cell.configure(with: item)
         }
         
-        return .init(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
+        let recentSectionHeaderRegistration = UICollectionView.SupplementaryRegistration<RecentlyViewedHeader>(elementKind: UICollectionView.elementKindSectionHeader) { (_, _, _) in }
+        
+        let dataSource =  UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
             let section = self.dataSource.snapshot().sectionIdentifier(containingItem: itemIdentifier)
             if section == .special {
                 return collectionView.dequeueConfiguredReusableCell(using: imageTextCellRegistration, for: indexPath, item: itemIdentifier)
@@ -78,6 +80,12 @@ extension HomeViewController {
             
             return collectionView.dequeueConfiguredReusableCell(using: itemCellRegistration, for: indexPath, item: itemIdentifier)
         }
+        
+        dataSource.supplementaryViewProvider = { (collectionView, _, indexPath) in
+            return collectionView.dequeueConfiguredReusableSupplementary(using: recentSectionHeaderRegistration, for: indexPath)
+        }
+        
+        return dataSource
     }
     
     private var spacing: CGFloat { 16.0 }
@@ -164,6 +172,10 @@ extension HomeViewController {
         section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
         section.contentInsets = .init(top: spacing, leading: spacing, bottom: spacing, trailing: spacing)
         section.interGroupSpacing = spacing
+        
+        let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(1))
+        let headerItem = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
+        section.boundarySupplementaryItems = [headerItem]
         
         let backgroundDecorationItem = NSCollectionLayoutDecorationItem.background(elementKind: RecentlyViewedBackgroundDecorationView.sectionBackgroundDecorationElementKind)
         section.decorationItems = [backgroundDecorationItem]
