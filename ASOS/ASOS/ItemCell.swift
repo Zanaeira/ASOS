@@ -13,8 +13,8 @@ final class ItemCell: UICollectionViewCell {
         fatalError("Not implemented")
     }
     
-    private let primaryLabel = UILabel(font: .preferredFont(forTextStyle: .body, weight: .bold))
-    private let secondaryLabel = UILabel(font: .preferredFont(forTextStyle: .callout))
+    private let primaryLabel = UILabel()
+    private let secondaryLabel = UILabel()
     private let imageView = UIImageView(contentMode: .scaleAspectFill)
     
     private lazy var stackView = UIStackView(arrangedSubviews: [imageView, primaryLabel, secondaryLabel])
@@ -23,6 +23,7 @@ final class ItemCell: UICollectionViewCell {
         super.init(frame: frame)
         
         setupCellWithDefaultStyling()
+        setupLabels()
         setupStackView()
     }
     
@@ -83,6 +84,21 @@ final class ItemCell: UICollectionViewCell {
         setupCellWithDefaultStyling()
     }
     
+    private func setupLabels() {
+        [primaryLabel, secondaryLabel].forEach(setupLabelProperties)
+        
+        primaryLabel.font = .preferredFont(forTextStyle: .body, weight: .bold)
+        secondaryLabel.font = .preferredFont(forTextStyle: .body, weight: .regular)
+    }
+    
+    private func setupLabelProperties(_ label: UILabel) {
+        label.textAlignment = .center
+        label.adjustsFontForContentSizeCategory = true
+        label.adjustsFontSizeToFitWidth = true
+        label.numberOfLines = 0
+        label.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
     private func setupStackView() {
         stackView.axis = .vertical
         stackView.distribution = .fill
@@ -98,22 +114,6 @@ final class ItemCell: UICollectionViewCell {
             stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
             stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ])
-    }
-    
-}
-
-private extension UILabel {
-    
-    convenience init(font: UIFont, textColor: UIColor = .label) {
-        self.init(frame: .zero)
-        
-        self.font = font
-        self.textColor = textColor
-        textAlignment = .center
-        adjustsFontForContentSizeCategory = true
-        adjustsFontSizeToFitWidth = true
-        numberOfLines = 0
-        translatesAutoresizingMaskIntoConstraints = false
     }
     
 }
