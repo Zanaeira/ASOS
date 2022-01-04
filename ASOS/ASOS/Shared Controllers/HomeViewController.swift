@@ -26,7 +26,7 @@ final class HomeViewController: UIViewController {
     }
     
     private func updateSnapshot() {
-        let sections: [Section] = [.announcements, .sales, .featured, .grid, .special]
+        let sections: [Section] = [.announcements, .sales, .featured, .grid, .special, .yourEdit]
         
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections(sections)
@@ -58,11 +58,16 @@ extension HomeViewController {
             cell.configure(with: item)
         }
         
+        let yourEditCellRegistration = UICollectionView.CellRegistration<YourEditCell, Item> { (cell, indexPath, item) in
+            cell.configure(with: item)
+        }
         
         return .init(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
             let section = self.dataSource.snapshot().sectionIdentifier(containingItem: itemIdentifier)
             if section == .special {
                 return collectionView.dequeueConfiguredReusableCell(using: imageTextCellRegistration, for: indexPath, item: itemIdentifier)
+            } else if section == .yourEdit {
+                return collectionView.dequeueConfiguredReusableCell(using: yourEditCellRegistration, for: indexPath, item: itemIdentifier)
             }
             
             return collectionView.dequeueConfiguredReusableCell(using: itemCellRegistration, for: indexPath, item: itemIdentifier)
@@ -83,6 +88,7 @@ extension HomeViewController {
             case .featured: return self.featuredSection()
             case .grid: return self.gridSection()
             case .special: return self.specialSection()
+            case .yourEdit: return self.yourEditSection()
             }
         }
         
@@ -128,6 +134,10 @@ extension HomeViewController {
     }
     
     private func specialSection() -> NSCollectionLayoutSection {
+        return announcementsSection()
+    }
+    
+    private func yourEditSection() -> NSCollectionLayoutSection {
         return announcementsSection()
     }
     

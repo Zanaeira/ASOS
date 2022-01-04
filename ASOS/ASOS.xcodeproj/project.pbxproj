@@ -23,6 +23,7 @@
 		1BFDFB63278405DA000B8385 /* ImageTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB62278405DA000B8385 /* ImageTextCell.swift */; };
 		1BFDFB6527840627000B8385 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB6427840627000B8385 /* UIImage+Ext.swift */; };
 		1BFDFB672784068F000B8385 /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB662784068F000B8385 /* UILabel+Ext.swift */; };
+		1BFDFB6927841C3D000B8385 /* YourEditCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB6827841C3D000B8385 /* YourEditCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		1BFDFB62278405DA000B8385 /* ImageTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextCell.swift; sourceTree = "<group>"; };
 		1BFDFB6427840627000B8385 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		1BFDFB662784068F000B8385 /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
+		1BFDFB6827841C3D000B8385 /* YourEditCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = YourEditCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -125,6 +127,7 @@
 				1BFDFB562783C532000B8385 /* GradientBackgroundView.swift */,
 				1BFDFB522783AEEA000B8385 /* ItemCell.swift */,
 				1BFDFB62278405DA000B8385 /* ImageTextCell.swift */,
+				1BFDFB6827841C3D000B8385 /* YourEditCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -228,6 +231,7 @@
 				1BFDFB532783AEEA000B8385 /* ItemCell.swift in Sources */,
 				1BFDFB4D2783A309000B8385 /* Sidebar.swift in Sources */,
 				1BFDFB63278405DA000B8385 /* ImageTextCell.swift in Sources */,
+				1BFDFB6927841C3D000B8385 /* YourEditCell.swift in Sources */,
 				1BFDFB4B2783A2ED000B8385 /* MainSplitViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
