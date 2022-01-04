@@ -33,6 +33,9 @@ final class ItemCell: UICollectionViewCell {
         primaryLabel.text = item.text
         secondaryLabel.text = item.secondaryText
         imageView.image = item.image
+        if item.image == nil {
+            imageView.isHidden = true
+        }
     }
     
     private func setupCellWithDefaultStyling() {
@@ -41,6 +44,7 @@ final class ItemCell: UICollectionViewCell {
         contentView.layer.borderColor = UIColor.clear.cgColor
         contentView.layer.borderWidth = 0
         imageView.contentMode = .scaleAspectFill
+        imageView.isHidden = false
         NSLayoutConstraint.deactivate([gridImageViewHeightConstraint])
         configureFonts(primaryTextFont: .preferredFont(forTextStyle: .body, weight: .bold), secondaryTextFont: .preferredFont(forTextStyle: .callout))
         configureFontColors(primaryTextColor: .label, secondaryTextColor: .systemGray)
@@ -98,10 +102,10 @@ final class ItemCell: UICollectionViewCell {
             $0.distribution = .fill
         })
         
-        labelStackView.layoutMargins = .init(top: 0, left: 10, bottom: 10, right: 10)
+        labelStackView.layoutMargins = .init(top: 10, left: 10, bottom: 10, right: 10)
         labelStackView.isLayoutMarginsRelativeArrangement = true
         labelStackView.spacing = 6
-        stackView.spacing = 10
+        stackView.spacing = 0
         
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
