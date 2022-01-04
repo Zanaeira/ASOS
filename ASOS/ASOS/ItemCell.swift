@@ -41,6 +41,7 @@ final class ItemCell: UICollectionViewCell {
         contentView.backgroundColor = .clear
         contentView.layer.borderColor = UIColor.clear.cgColor
         contentView.layer.borderWidth = 0
+        imageView.contentMode = .scaleAspectFill
         NSLayoutConstraint.deactivate([imageViewHeightConstraint])
         configureFonts(primaryTextFont: .preferredFont(forTextStyle: .body, weight: .bold), secondaryTextFont: .preferredFont(forTextStyle: .callout))
         configureFontColors(primaryTextColor: .label, secondaryTextColor: .systemGray)
@@ -60,6 +61,7 @@ final class ItemCell: UICollectionViewCell {
             backgroundView = GradientBackgroundView(frame: .zero)
         case .featured: break
         case .grid:
+            imageView.contentMode = .scaleAspectFit
             NSLayoutConstraint.activate([imageViewHeightConstraint])
         }
     }
