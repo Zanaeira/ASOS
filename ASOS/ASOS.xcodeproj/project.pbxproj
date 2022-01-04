@@ -72,20 +72,71 @@
 			children = (
 				1BFDFB362783A26B000B8385 /* AppDelegate.swift */,
 				1BFDFB382783A26B000B8385 /* SceneDelegate.swift */,
-				1BFDFB4A2783A2ED000B8385 /* MainSplitViewController.swift */,
-				1BFDFB4C2783A309000B8385 /* Sidebar.swift */,
-				1BFDFB502783A355000B8385 /* MainTabBarController.swift */,
-				1BFDFB4E2783A32B000B8385 /* HomeViewController.swift */,
-				1BFDFB5A2783DB7A000B8385 /* Section.swift */,
-				1BFDFB582783D703000B8385 /* UIFont+Ext.swift */,
-				1BFDFB562783C532000B8385 /* GradientBackgroundView.swift */,
-				1BFDFB542783B0AD000B8385 /* Item.swift */,
-				1BFDFB522783AEEA000B8385 /* ItemCell.swift */,
+				1BFDFB5E27840535000B8385 /* UIKit Extensions */,
+				1BFDFB5D2784052A000B8385 /* Models */,
+				1BFDFB5F27840543000B8385 /* Views */,
+				1BFDFB6027840551000B8385 /* Compact | iPhone Controllers */,
+				1BFDFB6127840573000B8385 /* Shared Controllers */,
+				1BFDFB5C27840509000B8385 /* iPad Controllers */,
 				1BFDFB3F2783A26D000B8385 /* Assets.xcassets */,
 				1BFDFB412783A26D000B8385 /* LaunchScreen.storyboard */,
 				1BFDFB442783A26D000B8385 /* Info.plist */,
 			);
 			path = ASOS;
+			sourceTree = "<group>";
+		};
+		1BFDFB5C27840509000B8385 /* iPad Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1BFDFB4A2783A2ED000B8385 /* MainSplitViewController.swift */,
+				1BFDFB4C2783A309000B8385 /* Sidebar.swift */,
+			);
+			path = "iPad Controllers";
+			sourceTree = "<group>";
+		};
+		1BFDFB5D2784052A000B8385 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				1BFDFB5A2783DB7A000B8385 /* Section.swift */,
+				1BFDFB542783B0AD000B8385 /* Item.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		1BFDFB5E27840535000B8385 /* UIKit Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				1BFDFB582783D703000B8385 /* UIFont+Ext.swift */,
+				1BFDFB6427840627000B8385 /* UIImage+Ext.swift */,
+				1BFDFB662784068F000B8385 /* UILabel+Ext.swift */,
+			);
+			path = "UIKit Extensions";
+			sourceTree = "<group>";
+		};
+		1BFDFB5F27840543000B8385 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				1BFDFB562783C532000B8385 /* GradientBackgroundView.swift */,
+				1BFDFB522783AEEA000B8385 /* ItemCell.swift */,
+				1BFDFB62278405DA000B8385 /* ImageTextCell.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		1BFDFB6027840551000B8385 /* Compact | iPhone Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1BFDFB502783A355000B8385 /* MainTabBarController.swift */,
+			);
+			path = "Compact | iPhone Controllers";
+			sourceTree = "<group>";
+		};
+		1BFDFB6127840573000B8385 /* Shared Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				1BFDFB4E2783A32B000B8385 /* HomeViewController.swift */,
+			);
+			path = "Shared Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -164,10 +215,13 @@
 				1BFDFB392783A26B000B8385 /* SceneDelegate.swift in Sources */,
 				1BFDFB5B2783DB7A000B8385 /* Section.swift in Sources */,
 				1BFDFB592783D703000B8385 /* UIFont+Ext.swift in Sources */,
+				1BFDFB672784068F000B8385 /* UILabel+Ext.swift in Sources */,
+				1BFDFB6527840627000B8385 /* UIImage+Ext.swift in Sources */,
 				1BFDFB572783C532000B8385 /* GradientBackgroundView.swift in Sources */,
 				1BFDFB552783B0AD000B8385 /* Item.swift in Sources */,
 				1BFDFB532783AEEA000B8385 /* ItemCell.swift in Sources */,
 				1BFDFB4D2783A309000B8385 /* Sidebar.swift in Sources */,
+				1BFDFB63278405DA000B8385 /* ImageTextCell.swift in Sources */,
 				1BFDFB4B2783A2ED000B8385 /* MainSplitViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
