@@ -87,7 +87,7 @@ final class ItemCell: UICollectionViewCell {
         stackView.axis = .vertical
         stackView.distribution = .fill
         stackView.spacing = 10
-        stackView.layoutMargins = .init(top: 10, left: 10, bottom: 10, right: 10)
+        stackView.layoutMargins = .init(top: 10, left: 0, bottom: 10, right: 0)
         stackView.isLayoutMarginsRelativeArrangement = true
         stackView.translatesAutoresizingMaskIntoConstraints = false
         
