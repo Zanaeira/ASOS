@@ -97,7 +97,7 @@ extension HomeViewController {
         let sectionProvider: UICollectionViewCompositionalLayoutSectionProvider = { (sectionNumber, environment) -> NSCollectionLayoutSection? in
             guard let section = Section(rawValue: sectionNumber) else { return nil }
             switch section {
-            case .announcements: return self.announcementsSection(withTopSpacing: self.spacing)
+            case .announcements: return self.announcementsSection()
             case .sales: return self.salesSection()
             case .featured: return self.featuredSection()
             case .grid: return self.gridSection()
@@ -112,25 +112,17 @@ extension HomeViewController {
         
         return layout
     }
-
-    private func announcementsSection(withTopSpacing topSpacing: CGFloat = 0) -> NSCollectionLayoutSection {
-        let itemHeight: NSCollectionLayoutDimension = .estimated(1)
-
-        let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: itemHeight))
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: itemHeight), subitems: [item])
-        let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = .init(top: topSpacing, leading: spacing, bottom: 0, trailing: spacing)
-        section.interGroupSpacing = spacing
-        
-        return section
+    
+    private func announcementsSection() -> NSCollectionLayoutSection {
+        return standardSection(withTopSpacing: self.spacing)
     }
     
     private func salesSection() -> NSCollectionLayoutSection {
-        return announcementsSection()
+        return standardSection()
     }
     
     private func featuredSection() -> NSCollectionLayoutSection {
-        return announcementsSection()
+        return standardSection()
     }
     
     private func gridSection() -> NSCollectionLayoutSection {
@@ -152,11 +144,21 @@ extension HomeViewController {
     }
     
     private func specialSection() -> NSCollectionLayoutSection {
-        return announcementsSection()
+        return standardSection()
     }
     
     private func yourEditSection() -> NSCollectionLayoutSection {
-        return announcementsSection()
+        return standardSection()
+    }
+    
+    private func standardSection(withTopSpacing topSpacing: CGFloat = 0, itemHeight: NSCollectionLayoutDimension = .estimated(1), groupHeight: NSCollectionLayoutDimension = .estimated(1)) -> NSCollectionLayoutSection {
+        let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: groupHeight))
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: itemHeight), subitems: [item])
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = .init(top: topSpacing, leading: spacing, bottom: 0, trailing: spacing)
+        section.interGroupSpacing = spacing
+        
+        return section
     }
     
     private func carouselSection() -> NSCollectionLayoutSection {
