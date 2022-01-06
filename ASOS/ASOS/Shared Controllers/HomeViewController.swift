@@ -19,6 +19,12 @@ final class HomeViewController: UIViewController {
         updateSnapshot()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        collectionView.collectionViewLayout.invalidateLayout()
+    }
+    
     private func configureHierarchy() {
         collectionView.backgroundColor = .systemBackground
         collectionView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -26,7 +32,7 @@ final class HomeViewController: UIViewController {
     }
     
     private func updateSnapshot() {
-        let sections: [Section] = [.announcements, .sales, .featured, .grid, .special, .yourEdit, .recent]
+        let sections: [Section] = [.announcements, .extraSales, .featured, .grid, .special, .sales, .yourEdit, .recent]
         
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections(sections)
@@ -35,26 +41,34 @@ final class HomeViewController: UIViewController {
         dataSource.apply(snapshot, animatingDifferences: true)
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
-        super.traitCollectionDidChange(previousTraitCollection)
-        
-        collectionView.reloadData()
-    }
-    
 }
 
 // MARK: - UICollectionView Helpers
 extension HomeViewController {
     
     private func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Item> {
-        let itemCellRegistration = UICollectionView.CellRegistration<ItemCell, Item> { (cell, indexPath, item) in
+        let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Item> { (cell, indexPath, item) in
             cell.configure(with: item)
-            
-            guard let section = self.dataSource.snapshot().sectionIdentifier(containingItem: item) else { return }
-            cell.styleForSection(section)
         }
         
-        let imageTextCellRegistration = UICollectionView.CellRegistration<ImageTextCell, Item> { (cell, indexPath, item) in
+        let extraSalesCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Item> { (cell, indexPath, item) in
+            cell.configure(withItem: item, andBackgroundView: GradientBackgroundView(rightColor: .systemGreen, leftColor: .systemTeal))
+        }
+        
+        let featuredCellRegistration = UICollectionView.CellRegistration<ImageLabelsCell, Item> { (cell, indexPath, item) in
+            cell.configure(with: item)
+        }
+        
+        let gridCellRegistration = UICollectionView.CellRegistration<ImageLabelsCell, Item> { (cell, indexPath, item) in
+            cell.configure(with: item)
+            cell.constrainHeightForGrid()
+        }
+        
+        let salesCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Item> { (cell, indexPath, item) in
+            cell.configure(withItem: item, andBackgroundView: GradientBackgroundView(rightColor: .systemTeal, leftColor: .systemIndigo))
+        }
+        
+        let specialCellRegistration = UICollectionView.CellRegistration<ImageTextCell, Item> { (cell, indexPath, item) in
             cell.configure(with: item)
         }
         
@@ -69,16 +83,20 @@ extension HomeViewController {
         let recentSectionHeaderRegistration = UICollectionView.SupplementaryRegistration<RecentlyViewedHeader>(elementKind: UICollectionView.elementKindSectionHeader) { (_, _, _) in }
         
         let dataSource =  UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
-            let section = self.dataSource.snapshot().sectionIdentifier(containingItem: itemIdentifier)
-            if section == .special {
-                return collectionView.dequeueConfiguredReusableCell(using: imageTextCellRegistration, for: indexPath, item: itemIdentifier)
-            } else if section == .yourEdit {
-                return collectionView.dequeueConfiguredReusableCell(using: yourEditCellRegistration, for: indexPath, item: itemIdentifier)
-            } else if section == .recent {
-                return collectionView.dequeueConfiguredReusableCell(using: recentlyViewedCellRegistration, for: indexPath, item: itemIdentifier)
+            guard let section = self.dataSource.snapshot().sectionIdentifier(containingItem: itemIdentifier) else {
+                return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
             }
             
-            return collectionView.dequeueConfiguredReusableCell(using: itemCellRegistration, for: indexPath, item: itemIdentifier)
+            switch section {
+            case .announcements: return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
+            case .extraSales: return collectionView.dequeueConfiguredReusableCell(using: extraSalesCellRegistration, for: indexPath, item: itemIdentifier)
+            case .featured: return collectionView.dequeueConfiguredReusableCell(using: featuredCellRegistration, for: indexPath, item: itemIdentifier)
+            case .grid: return collectionView.dequeueConfiguredReusableCell(using: gridCellRegistration, for: indexPath, item: itemIdentifier)
+            case .special: return collectionView.dequeueConfiguredReusableCell(using: specialCellRegistration, for: indexPath, item: itemIdentifier)
+            case .sales: return collectionView.dequeueConfiguredReusableCell(using: salesCellRegistration, for: indexPath, item: itemIdentifier)
+            case .yourEdit: return collectionView.dequeueConfiguredReusableCell(using: yourEditCellRegistration, for: indexPath, item: itemIdentifier)
+            case .recent: return collectionView.dequeueConfiguredReusableCell(using: recentlyViewedCellRegistration, for: indexPath, item: itemIdentifier)
+            }
         }
         
         dataSource.supplementaryViewProvider = { (collectionView, _, indexPath) in
@@ -98,10 +116,11 @@ extension HomeViewController {
             guard let section = Section(rawValue: sectionNumber) else { return nil }
             switch section {
             case .announcements: return self.announcementsSection()
-            case .sales: return self.salesSection()
+            case .extraSales: return self.salesSection()
             case .featured: return self.featuredSection()
             case .grid: return self.gridSection()
             case .special: return self.specialSection()
+            case .sales: return self.salesSection()
             case .yourEdit: return self.yourEditSection()
             case .recent: return self.carouselSection()
             }
@@ -114,19 +133,22 @@ extension HomeViewController {
     }
     
     private func announcementsSection() -> NSCollectionLayoutSection {
-        return standardSection(withTopSpacing: self.spacing)
+        let height: NSCollectionLayoutDimension = .estimated(350)
+        return standardSection(withTopSpacing: spacing, itemHeight: height, groupHeight: height)
     }
     
     private func salesSection() -> NSCollectionLayoutSection {
-        return standardSection()
+        let height: NSCollectionLayoutDimension = .estimated(350)
+        return standardSection(itemHeight: height, groupHeight: height)
     }
     
     private func featuredSection() -> NSCollectionLayoutSection {
-        return standardSection()
+        let height: NSCollectionLayoutDimension = .estimated(450)
+        return standardSection(itemHeight: height, groupHeight: height)
     }
     
     private func gridSection() -> NSCollectionLayoutSection {
-        let itemHeight: NSCollectionLayoutDimension = .estimated(1)
+        let itemHeight: NSCollectionLayoutDimension = .estimated(250)
         
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: itemHeight)
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: itemHeight)
@@ -144,11 +166,12 @@ extension HomeViewController {
     }
     
     private func specialSection() -> NSCollectionLayoutSection {
-        return standardSection()
+        return featuredSection()
     }
     
     private func yourEditSection() -> NSCollectionLayoutSection {
-        return standardSection()
+        let height: NSCollectionLayoutDimension = .estimated(350)
+        return standardSection(itemHeight: height, groupHeight: height)
     }
     
     private func standardSection(withTopSpacing topSpacing: CGFloat = 0, itemHeight: NSCollectionLayoutDimension = .estimated(1), groupHeight: NSCollectionLayoutDimension = .estimated(1)) -> NSCollectionLayoutSection {
@@ -162,10 +185,27 @@ extension HomeViewController {
     }
     
     private func carouselSection() -> NSCollectionLayoutSection {
-        let itemHeight: NSCollectionLayoutDimension = .estimated(1)
+        let itemHeight: NSCollectionLayoutDimension = .estimated(250)
+        
+        let groupWidth: CGFloat
+        
+        let isAccessibilityCategory = traitCollection.preferredContentSizeCategory.isAccessibilityCategory
+        if isAccessibilityCategory {
+            if traitCollection.preferredContentSizeCategory < .accessibilityExtraLarge {
+                groupWidth = 0.7
+            } else {
+                groupWidth = 0.8
+            }
+        } else {
+            if traitCollection.preferredContentSizeCategory > .extraLarge {
+                groupWidth = 0.6
+            } else {
+                groupWidth = 0.4
+            }
+        }
         
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: itemHeight)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: itemHeight)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(groupWidth), heightDimension: itemHeight)
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
@@ -183,6 +223,48 @@ extension HomeViewController {
         section.decorationItems = [backgroundDecorationItem]
         
         return section
+    }
+    
+}
+
+private extension UICollectionViewListCell {
+    
+    func configure(with item: Item) {
+        var backgroundConfig = UIBackgroundConfiguration.listPlainCell()
+        backgroundConfig.backgroundColor = .systemBackground
+        backgroundConfiguration = backgroundConfig
+        
+        var config = defaultContentConfiguration()
+        config.text = item.text
+        config.secondaryText = item.secondaryText
+        
+        config.textProperties.font = .preferredFont(forTextStyle: .title3).bold()
+        config.textProperties.color = .white
+        config.textProperties.alignment = .center
+        config.secondaryTextProperties.font = .preferredFont(forTextStyle: .caption1)
+        config.secondaryTextProperties.alignment = .center
+        config.secondaryTextProperties.color = .white
+        
+        contentConfiguration = config
+    }
+    
+    func configure(withItem item: Item, andBackgroundView backgroundView: UIView) {
+        var backgroundConfig = UIBackgroundConfiguration.listPlainCell()
+        backgroundConfig.customView = backgroundView
+        backgroundConfiguration = backgroundConfig
+        
+        var config = defaultContentConfiguration()
+        config.text = item.text
+        config.secondaryText = item.secondaryText
+        
+        config.textProperties.font = .preferredFont(forTextStyle: .title1).bold()
+        config.textProperties.color = .black
+        config.textProperties.alignment = .center
+        config.secondaryTextProperties.font = .preferredFont(forTextStyle: .caption1)
+        config.secondaryTextProperties.alignment = .center
+        config.secondaryTextProperties.color = .black
+        
+        contentConfiguration = config
     }
     
 }

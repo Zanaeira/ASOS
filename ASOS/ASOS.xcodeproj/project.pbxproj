@@ -15,7 +15,6 @@
 		1BFDFB4D2783A309000B8385 /* Sidebar.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB4C2783A309000B8385 /* Sidebar.swift */; };
 		1BFDFB4F2783A32B000B8385 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB4E2783A32B000B8385 /* HomeViewController.swift */; };
 		1BFDFB512783A355000B8385 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB502783A355000B8385 /* MainTabBarController.swift */; };
-		1BFDFB532783AEEA000B8385 /* ItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB522783AEEA000B8385 /* ItemCell.swift */; };
 		1BFDFB552783B0AD000B8385 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB542783B0AD000B8385 /* Item.swift */; };
 		1BFDFB572783C532000B8385 /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB562783C532000B8385 /* GradientBackgroundView.swift */; };
 		1BFDFB592783D703000B8385 /* UIFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB582783D703000B8385 /* UIFont+Ext.swift */; };
@@ -28,6 +27,7 @@
 		1BFDFB6D2784B02B000B8385 /* RecentlyViewedCellBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB6C2784B02B000B8385 /* RecentlyViewedCellBackgroundView.swift */; };
 		1BFDFB6F2784B375000B8385 /* RecentlyViewedBackgroundDecorationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB6E2784B375000B8385 /* RecentlyViewedBackgroundDecorationView.swift */; };
 		1BFDFB712784B77E000B8385 /* RecentlyViewedHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB702784B77E000B8385 /* RecentlyViewedHeader.swift */; };
+		1BFDFB81278654DB000B8385 /* ImageLabelsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB80278654DB000B8385 /* ImageLabelsCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,7 +41,6 @@
 		1BFDFB4C2783A309000B8385 /* Sidebar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sidebar.swift; sourceTree = "<group>"; };
 		1BFDFB4E2783A32B000B8385 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		1BFDFB502783A355000B8385 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
-		1BFDFB522783AEEA000B8385 /* ItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemCell.swift; sourceTree = "<group>"; };
 		1BFDFB542783B0AD000B8385 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		1BFDFB562783C532000B8385 /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
 		1BFDFB582783D703000B8385 /* UIFont+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Ext.swift"; sourceTree = "<group>"; };
@@ -54,6 +53,7 @@
 		1BFDFB6C2784B02B000B8385 /* RecentlyViewedCellBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyViewedCellBackgroundView.swift; sourceTree = "<group>"; };
 		1BFDFB6E2784B375000B8385 /* RecentlyViewedBackgroundDecorationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyViewedBackgroundDecorationView.swift; sourceTree = "<group>"; };
 		1BFDFB702784B77E000B8385 /* RecentlyViewedHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyViewedHeader.swift; sourceTree = "<group>"; };
+		1BFDFB80278654DB000B8385 /* ImageLabelsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLabelsCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -133,8 +133,8 @@
 			isa = PBXGroup;
 			children = (
 				1BFDFB562783C532000B8385 /* GradientBackgroundView.swift */,
-				1BFDFB522783AEEA000B8385 /* ItemCell.swift */,
 				1BFDFB62278405DA000B8385 /* ImageTextCell.swift */,
+				1BFDFB80278654DB000B8385 /* ImageLabelsCell.swift */,
 				1BFDFB6827841C3D000B8385 /* YourEditCell.swift */,
 				1BFDFB6A2784AB56000B8385 /* RecentlyViewedCell.swift */,
 				1BFDFB702784B77E000B8385 /* RecentlyViewedHeader.swift */,
@@ -235,6 +235,7 @@
 				1BFDFB6B2784AB56000B8385 /* RecentlyViewedCell.swift in Sources */,
 				1BFDFB512783A355000B8385 /* MainTabBarController.swift in Sources */,
 				1BFDFB392783A26B000B8385 /* SceneDelegate.swift in Sources */,
+				1BFDFB81278654DB000B8385 /* ImageLabelsCell.swift in Sources */,
 				1BFDFB5B2783DB7A000B8385 /* Section.swift in Sources */,
 				1BFDFB592783D703000B8385 /* UIFont+Ext.swift in Sources */,
 				1BFDFB672784068F000B8385 /* UILabel+Ext.swift in Sources */,
@@ -243,7 +244,6 @@
 				1BFDFB712784B77E000B8385 /* RecentlyViewedHeader.swift in Sources */,
 				1BFDFB6D2784B02B000B8385 /* RecentlyViewedCellBackgroundView.swift in Sources */,
 				1BFDFB552783B0AD000B8385 /* Item.swift in Sources */,
-				1BFDFB532783AEEA000B8385 /* ItemCell.swift in Sources */,
 				1BFDFB4D2783A309000B8385 /* Sidebar.swift in Sources */,
 				1BFDFB63278405DA000B8385 /* ImageTextCell.swift in Sources */,
 				1BFDFB6927841C3D000B8385 /* YourEditCell.swift in Sources */,

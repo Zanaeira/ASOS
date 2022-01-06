@@ -15,15 +15,21 @@ final class GradientBackgroundView: UIView {
     
     private let backgroundGradient = CAGradientLayer()
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    private let rightColor: UIColor
+    private let leftColor: UIColor
+    
+    init(rightColor: UIColor, leftColor: UIColor) {
+        self.rightColor = rightColor
+        self.leftColor = leftColor
+        
+        super.init(frame: .zero)
         
         setupBackgroundGradient()
     }
     
     private func setupBackgroundGradient() {
         backgroundGradient.type = .axial
-        backgroundGradient.colors = [UIColor.systemTeal.cgColor, UIColor.systemIndigo.cgColor]
+        backgroundGradient.colors = [rightColor.cgColor, leftColor.cgColor]
         backgroundGradient.startPoint = .init(x: 1.0, y: 0.5)
         backgroundGradient.endPoint = .init(x: 0.0, y: 0.5)
         

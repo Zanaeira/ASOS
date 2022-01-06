@@ -9,12 +9,12 @@ import UIKit
 
 extension UIFont {
     
-    static func preferredFont(forTextStyle style: TextStyle, weight: Weight) -> UIFont {
-        let fontMetrics = UIFontMetrics(forTextStyle: style)
-        let fontDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: style)
-        let font = UIFont.systemFont(ofSize: fontDescriptor.pointSize, weight: weight)
+    func bold() -> UIFont {
+        guard let fontDescriptor = fontDescriptor.withSymbolicTraits(.traitBold) else {
+            return self
+        }
         
-        return fontMetrics.scaledFont(for: font)
+        return UIFont(descriptor: fontDescriptor, size: 0)
     }
     
 }
