@@ -13,29 +13,47 @@ final class ImageTextCell: UICollectionViewCell {
         fatalError("Not implemented")
     }
     
-    private let primaryLabel = UILabel(font: .preferredFont(forTextStyle: .title1).bold())
-    private let secondaryLabel = UILabel(font: .preferredFont(forTextStyle: .title2).bold())
-    private let imageView = UIImageView(contentMode: .scaleAspectFill)
+    private let imageView = UIImageView()
+    private let textLabel = UILabel()
+    private let secondaryTextLabel = UILabel()
     
-    private lazy var primaryLabelStackView = UIStackView(arrangedSubviews: [primaryLabel])
-    private lazy var secondaryLabelStackView = UIStackView(arrangedSubviews: [secondaryLabel])
+    private lazy var textLabelStackView = UIStackView(arrangedSubviews: [textLabel])
+    private lazy var secondaryLabelStackView = UIStackView(arrangedSubviews: [secondaryTextLabel])
     
     override init(frame: CGRect) {
         super.init(frame: frame)
         
-        setupSubviews()
+        setupSubviewProperties()
+        addSubviews()
     }
     
     func configure(with item: Item) {
-        primaryLabel.text = item.text
-        secondaryLabel.text = item.secondaryText
+        textLabel.text = item.text
+        secondaryTextLabel.text = item.secondaryText
         imageView.image = item.image
     }
     
-    private func setupSubviews() {
-        [primaryLabel, secondaryLabel].forEach({$0.textColor = .black})
+    private func setupSubviewProperties() {
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        setupLabel(textLabel, font: .preferredFont(forTextStyle: .title1).bold())
+        setupLabel(secondaryTextLabel, font: .preferredFont(forTextStyle: .title2).bold())
+    }
+    
+    private func setupLabel(_ label: UILabel, font: UIFont, textColor: UIColor = .label, textAlignment: NSTextAlignment = .center) {
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.font = font
+        label.textColor = textColor
+        label.textAlignment = textAlignment
+        label.adjustsFontForContentSizeCategory = false
+        label.numberOfLines = 0
+    }
+    
+    private func addSubviews() {
+        [textLabel, secondaryTextLabel].forEach({$0.textColor = .black})
         
-        [primaryLabelStackView, secondaryLabelStackView].forEach({ stackView in
+        [textLabelStackView, secondaryLabelStackView].forEach({ stackView in
             stackView.translatesAutoresizingMaskIntoConstraints = false
             stackView.backgroundColor = .white
             let padding: CGFloat = 8
@@ -43,7 +61,7 @@ final class ImageTextCell: UICollectionViewCell {
             stackView.isLayoutMarginsRelativeArrangement = true
         })
         
-        [imageView, primaryLabelStackView, secondaryLabelStackView].forEach(contentView.addSubview)
+        [imageView, textLabelStackView, secondaryLabelStackView].forEach(contentView.addSubview)
         
         NSLayoutConstraint.activate([
             imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
@@ -54,9 +72,9 @@ final class ImageTextCell: UICollectionViewCell {
             
             secondaryLabelStackView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
             secondaryLabelStackView.bottomAnchor.constraint(equalTo: imageView.bottomAnchor, constant: -16),
-
-            primaryLabelStackView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
-            primaryLabelStackView.bottomAnchor.constraint(equalTo: secondaryLabelStackView.topAnchor, constant: -8)
+            
+            textLabelStackView.centerXAnchor.constraint(equalTo: imageView.centerXAnchor),
+            textLabelStackView.bottomAnchor.constraint(equalTo: secondaryLabelStackView.topAnchor, constant: -8)
         ])
     }
 

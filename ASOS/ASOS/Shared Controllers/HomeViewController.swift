@@ -32,7 +32,7 @@ final class HomeViewController: UIViewController {
     }
     
     private func updateSnapshot() {
-        let sections: [Section] = [.announcements, .extraSales, .featured, .grid]
+        let sections: [Section] = [.announcements, .extraSales, .featured, .grid, .special]
         
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections(sections)
@@ -68,6 +68,10 @@ extension HomeViewController {
             cell.configure(withItem: item, andBackgroundView: GradientBackgroundView(rightColor: .systemTeal, leftColor: .systemIndigo))
         }
         
+        let specialCellRegistration = UICollectionView.CellRegistration<ImageTextCell, Item> { (cell, indexPath, item) in
+            cell.configure(with: item)
+        }
+        
         let recentSectionHeaderRegistration = UICollectionView.SupplementaryRegistration<RecentlyViewedHeader>(elementKind: UICollectionView.elementKindSectionHeader) { (_, _, _) in }
         
         let dataSource =  UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
@@ -80,7 +84,7 @@ extension HomeViewController {
             case .extraSales: return collectionView.dequeueConfiguredReusableCell(using: extraSalesCellRegistration, for: indexPath, item: itemIdentifier)
             case .featured: return collectionView.dequeueConfiguredReusableCell(using: featuredCellRegistration, for: indexPath, item: itemIdentifier)
             case .grid: return collectionView.dequeueConfiguredReusableCell(using: gridCellRegistration, for: indexPath, item: itemIdentifier)
-            case .special: return nil
+            case .special: return collectionView.dequeueConfiguredReusableCell(using: specialCellRegistration, for: indexPath, item: itemIdentifier)
             case .sales: return collectionView.dequeueConfiguredReusableCell(using: salesCellRegistration, for: indexPath, item: itemIdentifier)
             case .yourEdit: return nil
             case .recent: return nil
@@ -154,7 +158,7 @@ extension HomeViewController {
     }
     
     private func specialSection() -> NSCollectionLayoutSection {
-        return standardSection()
+        return featuredSection()
     }
     
     private func yourEditSection() -> NSCollectionLayoutSection {
