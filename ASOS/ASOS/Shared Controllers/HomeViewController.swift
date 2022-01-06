@@ -32,7 +32,7 @@ final class HomeViewController: UIViewController {
     }
     
     private func updateSnapshot() {
-        let sections: [Section] = [.announcements, .extraSales, .featured, .grid, .special]
+        let sections: [Section] = [.announcements, .extraSales, .featured, .grid, .special, .sales]
         
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections(sections)
