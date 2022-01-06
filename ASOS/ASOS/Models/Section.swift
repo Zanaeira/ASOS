@@ -10,10 +10,11 @@ import UIKit
 enum Section: Int {
     
     case announcements
-    case sales
+    case extraSales
     case featured
     case grid
     case special
+    case sales
     case yourEdit
     case recent
     
@@ -21,8 +22,7 @@ enum Section: Int {
         switch section {
         case .announcements: return [.init(text: "Premier Delivery\n\nUnlimited free Next-Day Delivery for a whole year for £9.95",
                                            secondaryText: "Ts&Cs apply")]
-        case .sales: return [.init(text: "SALE:\nUP TO 80% OFF\nFINAL DISCOUNTS!",
-                                           secondaryText: "Limited time only. While stocks lack. Selected styles marked down on site.")]
+        case .extraSales: return [.init(text: "EXTRA 20% OFF SALE\nCOATS & JACKETS\n(ALREADY UP TO 80% OFF)", secondaryText: "With code: WARMUP\n\nSale items only. See website banner for Tx&Cs. Selected marked products excluded from promo.")]
         case .featured: return [.init(text: "PITCH PERFECT", secondaryText: "Shop ASOS 4505", image: UIImage(named: "pitch-perfect"))]
         case .grid: return [.init(text: "FRED PERRY", secondaryText: "Always iconic", image: UIImage(named: "fred-perry")),
                             .init(text: "LOGO LOVE", secondaryText: "Ft. ASOS Dark Future", image: UIImage(named: "logo-love")),
@@ -30,6 +30,8 @@ enum Section: Int {
                             .init(text: "FEET FIRST", secondaryText: "Top-tier trainers", image: UIImage(named: "feet-first"))]
         case .special: return [.init(text: "ADIDAS", secondaryText: "'das right", image: UIImage(named: "adidas")),
                                .init(text: "COSY CLUB", secondaryText: "You do knit wanna miss this", image: UIImage(named: "cosy-club"))]
+        case .sales: return [.init(text: "SALE:\nUP TO 80% OFF\nFINAL DISCOUNTS!",
+                                           secondaryText: "Limited time only. While stocks lack. Selected styles marked down on site.")]
         case .yourEdit: return [.init(text: "Your Edit", secondaryText: "We reckon you'll like this lot")]
         case .recent: return [.init(text: "adidas Running long sleeve top with grey colour block in black",
                                                           secondaryText: "", image: UIImage(named: "recent-1")),

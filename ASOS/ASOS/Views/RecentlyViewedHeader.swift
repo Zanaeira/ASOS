@@ -13,7 +13,7 @@ final class RecentlyViewedHeader: UICollectionReusableView {
         fatalError("Not implemented")
     }
     
-    private let label = UILabel(font: .preferredFont(forTextStyle: .title3, weight: .bold))
+    private let label = UILabel(font: .preferredFont(forTextStyle: .title3).bold())
     private let button = UIButton()
     
     private lazy var stackView = UIStackView(arrangedSubviews: [label, UIView(), button])
@@ -28,7 +28,7 @@ final class RecentlyViewedHeader: UICollectionReusableView {
         label.text = "Recently viewed"
         button.setTitle("CLEAR", for: .normal)
         button.setTitleColor(.black, for: .normal)
-        button.titleLabel?.font = .preferredFont(forTextStyle: .callout, weight: .bold)
+        button.titleLabel?.font = .preferredFont(forTextStyle: .callout).bold()
         button.backgroundColor = UIColor(named: "clear-button-gray")
         button.contentEdgeInsets = .init(top: 5, left: 10, bottom: 5, right: 10)
         

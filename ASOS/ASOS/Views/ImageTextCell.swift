@@ -13,8 +13,8 @@ final class ImageTextCell: UICollectionViewCell {
         fatalError("Not implemented")
     }
     
-    private let primaryLabel = UILabel(font: .preferredFont(forTextStyle: .title1, weight: .bold))
-    private let secondaryLabel = UILabel(font: .preferredFont(forTextStyle: .title2, weight: .bold))
+    private let primaryLabel = UILabel(font: .preferredFont(forTextStyle: .title1).bold())
+    private let secondaryLabel = UILabel(font: .preferredFont(forTextStyle: .title2).bold())
     private let imageView = UIImageView(contentMode: .scaleAspectFill)
     
     private lazy var primaryLabelStackView = UIStackView(arrangedSubviews: [primaryLabel])

@@ -13,8 +13,8 @@ final class YourEditCell: UICollectionViewCell {
         fatalError("Not implemented")
     }
     
-    private let primaryLabel = UILabel(font: .preferredFont(forTextStyle: .title2, weight: .bold))
-    private let secondaryLabel = UILabel(font: .preferredFont(forTextStyle: .title3, weight: .bold))
+    private let primaryLabel = UILabel(font: .preferredFont(forTextStyle: .title2).bold())
+    private let secondaryLabel = UILabel(font: .preferredFont(forTextStyle: .title3).bold())
     
     private lazy var primaryLabelStackView = UIStackView(arrangedSubviews: [primaryLabel])
     
