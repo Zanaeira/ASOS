@@ -18,7 +18,7 @@
 		1BFDFB552783B0AD000B8385 /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB542783B0AD000B8385 /* Item.swift */; };
 		1BFDFB572783C532000B8385 /* GradientBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB562783C532000B8385 /* GradientBackgroundView.swift */; };
 		1BFDFB592783D703000B8385 /* UIFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB582783D703000B8385 /* UIFont+Ext.swift */; };
-		1BFDFB5B2783DB7A000B8385 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB5A2783DB7A000B8385 /* Section.swift */; };
+		1BFDFB5B2783DB7A000B8385 /* HomeViewControllerSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB5A2783DB7A000B8385 /* HomeViewControllerSection.swift */; };
 		1BFDFB63278405DA000B8385 /* ImageTextCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB62278405DA000B8385 /* ImageTextCell.swift */; };
 		1BFDFB6527840627000B8385 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB6427840627000B8385 /* UIImage+Ext.swift */; };
 		1BFDFB672784068F000B8385 /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB662784068F000B8385 /* UILabel+Ext.swift */; };
@@ -45,7 +45,7 @@
 		1BFDFB542783B0AD000B8385 /* Item.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Item.swift; sourceTree = "<group>"; };
 		1BFDFB562783C532000B8385 /* GradientBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientBackgroundView.swift; sourceTree = "<group>"; };
 		1BFDFB582783D703000B8385 /* UIFont+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Ext.swift"; sourceTree = "<group>"; };
-		1BFDFB5A2783DB7A000B8385 /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
+		1BFDFB5A2783DB7A000B8385 /* HomeViewControllerSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewControllerSection.swift; sourceTree = "<group>"; };
 		1BFDFB62278405DA000B8385 /* ImageTextCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTextCell.swift; sourceTree = "<group>"; };
 		1BFDFB6427840627000B8385 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		1BFDFB662784068F000B8385 /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 		1BFDFB5D2784052A000B8385 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				1BFDFB5A2783DB7A000B8385 /* Section.swift */,
+				1BFDFB5A2783DB7A000B8385 /* HomeViewControllerSection.swift */,
 				1BFDFB542783B0AD000B8385 /* Item.swift */,
 			);
 			path = Models;
@@ -239,7 +239,7 @@
 				1BFDFB512783A355000B8385 /* MainTabBarController.swift in Sources */,
 				1BFDFB392783A26B000B8385 /* SceneDelegate.swift in Sources */,
 				1BFDFB81278654DB000B8385 /* ImageLabelsCell.swift in Sources */,
-				1BFDFB5B2783DB7A000B8385 /* Section.swift in Sources */,
+				1BFDFB5B2783DB7A000B8385 /* HomeViewControllerSection.swift in Sources */,
 				1BFDFB852786A5A7000B8385 /* DetailViewController.swift in Sources */,
 				1BFDFB592783D703000B8385 /* UIFont+Ext.swift in Sources */,
 				1BFDFB672784068F000B8385 /* UILabel+Ext.swift in Sources */,

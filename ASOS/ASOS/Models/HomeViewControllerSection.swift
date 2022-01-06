@@ -1,5 +1,5 @@
 //
-//  Section.swift
+//  HomeViewControllerSection.swift
 //  ASOS
 //
 //  Created by Suhayl Ahmed on 04/01/2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-enum Section: Int {
+enum HomeViewControllerSection: Int {
     
     case announcements
     case extraSales
@@ -18,7 +18,7 @@ enum Section: Int {
     case yourEdit
     case recent
     
-    static func items(forSection section: Section) -> [Item] {
+    static func items(forSection section: HomeViewControllerSection) -> [Item] {
         switch section {
         case .announcements: return [.init(text: "Premier Delivery\n\nUnlimited free Next-Day Delivery for a whole year for £9.95",
                                            secondaryText: "Ts&Cs apply")]
