@@ -32,7 +32,7 @@ final class HomeViewController: UIViewController {
     }
     
     private func updateSnapshot() {
-        let sections: [Section] = [.announcements, .extraSales, .featured, .grid, .special, .sales]
+        let sections: [Section] = [.announcements, .extraSales, .featured, .grid, .special, .sales, .yourEdit]
         
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections(sections)
@@ -72,6 +72,10 @@ extension HomeViewController {
             cell.configure(with: item)
         }
         
+        let yourEditCellRegistration = UICollectionView.CellRegistration<YourEditCell, Item> { (cell, indexPath, item) in
+            cell.configure(with: item)
+        }
+        
         let recentSectionHeaderRegistration = UICollectionView.SupplementaryRegistration<RecentlyViewedHeader>(elementKind: UICollectionView.elementKindSectionHeader) { (_, _, _) in }
         
         let dataSource =  UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
@@ -86,7 +90,7 @@ extension HomeViewController {
             case .grid: return collectionView.dequeueConfiguredReusableCell(using: gridCellRegistration, for: indexPath, item: itemIdentifier)
             case .special: return collectionView.dequeueConfiguredReusableCell(using: specialCellRegistration, for: indexPath, item: itemIdentifier)
             case .sales: return collectionView.dequeueConfiguredReusableCell(using: salesCellRegistration, for: indexPath, item: itemIdentifier)
-            case .yourEdit: return nil
+            case .yourEdit: return collectionView.dequeueConfiguredReusableCell(using: yourEditCellRegistration, for: indexPath, item: itemIdentifier)
             case .recent: return nil
             }
         }
@@ -162,7 +166,8 @@ extension HomeViewController {
     }
     
     private func yourEditSection() -> NSCollectionLayoutSection {
-        return standardSection()
+        let height: NSCollectionLayoutDimension = .estimated(350)
+        return standardSection(itemHeight: height, groupHeight: height)
     }
     
     private func standardSection(withTopSpacing topSpacing: CGFloat = 0, itemHeight: NSCollectionLayoutDimension = .estimated(1), groupHeight: NSCollectionLayoutDimension = .estimated(1)) -> NSCollectionLayoutSection {
