@@ -187,8 +187,25 @@ extension HomeViewController {
     private func carouselSection() -> NSCollectionLayoutSection {
         let itemHeight: NSCollectionLayoutDimension = .estimated(250)
         
+        let groupWidth: CGFloat
+        
+        let isAccessibilityCategory = traitCollection.preferredContentSizeCategory.isAccessibilityCategory
+        if isAccessibilityCategory {
+            if traitCollection.preferredContentSizeCategory < .accessibilityExtraLarge {
+                groupWidth = 0.7
+            } else {
+                groupWidth = 0.8
+            }
+        } else {
+            if traitCollection.preferredContentSizeCategory > .extraLarge {
+                groupWidth = 0.6
+            } else {
+                groupWidth = 0.4
+            }
+        }
+        
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: itemHeight)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.4), heightDimension: itemHeight)
+        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(groupWidth), heightDimension: itemHeight)
         
         let item = NSCollectionLayoutItem(layoutSize: itemSize)
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitems: [item])
