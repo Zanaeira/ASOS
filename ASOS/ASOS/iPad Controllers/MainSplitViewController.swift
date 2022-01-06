@@ -27,7 +27,7 @@ final class MainSplitViewController: UISplitViewController {
         view.backgroundColor = .systemBackground
         
         let sidebar = Sidebar()
-        let detailViewController = HomeViewController()
+        let detailViewController = DetailViewController()
         let tabBarControllerForCompact = MainTabBarController()
         
         setViewController(sidebar, for: .primary)

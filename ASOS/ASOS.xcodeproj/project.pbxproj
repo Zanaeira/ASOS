@@ -28,6 +28,7 @@
 		1BFDFB6F2784B375000B8385 /* RecentlyViewedBackgroundDecorationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB6E2784B375000B8385 /* RecentlyViewedBackgroundDecorationView.swift */; };
 		1BFDFB712784B77E000B8385 /* RecentlyViewedHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB702784B77E000B8385 /* RecentlyViewedHeader.swift */; };
 		1BFDFB81278654DB000B8385 /* ImageLabelsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB80278654DB000B8385 /* ImageLabelsCell.swift */; };
+		1BFDFB852786A5A7000B8385 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB842786A5A7000B8385 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -54,6 +55,7 @@
 		1BFDFB6E2784B375000B8385 /* RecentlyViewedBackgroundDecorationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyViewedBackgroundDecorationView.swift; sourceTree = "<group>"; };
 		1BFDFB702784B77E000B8385 /* RecentlyViewedHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyViewedHeader.swift; sourceTree = "<group>"; };
 		1BFDFB80278654DB000B8385 /* ImageLabelsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLabelsCell.swift; sourceTree = "<group>"; };
+		1BFDFB842786A5A7000B8385 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 			isa = PBXGroup;
 			children = (
 				1BFDFB4E2783A32B000B8385 /* HomeViewController.swift */,
+				1BFDFB842786A5A7000B8385 /* DetailViewController.swift */,
 			);
 			path = "Shared Controllers";
 			sourceTree = "<group>";
@@ -237,6 +240,7 @@
 				1BFDFB392783A26B000B8385 /* SceneDelegate.swift in Sources */,
 				1BFDFB81278654DB000B8385 /* ImageLabelsCell.swift in Sources */,
 				1BFDFB5B2783DB7A000B8385 /* Section.swift in Sources */,
+				1BFDFB852786A5A7000B8385 /* DetailViewController.swift in Sources */,
 				1BFDFB592783D703000B8385 /* UIFont+Ext.swift in Sources */,
 				1BFDFB672784068F000B8385 /* UILabel+Ext.swift in Sources */,
 				1BFDFB6527840627000B8385 /* UIImage+Ext.swift in Sources */,
