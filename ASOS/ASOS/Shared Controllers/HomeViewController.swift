@@ -32,7 +32,7 @@ final class HomeViewController: UIViewController {
     }
     
     private func updateSnapshot() {
-        let sections: [Section] = [.announcements, .extraSales, .featured]
+        let sections: [Section] = [.announcements, .extraSales, .featured, .grid]
         
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections(sections)
@@ -55,8 +55,13 @@ extension HomeViewController {
             cell.configure(withItem: item, andBackgroundView: GradientBackgroundView(rightColor: .systemGreen, leftColor: .systemTeal))
         }
         
-        let featuredCellRegistration = UICollectionView.CellRegistration<FeaturedCell, Item> { (cell, indexPath, item) in
+        let featuredCellRegistration = UICollectionView.CellRegistration<ImageLabelsCell, Item> { (cell, indexPath, item) in
             cell.configure(with: item)
+        }
+        
+        let gridCellRegistration = UICollectionView.CellRegistration<ImageLabelsCell, Item> { (cell, indexPath, item) in
+            cell.configure(with: item)
+            cell.constrainHeightForGrid()
         }
         
         let salesCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Item> { (cell, indexPath, item) in
@@ -72,10 +77,13 @@ extension HomeViewController {
             
             switch section {
             case .announcements: return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
-            case .featured: return collectionView.dequeueConfiguredReusableCell(using: featuredCellRegistration, for: indexPath, item: itemIdentifier)
             case .extraSales: return collectionView.dequeueConfiguredReusableCell(using: extraSalesCellRegistration, for: indexPath, item: itemIdentifier)
+            case .featured: return collectionView.dequeueConfiguredReusableCell(using: featuredCellRegistration, for: indexPath, item: itemIdentifier)
+            case .grid: return collectionView.dequeueConfiguredReusableCell(using: gridCellRegistration, for: indexPath, item: itemIdentifier)
+            case .special: return nil
             case .sales: return collectionView.dequeueConfiguredReusableCell(using: salesCellRegistration, for: indexPath, item: itemIdentifier)
-            default: return nil
+            case .yourEdit: return nil
+            case .recent: return nil
             }
         }
         
@@ -128,7 +136,7 @@ extension HomeViewController {
     }
     
     private func gridSection() -> NSCollectionLayoutSection {
-        let itemHeight: NSCollectionLayoutDimension = .estimated(1)
+        let itemHeight: NSCollectionLayoutDimension = .estimated(250)
         
         let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: itemHeight)
         let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: itemHeight)

@@ -1,5 +1,5 @@
 //
-//  FeaturedCell.swift
+//  ImageLabelsCell.swift
 //  ASOS
 //
 //  Created by Suhayl Ahmed on 05/01/2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class FeaturedCell: UICollectionViewCell {
+final class ImageLabelsCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("Not implemented")
@@ -21,6 +21,8 @@ final class FeaturedCell: UICollectionViewCell {
     private var textLabelConstraints: [NSLayoutConstraint] = []
     private var secondaryTextLabelConstraints: [NSLayoutConstraint] = []
     
+    private lazy var gridImageViewHeightConstraint = imageView.heightAnchor.constraint(lessThanOrEqualToConstant: 250)
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -30,10 +32,20 @@ final class FeaturedCell: UICollectionViewCell {
         updateLayoutConstraints()
     }
     
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        NSLayoutConstraint.deactivate([gridImageViewHeightConstraint])
+    }
+    
     func configure(with item: Item) {
         imageView.image = item.image
         textLabel.text = item.text
         secondaryTextLabel.text = item.secondaryText
+    }
+    
+    func constrainHeightForGrid() {
+        NSLayoutConstraint.activate([gridImageViewHeightConstraint])
     }
     
     private func setupSubviewProperties() {

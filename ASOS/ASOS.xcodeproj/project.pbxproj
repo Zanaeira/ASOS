@@ -27,7 +27,7 @@
 		1BFDFB6D2784B02B000B8385 /* RecentlyViewedCellBackgroundView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB6C2784B02B000B8385 /* RecentlyViewedCellBackgroundView.swift */; };
 		1BFDFB6F2784B375000B8385 /* RecentlyViewedBackgroundDecorationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB6E2784B375000B8385 /* RecentlyViewedBackgroundDecorationView.swift */; };
 		1BFDFB712784B77E000B8385 /* RecentlyViewedHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB702784B77E000B8385 /* RecentlyViewedHeader.swift */; };
-		1BFDFB81278654DB000B8385 /* FeaturedCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB80278654DB000B8385 /* FeaturedCell.swift */; };
+		1BFDFB81278654DB000B8385 /* ImageLabelsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFDFB80278654DB000B8385 /* ImageLabelsCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,7 +53,7 @@
 		1BFDFB6C2784B02B000B8385 /* RecentlyViewedCellBackgroundView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyViewedCellBackgroundView.swift; sourceTree = "<group>"; };
 		1BFDFB6E2784B375000B8385 /* RecentlyViewedBackgroundDecorationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyViewedBackgroundDecorationView.swift; sourceTree = "<group>"; };
 		1BFDFB702784B77E000B8385 /* RecentlyViewedHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecentlyViewedHeader.swift; sourceTree = "<group>"; };
-		1BFDFB80278654DB000B8385 /* FeaturedCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedCell.swift; sourceTree = "<group>"; };
+		1BFDFB80278654DB000B8385 /* ImageLabelsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageLabelsCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -134,7 +134,7 @@
 			children = (
 				1BFDFB562783C532000B8385 /* GradientBackgroundView.swift */,
 				1BFDFB62278405DA000B8385 /* ImageTextCell.swift */,
-				1BFDFB80278654DB000B8385 /* FeaturedCell.swift */,
+				1BFDFB80278654DB000B8385 /* ImageLabelsCell.swift */,
 				1BFDFB6827841C3D000B8385 /* YourEditCell.swift */,
 				1BFDFB6A2784AB56000B8385 /* RecentlyViewedCell.swift */,
 				1BFDFB702784B77E000B8385 /* RecentlyViewedHeader.swift */,
@@ -235,7 +235,7 @@
 				1BFDFB6B2784AB56000B8385 /* RecentlyViewedCell.swift in Sources */,
 				1BFDFB512783A355000B8385 /* MainTabBarController.swift in Sources */,
 				1BFDFB392783A26B000B8385 /* SceneDelegate.swift in Sources */,
-				1BFDFB81278654DB000B8385 /* FeaturedCell.swift in Sources */,
+				1BFDFB81278654DB000B8385 /* ImageLabelsCell.swift in Sources */,
 				1BFDFB5B2783DB7A000B8385 /* Section.swift in Sources */,
 				1BFDFB592783D703000B8385 /* UIFont+Ext.swift in Sources */,
 				1BFDFB672784068F000B8385 /* UILabel+Ext.swift in Sources */,
