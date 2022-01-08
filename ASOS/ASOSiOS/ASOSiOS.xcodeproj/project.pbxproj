@@ -29,6 +29,7 @@
 		1B1999DC278A0A0300423F3D /* UIFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFC54452789FEA600CE9474 /* UIFont+Ext.swift */; };
 		1B1999DD278A0A0300423F3D /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFC54462789FEA600CE9474 /* UIImage+Ext.swift */; };
 		1B1999DF278A0A7C00423F3D /* Item.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFC54682789FEF800CE9474 /* Item.swift */; };
+		1B1999E4278A0D9700423F3D /* UICollectionViewListCell+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1B1999E3278A0D9700423F3D /* UICollectionViewListCell+Ext.swift */; };
 		1BFC54562789FEA600CE9474 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFC543F2789FEA600CE9474 /* MainTabBarController.swift */; };
 		1BFC54582789FEA600CE9474 /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFC54422789FEA600CE9474 /* Section.swift */; };
 		1BFC54672789FEA600CE9474 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFC54552789FEA600CE9474 /* HomeViewController.swift */; };
@@ -88,6 +89,7 @@
 		1B1999A6278A056900423F3D /* ASOSiPadOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ASOSiPadOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1B1999BA278A072200423F3D /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		1B1999C3278A08FE00423F3D /* ASOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ASOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B1999E3278A0D9700423F3D /* UICollectionViewListCell+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UICollectionViewListCell+Ext.swift"; sourceTree = "<group>"; };
 		1BFC542D2789FB9A00CE9474 /* ASOSiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ASOSiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BFC543F2789FEA600CE9474 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		1BFC54422789FEA600CE9474 /* Section.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
@@ -232,6 +234,7 @@
 				1BFC54442789FEA600CE9474 /* UILabel+Ext.swift */,
 				1BFC54452789FEA600CE9474 /* UIFont+Ext.swift */,
 				1BFC54462789FEA600CE9474 /* UIImage+Ext.swift */,
+				1B1999E3278A0D9700423F3D /* UICollectionViewListCell+Ext.swift */,
 			);
 			path = "UIKit Extensions";
 			sourceTree = "<group>";
@@ -439,6 +442,7 @@
 				1B1999DB278A0A0300423F3D /* UILabel+Ext.swift in Sources */,
 				1B1999D0278A092400423F3D /* RecentlyViewedCellBackgroundView.swift in Sources */,
 				1B1999CB278A092400423F3D /* ImageLabelsCell.swift in Sources */,
+				1B1999E4278A0D9700423F3D /* UICollectionViewListCell+Ext.swift in Sources */,
 				1B1999DF278A0A7C00423F3D /* Item.swift in Sources */,
 				1B1999DC278A0A0300423F3D /* UIFont+Ext.swift in Sources */,
 				1B1999CF278A092400423F3D /* RecentlyViewedHeader.swift in Sources */,
