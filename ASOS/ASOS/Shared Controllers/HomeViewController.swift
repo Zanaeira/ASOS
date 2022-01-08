@@ -57,6 +57,7 @@ extension HomeViewController {
         
         let featuredCellRegistration = UICollectionView.CellRegistration<ImageLabelsCell, Item> { (cell, indexPath, item) in
             cell.configure(with: item)
+            cell.constrainHeightForFeatured()
         }
         
         let gridCellRegistration = UICollectionView.CellRegistration<ImageLabelsCell, Item> { (cell, indexPath, item) in

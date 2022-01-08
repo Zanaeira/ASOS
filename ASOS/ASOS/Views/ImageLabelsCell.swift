@@ -21,6 +21,7 @@ final class ImageLabelsCell: UICollectionViewCell {
     private var textLabelConstraints: [NSLayoutConstraint] = []
     private var secondaryTextLabelConstraints: [NSLayoutConstraint] = []
     
+    private lazy var featuredImageViewHeightConstraint = imageView.heightAnchor.constraint(lessThanOrEqualToConstant: 450)
     private lazy var gridImageViewHeightConstraint = imageView.heightAnchor.constraint(lessThanOrEqualToConstant: 250)
     
     override init(frame: CGRect) {
@@ -35,13 +36,17 @@ final class ImageLabelsCell: UICollectionViewCell {
     override func prepareForReuse() {
         super.prepareForReuse()
         
-        NSLayoutConstraint.deactivate([gridImageViewHeightConstraint])
+        NSLayoutConstraint.deactivate([featuredImageViewHeightConstraint, gridImageViewHeightConstraint])
     }
     
     func configure(with item: Item) {
         imageView.image = item.image
         textLabel.text = item.text
         secondaryTextLabel.text = item.secondaryText
+    }
+    
+    func constrainHeightForFeatured() {
+        NSLayoutConstraint.activate([featuredImageViewHeightConstraint])
     }
     
     func constrainHeightForGrid() {
