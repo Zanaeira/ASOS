@@ -33,7 +33,7 @@ final class DetailViewController: UIViewController {
     }
     
     private func updateSnapshot() {
-        let sections: [Section] = [.announcements, .extraSales, .featured, .grid, .special, .sales, .yourEdit, .recent]
+        let sections: [Section] = [.announcements, .extraSales, .featuredAndGrid, .sales, .yourEdit, .recent]
         
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections(sections)
@@ -59,18 +59,10 @@ extension DetailViewController {
         let featuredCellRegistration = UICollectionView.CellRegistration<ImageLabelsCell, Item> { (cell, indexPath, item) in
             cell.configure(with: item)
         }
-        
-        let gridCellRegistration = UICollectionView.CellRegistration<ImageLabelsCell, Item> { (cell, indexPath, item) in
-            cell.configure(with: item)
-            cell.constrainHeightForGrid()
         }
         
         let salesCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Item> { (cell, indexPath, item) in
             cell.configure(withItem: item, andBackgroundView: GradientBackgroundView(rightColor: .systemTeal, leftColor: .systemIndigo))
-        }
-        
-        let specialCellRegistration = UICollectionView.CellRegistration<ImageTextCell, Item> { (cell, indexPath, item) in
-            cell.configure(with: item)
         }
         
         let yourEditCellRegistration = UICollectionView.CellRegistration<YourEditCell, Item> { (cell, indexPath, item) in
@@ -91,9 +83,7 @@ extension DetailViewController {
             switch section {
             case .announcements: return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
             case .extraSales: return collectionView.dequeueConfiguredReusableCell(using: extraSalesCellRegistration, for: indexPath, item: itemIdentifier)
-            case .featured: return collectionView.dequeueConfiguredReusableCell(using: featuredCellRegistration, for: indexPath, item: itemIdentifier)
-            case .grid: return collectionView.dequeueConfiguredReusableCell(using: gridCellRegistration, for: indexPath, item: itemIdentifier)
-            case .special: return collectionView.dequeueConfiguredReusableCell(using: specialCellRegistration, for: indexPath, item: itemIdentifier)
+            case .featuredAndGrid: return collectionView.dequeueConfiguredReusableCell(using: featuredCellRegistration, for: indexPath, item: itemIdentifier)
             case .sales: return collectionView.dequeueConfiguredReusableCell(using: salesCellRegistration, for: indexPath, item: itemIdentifier)
             case .yourEdit: return collectionView.dequeueConfiguredReusableCell(using: yourEditCellRegistration, for: indexPath, item: itemIdentifier)
             case .recent: return collectionView.dequeueConfiguredReusableCell(using: recentlyViewedCellRegistration, for: indexPath, item: itemIdentifier)
@@ -118,9 +108,7 @@ extension DetailViewController {
             switch section {
             case .announcements: return self.announcementsSection()
             case .extraSales: return self.salesSection()
-            case .featured: return self.featuredSection()
-            case .grid: return self.gridSection()
-            case .special: return self.specialSection()
+            case .featuredAndGrid: return self.featuredSection()
             case .sales: return self.salesSection()
             case .yourEdit: return self.yourEditSection()
             case .recent: return self.carouselSection()
