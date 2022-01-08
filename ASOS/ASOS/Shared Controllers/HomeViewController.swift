@@ -162,6 +162,7 @@ extension HomeViewController {
         
         let section = NSCollectionLayoutSection(group: group)
         section.contentInsets = .init(top: 0, leading: spacing, bottom: 0, trailing: spacing)
+        section.interGroupSpacing = spacing
         
         return section
     }
