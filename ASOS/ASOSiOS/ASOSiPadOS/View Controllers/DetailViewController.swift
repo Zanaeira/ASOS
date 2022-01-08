@@ -170,22 +170,23 @@ extension DetailViewController {
     }
     
     private func carouselSection() -> NSCollectionLayoutSection {
-        let itemHeight: NSCollectionLayoutDimension = .estimated(250)
+        var itemHeight: NSCollectionLayoutDimension = .estimated(250)
         
         let groupWidth: CGFloat
         
         let isAccessibilityCategory = traitCollection.preferredContentSizeCategory.isAccessibilityCategory
         if isAccessibilityCategory {
             if traitCollection.preferredContentSizeCategory < .accessibilityExtraLarge {
-                groupWidth = 0.7
+                groupWidth = 0.4
             } else {
-                groupWidth = 0.8
+                groupWidth = 0.3
             }
         } else {
             if traitCollection.preferredContentSizeCategory > .extraLarge {
-                groupWidth = 0.6
+                itemHeight = .estimated(400)
+                groupWidth = 0.3
             } else {
-                groupWidth = 0.4
+                groupWidth = 0.2
             }
         }
         
