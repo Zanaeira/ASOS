@@ -59,6 +59,10 @@ public final class ImageLabelsCell: UICollectionViewCell {
         imageView.clipsToBounds = true
         imageView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         
+        imageView.setContentHuggingPriority(.defaultLow, for: .vertical)
+        textLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        secondaryTextLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
+        
         setupLabel(textLabel, font: .preferredFont(forTextStyle: .body).bold())
         setupLabel(secondaryTextLabel, font: .preferredFont(forTextStyle: .callout), textColor: .systemGray)
     }
