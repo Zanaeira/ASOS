@@ -58,7 +58,7 @@ extension DetailViewController {
         
         let featuredCellRegistration = UICollectionView.CellRegistration<ImageLabelsCell, Item> { (cell, indexPath, item) in
             cell.configure(with: item)
-        }
+            cell.constrainHeightForFeatured()
         }
         
         let salesCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Item> { (cell, indexPath, item) in
