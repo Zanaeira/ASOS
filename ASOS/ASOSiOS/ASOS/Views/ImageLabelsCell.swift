@@ -57,6 +57,7 @@ public final class ImageLabelsCell: UICollectionViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        imageView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         
         setupLabel(textLabel, font: .preferredFont(forTextStyle: .body).bold())
         setupLabel(secondaryTextLabel, font: .preferredFont(forTextStyle: .callout), textColor: .systemGray)
@@ -78,7 +79,7 @@ public final class ImageLabelsCell: UICollectionViewCell {
     private func setupLayoutConstraints() {
         imageViewConstraints = [
             imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            imageView.topAnchor.constraint(greaterThanOrEqualTo: contentView.topAnchor),
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
             imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
         ]
         
@@ -92,7 +93,7 @@ public final class ImageLabelsCell: UICollectionViewCell {
             secondaryTextLabel.firstBaselineAnchor.constraint(equalToSystemSpacingBelow: textLabel.lastBaselineAnchor, multiplier: 1.25),
             secondaryTextLabel.leadingAnchor.constraint(equalTo: textLabel.leadingAnchor),
             secondaryTextLabel.trailingAnchor.constraint(equalTo: textLabel.trailingAnchor),
-            secondaryTextLabel.bottomAnchor.constraint(lessThanOrEqualTo: contentView.bottomAnchor)
+            secondaryTextLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
         ]
     }
     

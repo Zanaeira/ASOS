@@ -56,9 +56,8 @@ extension DetailViewController {
             cell.configure(withItem: item, andBackgroundView: GradientBackgroundView(rightColor: .systemGreen, leftColor: .systemTeal))
         }
         
-        let featuredCellRegistration = UICollectionView.CellRegistration<ImageLabelsCell, Item> { (cell, indexPath, item) in
+        let featuredAndGridCellRegistration = UICollectionView.CellRegistration<ImageLabelsCell, Item> { (cell, indexPath, item) in
             cell.configure(with: item)
-            cell.constrainHeightForFeatured()
         }
         
         let salesCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Item> { (cell, indexPath, item) in
@@ -83,7 +82,7 @@ extension DetailViewController {
             switch section {
             case .announcements: return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
             case .extraSales: return collectionView.dequeueConfiguredReusableCell(using: extraSalesCellRegistration, for: indexPath, item: itemIdentifier)
-            case .featuredAndGrid: return collectionView.dequeueConfiguredReusableCell(using: featuredCellRegistration, for: indexPath, item: itemIdentifier)
+            case .featuredAndGrid: return collectionView.dequeueConfiguredReusableCell(using: featuredAndGridCellRegistration, for: indexPath, item: itemIdentifier)
             case .sales: return collectionView.dequeueConfiguredReusableCell(using: salesCellRegistration, for: indexPath, item: itemIdentifier)
             case .yourEdit: return collectionView.dequeueConfiguredReusableCell(using: yourEditCellRegistration, for: indexPath, item: itemIdentifier)
             case .recent: return collectionView.dequeueConfiguredReusableCell(using: recentlyViewedCellRegistration, for: indexPath, item: itemIdentifier)
@@ -97,18 +96,19 @@ extension DetailViewController {
         return dataSource
     }
     
-    private var spacing: CGFloat { 16.0 }
+    private var sectionHorizontalEdgeSpacing: CGFloat { 50.0 }
+    private var interItemOrGroupSpacing: CGFloat { 16.0 }
     
     private func makeLayout() -> UICollectionViewLayout {
         let config = UICollectionViewCompositionalLayoutConfiguration()
-        config.interSectionSpacing = spacing
+        config.interSectionSpacing = interItemOrGroupSpacing
 
         let sectionProvider: UICollectionViewCompositionalLayoutSectionProvider = { (sectionNumber, environment) -> NSCollectionLayoutSection? in
             guard let section = Section(rawValue: sectionNumber) else { return nil }
             switch section {
             case .announcements: return self.announcementsSection()
             case .extraSales: return self.salesSection()
-            case .featuredAndGrid: return self.featuredSection()
+            case .featuredAndGrid: return self.featuredAndGridSection()
             case .sales: return self.salesSection()
             case .yourEdit: return self.yourEditSection()
             case .recent: return self.carouselSection()
@@ -123,7 +123,7 @@ extension DetailViewController {
     
     private func announcementsSection() -> NSCollectionLayoutSection {
         let height: NSCollectionLayoutDimension = .estimated(350)
-        return standardSection(withTopSpacing: spacing, itemHeight: height, groupHeight: height)
+        return standardSection(withTopSpacing: interItemOrGroupSpacing, itemHeight: height, groupHeight: height)
     }
     
     private func salesSection() -> NSCollectionLayoutSection {
@@ -131,31 +131,27 @@ extension DetailViewController {
         return standardSection(itemHeight: height, groupHeight: height)
     }
     
-    private func featuredSection() -> NSCollectionLayoutSection {
-        let height: NSCollectionLayoutDimension = .estimated(450)
-        return standardSection(itemHeight: height, groupHeight: height)
-    }
-    
-    private func gridSection() -> NSCollectionLayoutSection {
-        let itemHeight: NSCollectionLayoutDimension = .estimated(250)
+    private func featuredAndGridSection() -> NSCollectionLayoutSection {
+        let sectionHeight: NSCollectionLayoutDimension = .fractionalHeight(3/5)
         
-        let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: itemHeight)
-        let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: itemHeight)
+        let leadingItem = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1/2), heightDimension: .fractionalHeight(1)))
         
-        let numOfColumns = traitCollection.preferredContentSizeCategory.isAccessibilityCategory ? 1 : 2
+        let topGridItem = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1/2), heightDimension: .fractionalHeight(1)))
+        topGridItem.contentInsets = .init(top: 0, leading: interItemOrGroupSpacing, bottom: 0, trailing: 0)
+        let bottomGridItem = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1/2), heightDimension: .fractionalHeight(1)))
+        bottomGridItem.contentInsets = .init(top: 0, leading: interItemOrGroupSpacing, bottom: 0, trailing: 0)
         
-        let item = NSCollectionLayoutItem(layoutSize: itemSize)
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: numOfColumns)
-        group.interItemSpacing = .fixed(spacing)
+        let topGroup = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1/2)), subitems: [topGridItem])
+        let bottomGroup = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1/2)), subitems: [bottomGridItem])
+        bottomGroup.contentInsets = .init(top: interItemOrGroupSpacing, leading: 0, bottom: 0, trailing: 0)
+        let gridGroup = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1/2), heightDimension: .fractionalHeight(1)), subitems: [topGroup, bottomGroup])
+        
+        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: sectionHeight), subitems: [leadingItem, gridGroup])
         
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = .init(top: 0, leading: spacing, bottom: 0, trailing: spacing)
+        section.contentInsets = .init(top: 0, leading: sectionHorizontalEdgeSpacing, bottom: 0, trailing: sectionHorizontalEdgeSpacing)
         
         return section
-    }
-    
-    private func specialSection() -> NSCollectionLayoutSection {
-        return featuredSection()
     }
     
     private func yourEditSection() -> NSCollectionLayoutSection {
@@ -167,8 +163,8 @@ extension DetailViewController {
         let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: groupHeight))
         let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: itemHeight), subitems: [item])
         let section = NSCollectionLayoutSection(group: group)
-        section.contentInsets = .init(top: topSpacing, leading: spacing, bottom: 0, trailing: spacing)
-        section.interGroupSpacing = spacing
+        section.contentInsets = .init(top: topSpacing, leading: sectionHorizontalEdgeSpacing, bottom: 0, trailing: sectionHorizontalEdgeSpacing)
+        section.interGroupSpacing = interItemOrGroupSpacing
         
         return section
     }
@@ -201,8 +197,8 @@ extension DetailViewController {
         
         let section = NSCollectionLayoutSection(group: group)
         section.orthogonalScrollingBehavior = .continuousGroupLeadingBoundary
-        section.contentInsets = .init(top: spacing, leading: spacing, bottom: spacing, trailing: spacing)
-        section.interGroupSpacing = spacing
+        section.contentInsets = .init(top: interItemOrGroupSpacing, leading: sectionHorizontalEdgeSpacing, bottom: interItemOrGroupSpacing, trailing: sectionHorizontalEdgeSpacing)
+        section.interGroupSpacing = interItemOrGroupSpacing
         
         let headerSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .estimated(1))
         let headerItem = NSCollectionLayoutBoundarySupplementaryItem(layoutSize: headerSize, elementKind: UICollectionView.elementKindSectionHeader, alignment: .top)
