@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class YourEditCell: UICollectionViewCell {
+public final class YourEditCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("Not implemented")
@@ -18,7 +18,7 @@ final class YourEditCell: UICollectionViewCell {
     
     private lazy var textLabelStackView = UIStackView(arrangedSubviews: [textLabel])
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         
         contentView.backgroundColor = .systemIndigo
@@ -26,7 +26,7 @@ final class YourEditCell: UICollectionViewCell {
         addSubviews()
     }
     
-    func configure(with item: Item) {
+    public func configure(with item: Item) {
         textLabel.text = item.text
         secondaryTextLabel.text = item.secondaryText
     }

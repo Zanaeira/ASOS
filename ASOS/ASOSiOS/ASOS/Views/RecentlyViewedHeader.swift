@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class RecentlyViewedHeader: UICollectionReusableView {
+public final class RecentlyViewedHeader: UICollectionReusableView {
     
     required init?(coder: NSCoder) {
         fatalError("Not implemented")
@@ -18,7 +18,7 @@ final class RecentlyViewedHeader: UICollectionReusableView {
     
     private lazy var stackView = UIStackView(arrangedSubviews: [label, UIView(), button])
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         
         setupSubviewProperties()
@@ -64,7 +64,7 @@ final class RecentlyViewedHeader: UICollectionReusableView {
         ])
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         
         let isAccessibilityCategory = traitCollection.preferredContentSizeCategory.isAccessibilityCategory

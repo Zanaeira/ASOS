@@ -7,15 +7,17 @@
 
 import UIKit
 
-struct Item: Hashable {
-    private let id = UUID()
-    let text: String
-    let secondaryText: String
-    let image: UIImage?
+public struct Item: Hashable {
     
-    init(text: String = "", secondaryText: String = "", image: UIImage? = nil) {
+    private let id = UUID()
+    public let text: String
+    public let secondaryText: String
+    public let image: UIImage?
+    
+    public init(text: String = "", secondaryText: String = "", image: UIImage? = nil) {
         self.text = text
         self.secondaryText = secondaryText
         self.image = image
     }
+    
 }

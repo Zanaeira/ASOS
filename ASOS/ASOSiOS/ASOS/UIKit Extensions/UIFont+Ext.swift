@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UIFont {
+public extension UIFont {
     
     func bold() -> UIFont {
         guard let fontDescriptor = fontDescriptor.withSymbolicTraits(.traitBold) else {

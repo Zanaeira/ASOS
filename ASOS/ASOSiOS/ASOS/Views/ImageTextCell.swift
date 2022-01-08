@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ImageTextCell: UICollectionViewCell {
+public final class ImageTextCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("Not implemented")
@@ -20,14 +20,14 @@ final class ImageTextCell: UICollectionViewCell {
     private lazy var textLabelStackView = UIStackView(arrangedSubviews: [textLabel])
     private lazy var secondaryLabelStackView = UIStackView(arrangedSubviews: [secondaryTextLabel])
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         
         setupSubviewProperties()
         addSubviews()
     }
     
-    func configure(with item: Item) {
+    public func configure(with item: Item) {
         textLabel.text = item.text
         secondaryTextLabel.text = item.secondaryText
         imageView.image = item.image

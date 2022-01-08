@@ -9,6 +9,10 @@
 /* Begin PBXBuildFile section */
 		1B19999C278A031300423F3D /* ASOSiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B19999B278A031300423F3D /* ASOSiOS.framework */; };
 		1B19999D278A031300423F3D /* ASOSiOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1B19999B278A031300423F3D /* ASOSiOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1B1999B6278A061D00423F3D /* ASOSiPadOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B1999B5278A061D00423F3D /* ASOSiPadOS.framework */; };
+		1B1999B7278A061D00423F3D /* ASOSiPadOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1B1999B5278A061D00423F3D /* ASOSiPadOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		1B1999E1278A0AE300423F3D /* ASOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1B1999E0278A0AE300423F3D /* ASOS.framework */; };
+		1B1999E2278A0AE400423F3D /* ASOS.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 1B1999E0278A0AE300423F3D /* ASOS.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		1BFC5477278A020E00CE9474 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFC5476278A020E00CE9474 /* AppDelegate.swift */; };
 		1BFC5479278A020E00CE9474 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFC5478278A020E00CE9474 /* SceneDelegate.swift */; };
 		1BFC5480278A021000CE9474 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1BFC547F278A021000CE9474 /* Assets.xcassets */; };
@@ -22,6 +26,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				1B1999E2278A0AE400423F3D /* ASOS.framework in Embed Frameworks */,
+				1B1999B7278A061D00423F3D /* ASOSiPadOS.framework in Embed Frameworks */,
 				1B19999D278A031300423F3D /* ASOSiOS.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -31,6 +37,8 @@
 
 /* Begin PBXFileReference section */
 		1B19999B278A031300423F3D /* ASOSiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ASOSiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B1999B5278A061D00423F3D /* ASOSiPadOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ASOSiPadOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1B1999E0278A0AE300423F3D /* ASOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = ASOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BFC5473278A020E00CE9474 /* ASOS_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ASOS_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BFC5476278A020E00CE9474 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BFC5478278A020E00CE9474 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -44,6 +52,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1B1999E1278A0AE300423F3D /* ASOS.framework in Frameworks */,
+				1B1999B6278A061D00423F3D /* ASOSiPadOS.framework in Frameworks */,
 				1B19999C278A031300423F3D /* ASOSiOS.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -54,6 +64,8 @@
 		1B19999A278A031300423F3D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				1B1999E0278A0AE300423F3D /* ASOS.framework */,
+				1B1999B5278A061D00423F3D /* ASOSiPadOS.framework */,
 				1B19999B278A031300423F3D /* ASOSiOS.framework */,
 			);
 			name = Frameworks;

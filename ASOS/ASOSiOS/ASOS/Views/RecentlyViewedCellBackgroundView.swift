@@ -7,13 +7,13 @@
 
 import UIKit
 
-final class RecentlyViewedCellBackgroundView: UIView {
+public final class RecentlyViewedCellBackgroundView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("Not implemented")
     }
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         
         setupBackgroundAndShadow()

@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class RecentlyViewedCell: UICollectionViewCell {
+public final class RecentlyViewedCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("Not implemented")
@@ -23,7 +23,7 @@ final class RecentlyViewedCell: UICollectionViewCell {
     private lazy var normalImageViewHeightConstraint = imageView.heightAnchor.constraint(lessThanOrEqualToConstant: 200)
     private lazy var accessibilityImageViewHeightConstraint = imageView.heightAnchor.constraint(lessThanOrEqualToConstant: 400)
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         
         setupBackgroundView()
@@ -33,7 +33,7 @@ final class RecentlyViewedCell: UICollectionViewCell {
         updateImageHeightConstraint()
     }
     
-    func configure(with item: Item) {
+    public func configure(with item: Item) {
         label.text = item.text
         imageView.image = item.image
     }
@@ -101,7 +101,7 @@ final class RecentlyViewedCell: UICollectionViewCell {
         }
     }
     
-    override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
+    public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         
         let isAccessibilityCategory = traitCollection.preferredContentSizeCategory.isAccessibilityCategory

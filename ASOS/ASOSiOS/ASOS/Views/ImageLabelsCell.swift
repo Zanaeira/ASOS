@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class ImageLabelsCell: UICollectionViewCell {
+public final class ImageLabelsCell: UICollectionViewCell {
     
     required init?(coder: NSCoder) {
         fatalError("Not implemented")
@@ -24,7 +24,7 @@ final class ImageLabelsCell: UICollectionViewCell {
     private lazy var featuredImageViewHeightConstraint = imageView.heightAnchor.constraint(lessThanOrEqualToConstant: 450)
     private lazy var gridImageViewHeightConstraint = imageView.heightAnchor.constraint(lessThanOrEqualToConstant: 250)
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         
         setupSubviewProperties()
@@ -33,23 +33,23 @@ final class ImageLabelsCell: UICollectionViewCell {
         updateLayoutConstraints()
     }
     
-    override func prepareForReuse() {
+    public override func prepareForReuse() {
         super.prepareForReuse()
         
         NSLayoutConstraint.deactivate([featuredImageViewHeightConstraint, gridImageViewHeightConstraint])
     }
     
-    func configure(with item: Item) {
+    public func configure(with item: Item) {
         imageView.image = item.image
         textLabel.text = item.text
         secondaryTextLabel.text = item.secondaryText
     }
     
-    func constrainHeightForFeatured() {
+    public func constrainHeightForFeatured() {
         NSLayoutConstraint.activate([featuredImageViewHeightConstraint])
     }
     
-    func constrainHeightForGrid() {
+    public func constrainHeightForGrid() {
         NSLayoutConstraint.activate([gridImageViewHeightConstraint])
     }
     

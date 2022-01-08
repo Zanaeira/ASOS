@@ -7,7 +7,7 @@
 
 import UIKit
 
-extension UILabel {
+public extension UILabel {
     
     convenience init(font: UIFont, textAlignment: NSTextAlignment = .center, numberOfLines: Int = 0, adjustsFontSizeToFitWidth: Bool = true) {
         self.init(frame: .zero)

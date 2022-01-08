@@ -6,7 +6,7 @@
 //
 
 import UIKit
-import ASOSiOS
+import ASOSiPadOS
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     

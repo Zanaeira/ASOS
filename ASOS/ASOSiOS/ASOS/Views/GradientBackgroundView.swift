@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class GradientBackgroundView: UIView {
+public final class GradientBackgroundView: UIView {
     
     required init?(coder: NSCoder) {
         fatalError("Not implemented")
@@ -18,7 +18,7 @@ final class GradientBackgroundView: UIView {
     private let rightColor: UIColor
     private let leftColor: UIColor
     
-    init(rightColor: UIColor, leftColor: UIColor) {
+    public init(rightColor: UIColor, leftColor: UIColor) {
         self.rightColor = rightColor
         self.leftColor = leftColor
         
@@ -37,7 +37,7 @@ final class GradientBackgroundView: UIView {
 
     }
     
-    override func layoutSubviews() {
+    public override func layoutSubviews() {
         super.layoutSubviews()
         
         backgroundGradient.frame = bounds

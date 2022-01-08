@@ -6,20 +6,21 @@
 //
 
 import UIKit
+import ASOS
 
-final class HomeViewController: UIViewController {
+public final class HomeViewController: UIViewController {
     
     private lazy var collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: makeLayout())
     private lazy var dataSource: UICollectionViewDiffableDataSource<HomeViewControllerSection, Item> = makeDataSource()
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         configureHierarchy()
         updateSnapshot()
     }
     
-    override func viewDidLayoutSubviews() {
+    public override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         collectionView.collectionViewLayout.invalidateLayout()

@@ -7,15 +7,15 @@
 
 import UIKit
 
-final class RecentlyViewedBackgroundDecorationView: UICollectionReusableView {
+public final class RecentlyViewedBackgroundDecorationView: UICollectionReusableView {
     
     required init?(coder: NSCoder) {
         fatalError("Not implemented")
     }
     
-    static let sectionBackgroundDecorationElementKind = "section-background-element-kind"
+    public static let sectionBackgroundDecorationElementKind = "section-background-element-kind"
     
-    override init(frame: CGRect) {
+    public override init(frame: CGRect) {
         super.init(frame: frame)
         
         backgroundColor = .lightGray.withAlphaComponent(0.2)
