@@ -32,7 +32,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		1BFDFB332783A26B000B8385 /* ASOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ASOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1BFDFB332783A26B000B8385 /* ASOS_App.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ASOS_App.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BFDFB362783A26B000B8385 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		1BFDFB382783A26B000B8385 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		1BFDFB3F2783A26D000B8385 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -80,7 +80,7 @@
 		1BFDFB342783A26B000B8385 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1BFDFB332783A26B000B8385 /* ASOS.app */,
+				1BFDFB332783A26B000B8385 /* ASOS_App.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -166,9 +166,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1BFDFB322783A26B000B8385 /* ASOS */ = {
+		1BFDFB322783A26B000B8385 /* ASOS_App */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1BFDFB472783A26D000B8385 /* Build configuration list for PBXNativeTarget "ASOS" */;
+			buildConfigurationList = 1BFDFB472783A26D000B8385 /* Build configuration list for PBXNativeTarget "ASOS_App" */;
 			buildPhases = (
 				1BFDFB2F2783A26B000B8385 /* Sources */,
 				1BFDFB302783A26B000B8385 /* Frameworks */,
@@ -178,9 +178,9 @@
 			);
 			dependencies = (
 			);
-			name = ASOS;
+			name = ASOS_App;
 			productName = ASOS;
-			productReference = 1BFDFB332783A26B000B8385 /* ASOS.app */;
+			productReference = 1BFDFB332783A26B000B8385 /* ASOS_App.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -198,7 +198,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 1BFDFB2E2783A26B000B8385 /* Build configuration list for PBXProject "ASOS" */;
+			buildConfigurationList = 1BFDFB2E2783A26B000B8385 /* Build configuration list for PBXProject "ASOS_App" */;
 			compatibilityVersion = "Xcode 13.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -211,7 +211,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1BFDFB322783A26B000B8385 /* ASOS */,
+				1BFDFB322783A26B000B8385 /* ASOS_App */,
 			);
 		};
 /* End PBXProject section */
@@ -445,7 +445,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1BFDFB2E2783A26B000B8385 /* Build configuration list for PBXProject "ASOS" */ = {
+		1BFDFB2E2783A26B000B8385 /* Build configuration list for PBXProject "ASOS_App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1BFDFB452783A26D000B8385 /* Debug */,
@@ -454,7 +454,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1BFDFB472783A26D000B8385 /* Build configuration list for PBXNativeTarget "ASOS" */ = {
+		1BFDFB472783A26D000B8385 /* Build configuration list for PBXNativeTarget "ASOS_App" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1BFDFB482783A26D000B8385 /* Debug */,
