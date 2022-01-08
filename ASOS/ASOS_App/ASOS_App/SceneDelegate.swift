@@ -1,11 +1,12 @@
 //
 //  SceneDelegate.swift
-//  ASOS
+//  ASOS_App
 //
-//  Created by Suhayl Ahmed on 03/01/2022.
+//  Created by Suhayl Ahmed on 08/01/2022.
 //
 
 import UIKit
+import ASOSiOS
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     
@@ -20,6 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         window?.rootViewController = mainViewController
         window?.makeKeyAndVisible()
+
     }
     
 }

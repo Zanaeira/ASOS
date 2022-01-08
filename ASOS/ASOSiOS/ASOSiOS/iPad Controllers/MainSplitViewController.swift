@@ -7,17 +7,17 @@
 
 import UIKit
 
-final class MainSplitViewController: UISplitViewController {
+public final class MainSplitViewController: UISplitViewController {
     
     required init?(coder: NSCoder) {
         fatalError("Not implemented")
     }
     
-    init() {
+    public init() {
         super.init(style: .doubleColumn)
     }
     
-    override func viewDidLoad() {
+    public override func viewDidLoad() {
         super.viewDidLoad()
         
         configureUI()
