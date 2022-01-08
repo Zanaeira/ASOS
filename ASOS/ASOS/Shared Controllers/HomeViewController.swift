@@ -233,7 +233,7 @@ private extension UICollectionViewListCell {
     
     func configure(with item: Item) {
         var backgroundConfig = UIBackgroundConfiguration.listPlainCell()
-        backgroundConfig.backgroundColor = .systemBackground
+        backgroundConfig.backgroundColor = .black
         backgroundConfiguration = backgroundConfig
         
         var config = defaultContentConfiguration()
@@ -248,6 +248,9 @@ private extension UICollectionViewListCell {
         config.secondaryTextProperties.color = .white
         
         contentConfiguration = config
+        
+        contentView.layer.borderColor = UIColor.white.cgColor
+        contentView.layer.borderWidth = 1
     }
     
     func configure(withItem item: Item, andBackgroundView backgroundView: UIView) {
