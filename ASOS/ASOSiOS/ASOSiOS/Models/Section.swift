@@ -8,7 +8,7 @@
 import UIKit
 import ASOS
 
-enum HomeViewControllerSection: Int {
+enum Section: Int {
     
     case announcements
     case extraSales
@@ -19,7 +19,7 @@ enum HomeViewControllerSection: Int {
     case yourEdit
     case recent
     
-    static func items(forSection section: HomeViewControllerSection) -> [Item] {
+    static func items(forSection section: Section) -> [Item] {
         switch section {
         case .announcements: return [.init(text: "Premier Delivery\n\nUnlimited free Next-Day Delivery for a whole year for £9.95",
                                            secondaryText: "Ts&Cs apply")]

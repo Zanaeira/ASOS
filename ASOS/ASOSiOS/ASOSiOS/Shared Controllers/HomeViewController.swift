@@ -11,7 +11,7 @@ import ASOS
 public final class HomeViewController: UIViewController {
     
     private lazy var collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: makeLayout())
-    private lazy var dataSource: UICollectionViewDiffableDataSource<HomeViewControllerSection, Item> = makeDataSource()
+    private lazy var dataSource: UICollectionViewDiffableDataSource<Section, Item> = makeDataSource()
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,11 +33,11 @@ public final class HomeViewController: UIViewController {
     }
     
     private func updateSnapshot() {
-        let sections: [HomeViewControllerSection] = [.announcements, .extraSales, .featured, .grid, .special, .sales, .yourEdit, .recent]
+        let sections: [Section] = [.announcements, .extraSales, .featured, .grid, .special, .sales, .yourEdit, .recent]
         
-        var snapshot = NSDiffableDataSourceSnapshot<HomeViewControllerSection, Item>()
+        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections(sections)
-        sections.forEach({snapshot.appendItems(HomeViewControllerSection.items(forSection: $0), toSection: $0)})
+        sections.forEach({snapshot.appendItems(Section.items(forSection: $0), toSection: $0)})
         
         dataSource.apply(snapshot, animatingDifferences: true)
     }
@@ -47,7 +47,7 @@ public final class HomeViewController: UIViewController {
 // MARK: - UICollectionView Helpers
 extension HomeViewController {
     
-    private func makeDataSource() -> UICollectionViewDiffableDataSource<HomeViewControllerSection, Item> {
+    private func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Item> {
         let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Item> { (cell, indexPath, item) in
             cell.configure(with: item)
         }
@@ -84,7 +84,7 @@ extension HomeViewController {
         
         let recentSectionHeaderRegistration = UICollectionView.SupplementaryRegistration<RecentlyViewedHeader>(elementKind: UICollectionView.elementKindSectionHeader) { (_, _, _) in }
         
-        let dataSource =  UICollectionViewDiffableDataSource<HomeViewControllerSection, Item>(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
+        let dataSource =  UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
             guard let section = self.dataSource.snapshot().sectionIdentifier(containingItem: itemIdentifier) else {
                 return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
             }
@@ -115,7 +115,7 @@ extension HomeViewController {
         config.interSectionSpacing = spacing
 
         let sectionProvider: UICollectionViewCompositionalLayoutSectionProvider = { (sectionNumber, environment) -> NSCollectionLayoutSection? in
-            guard let section = HomeViewControllerSection(rawValue: sectionNumber) else { return nil }
+            guard let section = Section(rawValue: sectionNumber) else { return nil }
             switch section {
             case .announcements: return self.announcementsSection()
             case .extraSales: return self.salesSection()
