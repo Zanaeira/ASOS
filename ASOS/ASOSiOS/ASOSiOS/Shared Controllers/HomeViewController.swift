@@ -10,14 +10,31 @@ import ASOS
 
 public final class HomeViewController: UIViewController {
     
+    public required init?(coder: NSCoder) {
+        fatalError("Not implemented")
+    }
+    
     private lazy var collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: makeLayout())
     private lazy var dataSource: UICollectionViewDiffableDataSource<Section, Item> = makeDataSource()
+    
+    private let itemLoader: ItemLoader
+    private var items: [Item] = [] {
+        didSet {
+            updateSnapshot()
+        }
+    }
+    
+    init(itemLoader: ItemLoader) {
+        self.itemLoader = itemLoader
+        
+        super.init(nibName: nil, bundle: nil)
+    }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
         
         configureHierarchy()
-        updateSnapshot()
+        loadItems()
     }
     
     public override func viewDidLayoutSubviews() {
@@ -32,12 +49,28 @@ public final class HomeViewController: UIViewController {
         view.addSubview(collectionView)
     }
     
+    private func loadItems() {
+        itemLoader.loadItems(from: .init(string: "www.sample-url.com")!) { result in
+            switch result {
+            case .success(let loadedItems):
+                self.items = loadedItems
+            case .failure:
+                fatalError("Failure has not been called in sample App.")
+            }
+        }
+    }
+    
     private func updateSnapshot() {
         let sections: [Section] = [.announcements, .extraSales, .featured, .grid, .special, .sales, .yourEdit, .recent]
         
         var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
         snapshot.appendSections(sections)
-        sections.forEach({snapshot.appendItems(Section.items(forSection: $0), toSection: $0)})
+        for section in sections {
+            let sectionItems = items.filter { item in
+                item.section == section
+            }
+            snapshot.appendItems(sectionItems, toSection: section)
+        }
         
         dataSource.apply(snapshot, animatingDifferences: true)
     }

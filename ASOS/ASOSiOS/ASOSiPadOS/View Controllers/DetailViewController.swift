@@ -10,14 +10,31 @@ import ASOS
 
 final class DetailViewController: UIViewController {
     
+    public required init?(coder: NSCoder) {
+        fatalError("Not implemented")
+    }
+    
     private lazy var collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: makeLayout())
-    private lazy var dataSource: UICollectionViewDiffableDataSource<Section, Item> = makeDataSource()
+    private lazy var dataSource: UICollectionViewDiffableDataSource<DetailViewControllerSection, Item> = makeDataSource()
+    
+    private let itemLoader: ItemLoader
+    private var items: [Item] = [] {
+        didSet {
+            updateSnapshot()
+        }
+    }
+    
+    init(itemLoader: ItemLoader) {
+        self.itemLoader = itemLoader
+        
+        super.init(nibName: nil, bundle: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureHierarchy()
-        updateSnapshot()
+        loadItems()
     }
     
     override func viewDidLayoutSubviews() {
@@ -32,12 +49,29 @@ final class DetailViewController: UIViewController {
         view.addSubview(collectionView)
     }
     
+    private func loadItems() {
+        itemLoader.loadItems(from: .init(string: "www.sample-url.com")!) { result in
+            switch result {
+            case .success(let loadedItems):
+                self.items = loadedItems
+            case .failure:
+                fatalError("Failure has not been called in sample App.")
+            }
+        }
+    }
+    
     private func updateSnapshot() {
-        let sections: [Section] = [.announcements, .extraSales, .featuredAndGrid, .sales, .yourEdit, .recent]
+        let sections: [DetailViewControllerSection] = [.announcements, .extraSales, .featuredAndGrid, .sales, .yourEdit, .recent]
         
-        var snapshot = NSDiffableDataSourceSnapshot<Section, Item>()
+        var snapshot = NSDiffableDataSourceSnapshot<DetailViewControllerSection, Item>()
         snapshot.appendSections(sections)
-        sections.forEach({snapshot.appendItems(Section.items(forSection: $0), toSection: $0)})
+        snapshot.appendItems(items.filter({$0.section == .announcements}), toSection: .announcements)
+        snapshot.appendItems(items.filter({$0.section == .extraSales}), toSection: .extraSales)
+        let featuredGridItems = items.filter({$0.section == .featured}) + items.filter({$0.section == .grid})
+        snapshot.appendItems(featuredGridItems, toSection: .featuredAndGrid)
+        snapshot.appendItems(items.filter({$0.section == .sales}), toSection: .sales)
+        snapshot.appendItems(items.filter({$0.section == .yourEdit}), toSection: .yourEdit)
+        snapshot.appendItems(items.filter({$0.section == .recent}), toSection: .recent)
         
         dataSource.apply(snapshot, animatingDifferences: true)
     }
@@ -47,7 +81,7 @@ final class DetailViewController: UIViewController {
 // MARK: - UICollectionView Helpers
 extension DetailViewController {
     
-    private func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Item> {
+    private func makeDataSource() -> UICollectionViewDiffableDataSource<DetailViewControllerSection, Item> {
         let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Item> { (cell, indexPath, item) in
             cell.configure(with: item)
         }
@@ -79,7 +113,7 @@ extension DetailViewController {
         
         let recentSectionHeaderRegistration = UICollectionView.SupplementaryRegistration<RecentlyViewedHeader>(elementKind: UICollectionView.elementKindSectionHeader) { (_, _, _) in }
         
-        let dataSource =  UICollectionViewDiffableDataSource<Section, Item>(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
+        let dataSource =  UICollectionViewDiffableDataSource<DetailViewControllerSection, Item>(collectionView: collectionView) { collectionView, indexPath, itemIdentifier in
             guard let section = self.dataSource.snapshot().sectionIdentifier(containingItem: itemIdentifier) else {
                 return collectionView.dequeueConfiguredReusableCell(using: cellRegistration, for: indexPath, item: itemIdentifier)
             }
@@ -109,7 +143,7 @@ extension DetailViewController {
         config.interSectionSpacing = interItemOrGroupSpacing
 
         let sectionProvider: UICollectionViewCompositionalLayoutSectionProvider = { (sectionNumber, environment) -> NSCollectionLayoutSection? in
-            guard let section = Section(rawValue: sectionNumber) else { return nil }
+            guard let section = DetailViewControllerSection(rawValue: sectionNumber) else { return nil }
             switch section {
             case .announcements: return self.announcementsSection()
             case .extraSales: return self.salesSection()

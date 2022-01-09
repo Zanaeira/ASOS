@@ -6,8 +6,21 @@
 //
 
 import UIKit
+import ASOS
 
 public final class MainTabBarController: UITabBarController {
+    
+    public required init?(coder: NSCoder) {
+        fatalError("Not implemented")
+    }
+    
+    private let itemLoader: ItemLoader
+    
+    public init(itemLoader: ItemLoader) {
+        self.itemLoader = itemLoader
+        
+        super.init(nibName: nil, bundle: nil)
+    }
     
     public override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +36,7 @@ public final class MainTabBarController: UITabBarController {
     }
     
     private func makeShoppingViewController() -> UINavigationController {
-        let viewController = HomeViewController()
+        let viewController = HomeViewController(itemLoader: itemLoader)
         viewController.tabBarItem.image = UIImage(systemName: "a.circle.fill")
         
         return UINavigationController(rootViewController: viewController)

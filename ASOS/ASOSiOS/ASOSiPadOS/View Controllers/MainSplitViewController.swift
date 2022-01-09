@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import ASOS
 import ASOSiOS
 
 public final class MainSplitViewController: UISplitViewController {
@@ -14,7 +15,11 @@ public final class MainSplitViewController: UISplitViewController {
         fatalError("Not implemented")
     }
     
-    public init() {
+    private let itemLoader: ItemLoader
+    
+    public init(itemLoader: ItemLoader) {
+        self.itemLoader = itemLoader
+        
         super.init(style: .doubleColumn)
     }
     
@@ -28,8 +33,8 @@ public final class MainSplitViewController: UISplitViewController {
         view.backgroundColor = .systemBackground
         
         let sidebar = Sidebar()
-        let detailViewController = DetailViewController()
-        let tabBarControllerForCompact = MainTabBarController()
+        let detailViewController = DetailViewController(itemLoader: itemLoader)
+        let tabBarControllerForCompact = MainTabBarController(itemLoader: itemLoader)
         
         setViewController(sidebar, for: .primary)
         setViewController(detailViewController, for: .secondary)
