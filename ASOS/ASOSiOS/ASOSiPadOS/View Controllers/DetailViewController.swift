@@ -132,23 +132,24 @@ extension DetailViewController {
     }
     
     private func featuredAndGridSection() -> NSCollectionLayoutSection {
-        let sectionHeight: NSCollectionLayoutDimension = .fractionalHeight(3/5)
+        let leadingItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/2), heightDimension: .fractionalHeight(1))
+        let leadingItem = NSCollectionLayoutItem(layoutSize: leadingItemSize)
         
-        let leadingItem = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1/2), heightDimension: .fractionalHeight(1)))
+        let gridItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/2), heightDimension: .fractionalHeight(1))
+        let gridItem = NSCollectionLayoutItem(layoutSize: gridItemSize)
+        gridItem.contentInsets.leading = interItemOrGroupSpacing
         
-        let topGridItem = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1/2), heightDimension: .fractionalHeight(1)))
-        topGridItem.contentInsets = .init(top: 0, leading: interItemOrGroupSpacing, bottom: 0, trailing: 0)
-        let bottomGridItem = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1/2), heightDimension: .fractionalHeight(1)))
-        bottomGridItem.contentInsets = .init(top: 0, leading: interItemOrGroupSpacing, bottom: 0, trailing: 0)
+        let horizontalGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1/2))
+        let horizontalGroup = NSCollectionLayoutGroup.horizontal(layoutSize: horizontalGroupSize, subitems: [gridItem])
+        horizontalGroup.contentInsets.bottom = interItemOrGroupSpacing
         
-        let topGroup = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1/2)), subitems: [topGridItem])
-        let bottomGroup = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1/2)), subitems: [bottomGridItem])
-        bottomGroup.contentInsets = .init(top: interItemOrGroupSpacing, leading: 0, bottom: 0, trailing: 0)
-        let gridGroup = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1/2), heightDimension: .fractionalHeight(1)), subitems: [topGroup, bottomGroup])
+        let verticalContainerGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/2), heightDimension: .fractionalHeight(1))
+        let verticalContainerGroup = NSCollectionLayoutGroup.vertical(layoutSize: verticalContainerGroupSize, subitems: [horizontalGroup])
         
-        let group = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: sectionHeight), subitems: [leadingItem, gridGroup])
+        let outerGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(3/5))
+        let outerGroup = NSCollectionLayoutGroup.horizontal(layoutSize: outerGroupSize, subitems: [leadingItem, verticalContainerGroup])
         
-        let section = NSCollectionLayoutSection(group: group)
+        let section = NSCollectionLayoutSection(group: outerGroup)
         section.contentInsets = .init(top: 0, leading: sectionHorizontalEdgeSpacing, bottom: 0, trailing: sectionHorizontalEdgeSpacing)
         
         return section
