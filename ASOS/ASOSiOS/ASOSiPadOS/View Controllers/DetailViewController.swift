@@ -58,6 +58,11 @@ extension DetailViewController {
         
         let featuredAndGridCellRegistration = UICollectionView.CellRegistration<FeaturedAndGridCell, Item> { (cell, indexPath, item) in
             cell.configure(with: item)
+            if indexPath.item == 0 {
+                cell.constrainHeightForFeatured()
+            } else {
+                cell.constrainHeightForGrid()
+            }
         }
         
         let salesCellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Item> { (cell, indexPath, item) in
@@ -132,24 +137,23 @@ extension DetailViewController {
     }
     
     private func featuredAndGridSection() -> NSCollectionLayoutSection {
-        let leadingItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/2), heightDimension: .fractionalHeight(1))
-        let leadingItem = NSCollectionLayoutItem(layoutSize: leadingItemSize)
+        let leadingItemHeight: NSCollectionLayoutDimension = .estimated(1)
+        let leadingItem = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1/2), heightDimension: leadingItemHeight))
+        leadingItem.contentInsets.trailing = interItemOrGroupSpacing
         
-        let gridItemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/2), heightDimension: .fractionalHeight(1))
-        let gridItem = NSCollectionLayoutItem(layoutSize: gridItemSize)
-        gridItem.contentInsets.leading = interItemOrGroupSpacing
+        let gridItemHeight: NSCollectionLayoutDimension = .estimated(1)
+        let gridItem = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1/2), heightDimension: gridItemHeight))
         
-        let horizontalGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1/2))
-        let horizontalGroup = NSCollectionLayoutGroup.horizontal(layoutSize: horizontalGroupSize, subitems: [gridItem])
-        horizontalGroup.contentInsets.bottom = interItemOrGroupSpacing
+        let horizontalGroupHeight: NSCollectionLayoutDimension = .estimated(1)
+        let horizontalGroup = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: horizontalGroupHeight), subitem: gridItem, count: 2)
+        horizontalGroup.interItemSpacing = .fixed(interItemOrGroupSpacing)
         
-        let verticalContainerGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/2), heightDimension: .fractionalHeight(1))
-        let verticalContainerGroup = NSCollectionLayoutGroup.vertical(layoutSize: verticalContainerGroupSize, subitems: [horizontalGroup])
+        let verticalGroupHeight: NSCollectionLayoutDimension = .estimated(1)
+        let verticalGroup = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1/2), heightDimension: verticalGroupHeight), subitems: [horizontalGroup, horizontalGroup])
+        verticalGroup.interItemSpacing = .fixed(interItemOrGroupSpacing)
         
-        let outerGroupHeightDimension: NSCollectionLayoutDimension = .estimated(600)
-        
-        let outerGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: outerGroupHeightDimension)
-        let outerGroup = NSCollectionLayoutGroup.horizontal(layoutSize: outerGroupSize, subitems: [leadingItem, verticalContainerGroup])
+        let outerGroupHeight: NSCollectionLayoutDimension = .estimated(1)
+        let outerGroup = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: outerGroupHeight), subitems: [leadingItem, verticalGroup])
         
         let section = NSCollectionLayoutSection(group: outerGroup)
         section.contentInsets = .init(top: 0, leading: sectionHorizontalEdgeSpacing, bottom: 0, trailing: sectionHorizontalEdgeSpacing)
