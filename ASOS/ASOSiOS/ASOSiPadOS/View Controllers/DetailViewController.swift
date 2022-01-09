@@ -56,7 +56,7 @@ extension DetailViewController {
             cell.configure(withItem: item, andBackgroundView: GradientBackgroundView(rightColor: .systemGreen, leftColor: .systemTeal))
         }
         
-        let featuredAndGridCellRegistration = UICollectionView.CellRegistration<ImageLabelsCell, Item> { (cell, indexPath, item) in
+        let featuredAndGridCellRegistration = UICollectionView.CellRegistration<FeaturedAndGridCell, Item> { (cell, indexPath, item) in
             cell.configure(with: item)
         }
         
