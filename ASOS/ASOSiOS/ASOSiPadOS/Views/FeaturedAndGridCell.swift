@@ -18,17 +18,14 @@ final class FeaturedAndGridCell: UICollectionViewCell {
     private let textLabel = UILabel()
     private let secondaryTextLabel = UILabel()
     
-    private var imageViewConstraints: [NSLayoutConstraint] = []
-    private var textLabelConstraints: [NSLayoutConstraint] = []
-    private var secondaryTextLabelConstraints: [NSLayoutConstraint] = []
+    private lazy var labelsStackView = UIStackView(arrangedSubviews: [textLabel, secondaryTextLabel])
+    private lazy var stackView = UIStackView(arrangedSubviews: [imageView, labelsStackView])
     
     public override init(frame: CGRect) {
         super.init(frame: frame)
         
         setupSubviewProperties()
         addSubviews()
-        setupLayoutConstraints()
-        updateLayoutConstraints()
     }
     
     public func configure(with item: Item) {
@@ -43,12 +40,17 @@ final class FeaturedAndGridCell: UICollectionViewCell {
         imageView.clipsToBounds = true
         imageView.setContentCompressionResistancePriority(.defaultLow, for: .vertical)
         
-        imageView.setContentHuggingPriority(.defaultLow, for: .vertical)
-        textLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
-        secondaryTextLabel.setContentHuggingPriority(.defaultHigh, for: .vertical)
-        
         setupLabel(textLabel, font: .preferredFont(forTextStyle: .body).bold())
         setupLabel(secondaryTextLabel, font: .preferredFont(forTextStyle: .callout), textColor: .systemGray)
+        
+        labelsStackView.translatesAutoresizingMaskIntoConstraints = false
+        labelsStackView.axis = .vertical
+        labelsStackView.distribution = .fill
+        labelsStackView.spacing = 7
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .vertical
+        stackView.distribution = .fill
+        stackView.spacing = 5
     }
     
     private func setupLabel(_ label: UILabel, font: UIFont, textColor: UIColor = .label, textAlignment: NSTextAlignment = .center) {
@@ -61,32 +63,14 @@ final class FeaturedAndGridCell: UICollectionViewCell {
     }
     
     private func addSubviews() {
-        [imageView, textLabel, secondaryTextLabel].forEach(contentView.addSubview)
-    }
-    
-    private func setupLayoutConstraints() {
-        imageViewConstraints = [
-            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            imageView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor)
-        ]
+        contentView.addSubview(stackView)
         
-        textLabelConstraints = [
-            textLabel.leadingAnchor.constraint(equalTo: contentView.readableContentGuide.leadingAnchor, constant: 10),
-            textLabel.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
-            textLabel.trailingAnchor.constraint(equalTo: contentView.readableContentGuide.trailingAnchor, constant: -10)
-        ]
-        
-        secondaryTextLabelConstraints = [
-            secondaryTextLabel.firstBaselineAnchor.constraint(equalToSystemSpacingBelow: textLabel.lastBaselineAnchor, multiplier: 1.25),
-            secondaryTextLabel.leadingAnchor.constraint(equalTo: textLabel.leadingAnchor),
-            secondaryTextLabel.trailingAnchor.constraint(equalTo: textLabel.trailingAnchor),
-            secondaryTextLabel.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
-        ]
-    }
-    
-    private func updateLayoutConstraints() {
-        [imageViewConstraints, textLabelConstraints, secondaryTextLabelConstraints].forEach(NSLayoutConstraint.activate)
+        NSLayoutConstraint.activate([
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
+            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+        ])
     }
     
 }

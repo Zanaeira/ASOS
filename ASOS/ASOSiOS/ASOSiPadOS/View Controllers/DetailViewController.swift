@@ -146,7 +146,9 @@ extension DetailViewController {
         let verticalContainerGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1/2), heightDimension: .fractionalHeight(1))
         let verticalContainerGroup = NSCollectionLayoutGroup.vertical(layoutSize: verticalContainerGroupSize, subitems: [horizontalGroup])
         
-        let outerGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(3/5))
+        let outerGroupHeightDimension: NSCollectionLayoutDimension = .estimated(600)
+        
+        let outerGroupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: outerGroupHeightDimension)
         let outerGroup = NSCollectionLayoutGroup.horizontal(layoutSize: outerGroupSize, subitems: [leadingItem, verticalContainerGroup])
         
         let section = NSCollectionLayoutSection(group: outerGroup)
