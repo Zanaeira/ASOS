@@ -113,20 +113,20 @@ public final class RecentlyViewedCell: UICollectionViewCell {
     }
     
     private func updateButtonImages() {
+        let config: UIImage.SymbolConfiguration
+        
         let isAccessibilityCategory = traitCollection.preferredContentSizeCategory.isAccessibilityCategory
         if isAccessibilityCategory {
-            let config = UIImage.SymbolConfiguration(textStyle: .largeTitle, scale: .medium)
-            let normalImage =  UIImage(systemName: "heart", withConfiguration: config)
-            let selectedImage =  UIImage(systemName: "heart.fill", withConfiguration: config)
-            button.setImage(normalImage, for: .normal)
-            button.setImage(selectedImage, for: .selected)
+            config = UIImage.SymbolConfiguration(textStyle: .largeTitle, scale: .medium)
         } else {
-            let config = UIImage.SymbolConfiguration(textStyle: .largeTitle, scale: .small)
-            let normalImage =  UIImage(systemName: "heart", withConfiguration: config)
-            let selectedImage =  UIImage(systemName: "heart.fill", withConfiguration: config)
-            button.setImage(normalImage, for: .normal)
-            button.setImage(selectedImage, for: .selected)
+            config = UIImage.SymbolConfiguration(textStyle: .largeTitle, scale: .small)
         }
+        
+        let normalImage =  UIImage(systemName: "heart", withConfiguration: config)
+        let selectedImage =  UIImage(systemName: "heart.fill", withConfiguration: config)
+        button.setImage(normalImage, for: .normal)
+        button.setImage(selectedImage, for: .selected)
+        button.tintColor = .black
     }
     
 }
