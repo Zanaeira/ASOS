@@ -34,6 +34,7 @@
 		1BBB9817278B644D00EF7E8C /* Section.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB9816278B644D00EF7E8C /* Section.swift */; };
 		1BBB981A278B64F500EF7E8C /* ItemLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB9819278B64F500EF7E8C /* ItemLoader.swift */; };
 		1BBB981C278B674000EF7E8C /* RemoteItemLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB981B278B674000EF7E8C /* RemoteItemLoader.swift */; };
+		1BFB8CD9278C20970006C4AF /* cache.json in Resources */ = {isa = PBXBuildFile; fileRef = 1BFB8CD8278C20970006C4AF /* cache.json */; };
 		1BFC54562789FEA600CE9474 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFC543F2789FEA600CE9474 /* MainTabBarController.swift */; };
 		1BFC54672789FEA600CE9474 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFC54552789FEA600CE9474 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
@@ -97,6 +98,7 @@
 		1BBB9816278B644D00EF7E8C /* Section.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Section.swift; sourceTree = "<group>"; };
 		1BBB9819278B64F500EF7E8C /* ItemLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemLoader.swift; sourceTree = "<group>"; };
 		1BBB981B278B674000EF7E8C /* RemoteItemLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteItemLoader.swift; sourceTree = "<group>"; };
+		1BFB8CD8278C20970006C4AF /* cache.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cache.json; sourceTree = "<group>"; };
 		1BFC542D2789FB9A00CE9474 /* ASOSiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ASOSiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BFC543F2789FEA600CE9474 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		1BFC54442789FEA600CE9474 /* UILabel+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
@@ -203,6 +205,7 @@
 			children = (
 				1BBB9819278B64F500EF7E8C /* ItemLoader.swift */,
 				1BBB981B278B674000EF7E8C /* RemoteItemLoader.swift */,
+				1BFB8CD8278C20970006C4AF /* cache.json */,
 			);
 			path = API;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BFB8CD9278C20970006C4AF /* cache.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

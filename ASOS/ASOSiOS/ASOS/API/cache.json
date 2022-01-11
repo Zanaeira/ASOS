@@ -1,0 +1,131 @@
+{
+    "items":
+    [
+        {
+            "text": "Premier Delivery\n\nUnlimited free Next-Day Delivery for a whole year for £9.95",
+            "secondaryText": "Ts&Cs apply",
+            "imageName": "",
+            "section": 0
+        },
+        {
+            "text": "EXTRA 20% OFF SALE\nCOATS & JACKETS\n(ALREADY UP TO 80% OFF)",
+            "secondaryText": "With code: WARMUP\n\nSale items only. See website banner for Tx&Cs. Selected marked products excluded from promo.",
+            "imageName": "",
+            "section": 1
+        },
+        {
+            "text": "PITCH PERFECT",
+            "secondaryText": "Shop ASOS 4505",
+            "imageName": "pitch-perfect",
+            "section": 2
+        },
+        {
+            "text": "FRED PERRY",
+            "secondaryText": "Always iconic",
+            "imageName": "fred-perry",
+            "section": 3
+        },
+        {
+            "text": "LOGO LOVE",
+            "secondaryText": "Ft. ASOS Dark Future",
+            "imageName": "logo-love",
+            "section": 3
+        },
+        {
+            "text": "TOPMAN",
+            "secondaryText": "Join the cargo craze",
+            "imageName": "topman",
+            "section": 3
+        },
+        {
+            "text": "FEET FIRST",
+            "secondaryText": "Top-tier trainers",
+            "imageName": "feet-first",
+            "section": 3
+        },
+        {
+            "text": "ADIDAS",
+            "secondaryText": "'das right",
+            "imageName": "adidas",
+            "section": 4
+        },
+        {
+            "text": "COSY CLUB",
+            "secondaryText": "You do knit wanna miss this",
+            "imageName": "cosy-club",
+            "section": 4
+        },
+        {
+            "text": "SALE:\nUP TO 80% OFF\nFINAL DISCOUNTS!",
+            "secondaryText": "Limited time only. While stocks lack. Selected styles marked down on site.",
+            "imageName": "",
+            "section": 5
+        },
+        {
+            "text": "Your Edit",
+            "secondaryText": "'We reckon you'll like this lot",
+            "imageName": "",
+            "section": 6
+        },
+        {
+            "text": "adidas Running long sleeve top with grey colour block in black",
+            "secondaryText": "'das right",
+            "imageName": "recent-1",
+            "section": 7
+        },
+        {
+            "text": "ellesse t-shirt with logo in black",
+            "secondaryText": "'das right",
+            "imageName": "recent-2",
+            "section": 7
+        },
+        {
+            "text": "French Connection henley t-shirt in navy",
+            "secondaryText": "",
+            "imageName": "recent-3",
+            "section": 7
+        },
+        {
+            "text": "Don't Think Twice slim fit jeans in dark blue",
+            "secondaryText": "",
+            "imageName": "recent-4",
+            "section": 7
+        },
+        {
+            "text": "Selected Homme shirt with grandad collar in light blue",
+            "secondaryText": "",
+            "imageName": "recent-5",
+            "section": 7
+        },
+        {
+            "text": "ASOS DESIGN organic long sleeve button through jersey shirt in washed khaki",
+            "secondaryText": "",
+            "imageName": "recent-6",
+            "section": 7
+        },
+        {
+            "text": "French Connection slim jeans in dark grey",
+            "secondaryText": "",
+            "imageName": "recent-7",
+            "section": 7
+        },
+        {
+            "text": "Calvin Klein Golf Voltron gilet in navy",
+            "secondaryText": "",
+            "imageName": "recent-8",
+            "section": 7
+        },
+        {
+            "text": "ASOS DESIGN paka jacket in green with faux fur trim hood",
+            "secondaryText": "",
+            "imageName": "recent-9",
+            "section": 7
+        },
+        {
+            "text": "Harry Brown cable knitted crew neck jumper",
+            "secondaryText": "",
+            "imageName": "recent-10",
+            "section": 7
+        }
+    ]
+}
