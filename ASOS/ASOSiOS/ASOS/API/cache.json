@@ -2,72 +2,84 @@
     "items":
     [
         {
+            "id": "CB351A42-B6B9-4954-8B55-1F377CC63484",
             "text": "Premier Delivery\n\nUnlimited free Next-Day Delivery for a whole year for £9.95",
             "secondaryText": "Ts&Cs apply",
             "imageName": "",
             "section": 0
         },
         {
+            "id": "49D27F07-14FB-4F91-A62F-80AB45B32DD0",
             "text": "EXTRA 20% OFF SALE\nCOATS & JACKETS\n(ALREADY UP TO 80% OFF)",
             "secondaryText": "With code: WARMUP\n\nSale items only. See website banner for Tx&Cs. Selected marked products excluded from promo.",
             "imageName": "",
             "section": 1
         },
         {
+            "id": "6D9214F9-FA9B-4D1D-94C2-66199CA47DF1",
             "text": "PITCH PERFECT",
             "secondaryText": "Shop ASOS 4505",
             "imageName": "pitch-perfect",
             "section": 2
         },
         {
+            "id": "A277C335-BC0D-4FF0-984B-F4F043B3F0AE",
             "text": "FRED PERRY",
             "secondaryText": "Always iconic",
             "imageName": "fred-perry",
             "section": 3
         },
         {
+            "id": "B5F67381-8C7D-484C-AACE-AA77229E66CA",
             "text": "LOGO LOVE",
             "secondaryText": "Ft. ASOS Dark Future",
             "imageName": "logo-love",
             "section": 3
         },
         {
+            "id": "8422EFBC-A5E2-40B5-B208-EAA6FEFD85C0",
             "text": "TOPMAN",
             "secondaryText": "Join the cargo craze",
             "imageName": "topman",
             "section": 3
         },
         {
+            "id": "EB9F5E52-877E-4C61-B22E-068045B5FD9B",
             "text": "FEET FIRST",
             "secondaryText": "Top-tier trainers",
             "imageName": "feet-first",
             "section": 3
         },
         {
+            "id": "F93F554E-C179-45C8-89BB-4D1018F6C350",
             "text": "ADIDAS",
             "secondaryText": "'das right",
             "imageName": "adidas",
             "section": 4
         },
         {
+            "id": "659C20C2-7F09-4DA3-909E-3A226608AA66",
             "text": "COSY CLUB",
             "secondaryText": "You do knit wanna miss this",
             "imageName": "cosy-club",
             "section": 4
         },
         {
+            "id": "4B7AD065-0975-48A2-A53C-FE10B3443372",
             "text": "SALE:\nUP TO 80% OFF\nFINAL DISCOUNTS!",
             "secondaryText": "Limited time only. While stocks lack. Selected styles marked down on site.",
             "imageName": "",
             "section": 5
         },
         {
+            "id": "D8669A88-965F-43E7-A3F5-0D11D1E27D36",
             "text": "Your Edit",
             "secondaryText": "'We reckon you'll like this lot",
             "imageName": "",
             "section": 6
         },
         {
+            "id": "56395118-8B0A-4D37-87AB-66E3F63F98D1",
             "text": "adidas Running long sleeve top with grey colour block in black",
             "secondaryText": "'das right",
             "imageName": "recent-1",
@@ -75,12 +87,14 @@
             "section": 7
         },
         {
+            "id": "0D1A670A-69AB-4D6D-9913-4B282CC590C4",
             "text": "ellesse t-shirt with logo in black",
             "secondaryText": "'das right",
             "imageName": "recent-2",
             "section": 7
         },
         {
+            "id": "B8FF21F3-1902-4369-9375-AD3CBA7C39F9",
             "text": "French Connection henley t-shirt in navy",
             "secondaryText": "",
             "imageName": "recent-3",
@@ -88,42 +102,49 @@
             "section": 7
         },
         {
+            "id": "CEFA2B21-9E13-46D1-B46D-66153FDF10E8",
             "text": "Don't Think Twice slim fit jeans in dark blue",
             "secondaryText": "",
             "imageName": "recent-4",
             "section": 7
         },
         {
+            "id": "8D1F8244-8865-406D-B885-39C84F51B2E6",
             "text": "Selected Homme shirt with grandad collar in light blue",
             "secondaryText": "",
             "imageName": "recent-5",
             "section": 7
         },
         {
+            "id": "6D647A4C-C773-4978-B938-99AAE24798DD",
             "text": "ASOS DESIGN organic long sleeve button through jersey shirt in washed khaki",
             "secondaryText": "",
             "imageName": "recent-6",
             "section": 7
         },
         {
+            "id": "BE4282CF-B59F-4FFC-A8A5-F0B869185A2E",
             "text": "French Connection slim jeans in dark grey",
             "secondaryText": "",
             "imageName": "recent-7",
             "section": 7
         },
         {
+            "id": "A70884B8-B429-4313-83FF-803DD820035F",
             "text": "Calvin Klein Golf Voltron gilet in navy",
             "secondaryText": "",
             "imageName": "recent-8",
             "section": 7
         },
         {
+            "id": "67A4BC5F-5DAD-493B-B1E8-DE26D3DD2088",
             "text": "ASOS DESIGN paka jacket in green with faux fur trim hood",
             "secondaryText": "",
             "imageName": "recent-9",
             "section": 7
         },
         {
+            "id": "54BFF376-2D44-43C3-B02F-9CD5D67B5E7C",
             "text": "Harry Brown cable knitted crew neck jumper",
             "secondaryText": "",
             "imageName": "recent-10",

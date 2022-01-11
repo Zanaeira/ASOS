@@ -38,7 +38,7 @@ private struct Root: Decodable {
     let items: [DecodableItem]
     
     var mappedItems: [Item] {
-        items.map { .init(text: $0.text, secondaryText: $0.secondaryText,
+        items.map { .init(id: $0.id, text: $0.text, secondaryText: $0.secondaryText,
                           image: !$0.imageName.isEmpty ? UIImage(named: $0.imageName) : nil,
                           isLiked: $0.isLiked ?? false,
                           section: Section(rawValue: $0.section) ?? .announcements) }
@@ -46,6 +46,7 @@ private struct Root: Decodable {
 }
 
 private struct DecodableItem: Decodable {
+    let id: String
     let text: String
     let secondaryText: String
     let imageName: String
