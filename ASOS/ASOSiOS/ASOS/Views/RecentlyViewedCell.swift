@@ -36,6 +36,7 @@ public final class RecentlyViewedCell: UICollectionViewCell {
     public func configure(with item: Item) {
         label.text = item.text
         imageView.image = item.image
+        button.isSelected = item.isLiked
     }
     
     private func setupBackgroundView() {

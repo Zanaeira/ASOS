@@ -71,6 +71,7 @@
             "text": "adidas Running long sleeve top with grey colour block in black",
             "secondaryText": "'das right",
             "imageName": "recent-1",
+            "isLiked": true,
             "section": 7
         },
         {
@@ -83,6 +84,7 @@
             "text": "French Connection henley t-shirt in navy",
             "secondaryText": "",
             "imageName": "recent-3",
+            "isLiked": true,
             "section": 7
         },
         {

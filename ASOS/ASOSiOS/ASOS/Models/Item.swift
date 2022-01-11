@@ -13,13 +13,14 @@ public struct Item: Hashable {
     public let text: String
     public let secondaryText: String
     public let image: UIImage?
-    
+    public let isLiked: Bool
     public let section: Section
     
-    public init(text: String = "", secondaryText: String = "", image: UIImage? = nil, section: Section) {
+    public init(text: String = "", secondaryText: String = "", image: UIImage? = nil, isLiked: Bool = false, section: Section) {
         self.text = text
         self.secondaryText = secondaryText
         self.image = image
+        self.isLiked = isLiked
         self.section = section
     }
     
@@ -36,9 +37,9 @@ public struct Item: Hashable {
         .init(text: "COSY CLUB", secondaryText: "You do knit wanna miss this", image: UIImage(named: "cosy-club"), section: .special),
         .init(text: "SALE:\nUP TO 80% OFF\nFINAL DISCOUNTS!", secondaryText: "Limited time only. While stocks lack. Selected styles marked down on site.", section: .sales),
         .init(text: "Your Edit", secondaryText: "We reckon you'll like this lot", section: .yourEdit),
-        .init(text: "adidas Running long sleeve top with grey colour block in black", secondaryText: "", image: UIImage(named: "recent-1"), section: .recent),
+        .init(text: "adidas Running long sleeve top with grey colour block in black", secondaryText: "", image: UIImage(named: "recent-1"), isLiked: true, section: .recent),
         .init(text: "ellesse t-shirt with logo in black", secondaryText: "", image: UIImage(named: "recent-2"), section: .recent),
-        .init(text: "French Connection henley t-shirt in navy", secondaryText: "", image: UIImage(named: "recent-3"), section: .recent),
+        .init(text: "French Connection henley t-shirt in navy", secondaryText: "", image: UIImage(named: "recent-3"), isLiked: true, section: .recent),
         .init(text: "Don't Think Twice slim fit jeans in dark blue", secondaryText: "", image: UIImage(named: "recent-4"), section: .recent),
         .init(text: "Selected Homme shirt with grandad collar in light blue", secondaryText: "", image: UIImage(named: "recent-5"), section: .recent),
         .init(text: "ASOS DESIGN organic long sleeve button through jersey shirt in washed khaki", secondaryText: "", image: UIImage(named: "recent-6"), section: .recent),
