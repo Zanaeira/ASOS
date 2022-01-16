@@ -18,16 +18,16 @@ public final class HomeViewController: UIViewController {
     private lazy var dataSource: UICollectionViewDiffableDataSource<Section, Item> = makeDataSource()
     
     private let itemLoader: ItemLoader
+    private let itemUpdater: ItemUpdater
     private var items: [Item] = [] {
         didSet {
             updateSnapshot()
         }
     }
     
-    var itemLiked: ((String, Bool) -> Void)?
-    
-    init(itemLoader: ItemLoader) {
+    init(itemLoader: ItemLoader, itemUpdater: ItemUpdater) {
         self.itemLoader = itemLoader
+        self.itemUpdater = itemUpdater
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -116,7 +116,7 @@ extension HomeViewController {
         let recentlyViewedCellRegistration = UICollectionView.CellRegistration<RecentlyViewedCell, Item> { (cell, indexPath, item) in
             cell.configure(with: item)
             cell.onLikePressed = { liked in
-                self.itemLiked?(item.id.uuidString, liked)
+                self.likePressed(forItemId: item.id.uuidString, liked: liked)
             }
         }
         
@@ -144,6 +144,17 @@ extension HomeViewController {
         }
         
         return dataSource
+    }
+    
+    private func likePressed(forItemId itemId: String, liked: Bool) {
+        itemUpdater.update(itemId: itemId, updateData: .init(itemLiked: liked)) { result in
+            switch result {
+            case .success(let items):
+                self.items = items
+            case .failure(let error):
+                print("Unable to update item: \(itemId).\n\(error.localizedDescription)")
+            }
+        }
     }
     
     private var spacing: CGFloat { 16.0 }

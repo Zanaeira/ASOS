@@ -11,19 +11,34 @@ public final class RemoteItemLoader: ItemLoader, ItemUpdater {
     
     public init() {}
     
+    private var items = [Item]()
+    
     public func loadItems(from url: URL, completion: @escaping ((Result<[Item], Error>) -> Void)) {
         guard let cacheUrl = Bundle(for: type(of: self)).url(forResource: "cache", withExtension: "json"),
               let data = try? Data(contentsOf: cacheUrl),
               let items = try? ItemMapper.map(data) else {
-            completion(.success(Item.stubs))
-            return
+                  Item.stubs.forEach { items.append($0) }
+                  completion(.success(Item.stubs))
+                  return
         }
+        
+        items.forEach { self.items.append($0) }
         
         completion(.success(items))
     }
     
-    public func update(itemId: String, updateData: ItemData) {
+    public func update(itemId: String, updateData: ItemData, completion: @escaping (Result<[Item], Error>) -> Void) {
+        var updatedItems = [Item]()
+        for item in items {
+            if item.id.uuidString == itemId {
+                updatedItems.append(.init(id: itemId, text: item.text, secondaryText: item.secondaryText, image: item.image, isLiked: updateData.itemLiked, section: item.section))
+            } else {
+                updatedItems.append(item)
+            }
+        }
         
+        items = updatedItems
+        completion(.success(items))
     }
     
 }

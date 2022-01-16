@@ -35,18 +35,12 @@ public final class MainSplitViewController: UISplitViewController {
         view.backgroundColor = .systemBackground
         
         let sidebar = Sidebar()
-        let detailViewController = DetailViewController(itemLoader: itemLoader)
-        detailViewController.itemLiked = updateItemLiked
-        let tabBarControllerForCompact = MainTabBarController(itemLoader: itemLoader)
-        tabBarControllerForCompact.itemLiked = updateItemLiked
+        let detailViewController = DetailViewController(itemLoader: itemLoader, itemUpdater: itemUpdater)
+        let tabBarControllerForCompact = MainTabBarController(itemLoader: itemLoader, itemUpdater: itemUpdater)
         
         setViewController(sidebar, for: .primary)
         setViewController(detailViewController, for: .secondary)
         setViewController(tabBarControllerForCompact, for: .compact)
-    }
-    
-    private func updateItemLiked(itemId: String, liked: Bool) {
-        itemUpdater.update(itemId: itemId, updateData: .init(itemLiked: liked))
     }
     
 }

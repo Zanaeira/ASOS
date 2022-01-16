@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol ItemUpdater {
-    func update(itemId: String, updateData: ItemData)
+    func update(itemId: String, updateData: ItemData, completion: @escaping (Result<[Item], Error>) -> Void)
 }

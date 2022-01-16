@@ -15,11 +15,11 @@ public final class MainTabBarController: UITabBarController {
     }
     
     private let itemLoader: ItemLoader
+    private let itemUpdater: ItemUpdater
     
-    public var itemLiked: ((String, Bool) -> Void)?
-    
-    public init(itemLoader: ItemLoader) {
+    public init(itemLoader: ItemLoader, itemUpdater: ItemUpdater) {
         self.itemLoader = itemLoader
+        self.itemUpdater = itemUpdater
         
         super.init(nibName: nil, bundle: nil)
     }
@@ -38,8 +38,7 @@ public final class MainTabBarController: UITabBarController {
     }
     
     private func makeShoppingViewController() -> UINavigationController {
-        let viewController = HomeViewController(itemLoader: itemLoader)
-        viewController.itemLiked = itemLiked
+        let viewController = HomeViewController(itemLoader: itemLoader, itemUpdater: itemUpdater)
         viewController.tabBarItem.image = UIImage(systemName: "a.circle.fill")
         
         return UINavigationController(rootViewController: viewController)
