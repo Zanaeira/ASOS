@@ -50,4 +50,8 @@ public struct Item: Hashable {
         .init(id: "54BFF376-2D44-43C3-B02F-9CD5D67B5E7C", text: "Harry Brown cable knitted crew neck jumper", secondaryText: "", image: UIImage(named: "recent-10"), section: .recent)
     ]
     
+    static let imageNameStubs: [String?] = [
+        nil, nil, "pitch-perfect", "fred-perry", "logo-love", "topman", "feet-first", "adidas", "cosy-club", nil, nil, "recent-1", "recent-2", "recent-3", "recent-4", "recent-5", "recent-6", "recent-7", "recent-8", "recent-9", "recent-10"
+    ]
+    
 }

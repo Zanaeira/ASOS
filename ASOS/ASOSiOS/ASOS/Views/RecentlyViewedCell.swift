@@ -71,6 +71,10 @@ public final class RecentlyViewedCell: UICollectionViewCell {
         onLikePressed?(button.isSelected)
     }
     
+    public func undoLikePressed() {
+        button.isSelected.toggle()
+    }
+    
     private func setupSubviews() {
         stackView.axis = .vertical
         stackView.spacing = 10

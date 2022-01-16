@@ -112,7 +112,9 @@ extension DetailViewController {
         let recentlyViewedCellRegistration = UICollectionView.CellRegistration<RecentlyViewedCell, Item> { (cell, indexPath, item) in
             cell.configure(with: item)
             cell.onLikePressed = { liked in
-                self.likePressed(forItemId: item.id.uuidString, liked: liked)
+                self.likePressed(forItemId: item.id.uuidString, liked: liked, onFail: {
+                    cell.undoLikePressed()
+                })
             }
         }
         
@@ -140,15 +142,24 @@ extension DetailViewController {
         return dataSource
     }
     
-    private func likePressed(forItemId itemId: String, liked: Bool) {
+    private func likePressed(forItemId itemId: String, liked: Bool, onFail: @escaping () -> Void) {
         itemUpdater.update(itemId: itemId, updateData: .init(itemLiked: liked)) { result in
             switch result {
             case .success(let items):
                 self.items = items
             case .failure(let error):
-                print("Unable to update item: \(itemId).\n\(error.localizedDescription)")
+                self.handleError(error)
+                onFail()
             }
         }
+    }
+    
+    private func handleError(_ error: Error) {
+        let alert = UIAlertController(title: "An error occurred", message: "We were unable to save changes. Please try again later.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Dismiss", style: .default))
+        
+        self.dismiss(animated: false)
+        present(alert, animated: true)
     }
     
     private var sectionHorizontalEdgeSpacing: CGFloat { 50.0 }

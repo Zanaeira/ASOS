@@ -9,38 +9,58 @@ import UIKit
 
 public final class RemoteItemLoader: ItemLoader, ItemUpdater {
     
+    public enum UpdateError: Error {
+        case unableToSaveChanges
+    }
+    
     public init() {}
+    
+    private let cacheFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)[0].appendingPathComponent("cache.json")
     
     private var items = [Item]()
     
     public func loadItems(from url: URL, completion: @escaping ((Result<[Item], Error>) -> Void)) {
-        guard let cacheUrl = Bundle(for: type(of: self)).url(forResource: "cache", withExtension: "json"),
-              let data = try? Data(contentsOf: cacheUrl),
-              let items = try? ItemMapper.map(data) else {
-                  Item.stubs.forEach { items.append($0) }
-                  completion(.success(Item.stubs))
-                  return
+        guard let cacheData = try? Data(contentsOf: cacheFilePath),
+              let cachedItems = try? ItemMapper.map(cacheData) else {
+            Item.stubs.forEach { items.append($0) }
+            completion(.success(Item.stubs))
+            return
         }
         
-        items.forEach { self.items.append($0) }
+        cachedItems.forEach { self.items.append($0) }
         
         completion(.success(items))
     }
     
     public func update(itemId: String, updateData: ItemData, completion: @escaping (Result<[Item], Error>) -> Void) {
-        var updatedItems = [Item]()
-        for item in items {
+        var updatedItems = [CodableItem]()
+        for (item, imageName) in zip(items, Item.imageNameStubs) {
             if item.id.uuidString == itemId {
-                updatedItems.append(.init(id: itemId, text: item.text, secondaryText: item.secondaryText, image: item.image, isLiked: updateData.itemLiked, section: item.section))
+                updatedItems.append(item.toCodableItem(usingImageName: imageName ?? "", isLiked: updateData.itemLiked))
             } else {
-                updatedItems.append(item)
+                updatedItems.append(item.toCodableItem(usingImageName: imageName ?? "", isLiked: item.isLiked))
             }
         }
         
-        items = updatedItems
+        let root = Root(items: updatedItems)
+        
+        do {
+            let encodedItems = try JSONEncoder().encode(root)
+            try encodedItems.write(to: cacheFilePath)
+        } catch {
+            completion(.failure(UpdateError.unableToSaveChanges))
+        }
+        
+        items = root.mappedItems
         completion(.success(items))
     }
     
+}
+
+private extension Item {
+    func toCodableItem(usingImageName imageName: String, isLiked: Bool) -> CodableItem {
+        .init(id: id.uuidString, text: text, secondaryText: secondaryText, imageName: imageName, isLiked: isLiked, section: section.rawValue)
+    }
 }
 
 private final class ItemMapper {
