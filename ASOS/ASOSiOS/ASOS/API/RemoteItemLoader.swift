@@ -20,6 +20,8 @@ public final class RemoteItemLoader: ItemLoader, ItemUpdater {
     private var items = [Item]()
     
     public func loadItems(from url: URL, completion: @escaping ((Result<[Item], Error>) -> Void)) {
+        items = []
+        
         guard let cacheData = try? Data(contentsOf: cacheFilePath),
               let cachedItems = try? ItemMapper.map(cacheData) else {
             Item.stubs.forEach { items.append($0) }
