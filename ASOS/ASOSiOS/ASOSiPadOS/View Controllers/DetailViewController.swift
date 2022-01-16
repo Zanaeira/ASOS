@@ -240,7 +240,7 @@ extension DetailViewController {
         let outerGroup = NSCollectionLayoutGroup.horizontal(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: outerGroupHeight), subitems: [leadingItem, verticalGroup])
         
         let section = NSCollectionLayoutSection(group: outerGroup)
-        section.contentInsets = .init(top: 0, leading: sectionHorizontalEdgeSpacing, bottom: 0, trailing: sectionHorizontalEdgeSpacing)
+        section.contentInsets = .init(top: 0, leading: sectionHorizontalEdgeSpacing, bottom: 0, trailing: sectionHorizontalEdgeSpacing-interItemOrGroupSpacing)
         
         return section
     }
