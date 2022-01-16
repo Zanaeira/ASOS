@@ -7,7 +7,7 @@
 
 import UIKit
 
-public final class RemoteItemLoader: ItemLoader {
+public final class RemoteItemLoader: ItemLoader, ItemUpdater {
     
     public init() {}
     
@@ -22,6 +22,10 @@ public final class RemoteItemLoader: ItemLoader {
         completion(.success(items))
     }
     
+    public func update(itemId: String, updateData: ItemData) {
+        
+    }
+    
 }
 
 private final class ItemMapper {
@@ -34,22 +38,23 @@ private final class ItemMapper {
     
 }
 
-private struct Root: Decodable {
-    let items: [DecodableItem]
+private struct Root: Codable {
+    let items: [CodableItem]
     
     var mappedItems: [Item] {
-        items.map { .init(id: $0.id, text: $0.text, secondaryText: $0.secondaryText,
-                          image: !$0.imageName.isEmpty ? UIImage(named: $0.imageName) : nil,
-                          isLiked: $0.isLiked ?? false,
-                          section: Section(rawValue: $0.section) ?? .announcements) }
+        items.map { $0.item}
     }
 }
 
-private struct DecodableItem: Decodable {
+private struct CodableItem: Codable {
     let id: String
     let text: String
     let secondaryText: String
     let imageName: String
     let isLiked: Bool?
     let section: Int
+    
+    var item: Item {
+        Item(id: id, text: text, secondaryText: secondaryText, image: !imageName.isEmpty ? UIImage(named: imageName) : nil, isLiked: isLiked ?? false, section: Section(rawValue: section) ?? .announcements)
+    }
 }

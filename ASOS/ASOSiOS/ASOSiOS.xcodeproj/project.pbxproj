@@ -35,6 +35,8 @@
 		1BBB981A278B64F500EF7E8C /* ItemLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB9819278B64F500EF7E8C /* ItemLoader.swift */; };
 		1BBB981C278B674000EF7E8C /* RemoteItemLoader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BBB981B278B674000EF7E8C /* RemoteItemLoader.swift */; };
 		1BFB8CD9278C20970006C4AF /* cache.json in Resources */ = {isa = PBXBuildFile; fileRef = 1BFB8CD8278C20970006C4AF /* cache.json */; };
+		1BFB8CE1278E3C6D0006C4AF /* ItemUpdater.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFB8CE0278E3C6D0006C4AF /* ItemUpdater.swift */; };
+		1BFB8CE3278E3CB10006C4AF /* ItemData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFB8CE2278E3CB10006C4AF /* ItemData.swift */; };
 		1BFC54562789FEA600CE9474 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFC543F2789FEA600CE9474 /* MainTabBarController.swift */; };
 		1BFC54672789FEA600CE9474 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1BFC54552789FEA600CE9474 /* HomeViewController.swift */; };
 /* End PBXBuildFile section */
@@ -99,6 +101,8 @@
 		1BBB9819278B64F500EF7E8C /* ItemLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemLoader.swift; sourceTree = "<group>"; };
 		1BBB981B278B674000EF7E8C /* RemoteItemLoader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteItemLoader.swift; sourceTree = "<group>"; };
 		1BFB8CD8278C20970006C4AF /* cache.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = cache.json; sourceTree = "<group>"; };
+		1BFB8CE0278E3C6D0006C4AF /* ItemUpdater.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemUpdater.swift; sourceTree = "<group>"; };
+		1BFB8CE2278E3CB10006C4AF /* ItemData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemData.swift; sourceTree = "<group>"; };
 		1BFC542D2789FB9A00CE9474 /* ASOSiOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = ASOSiOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		1BFC543F2789FEA600CE9474 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		1BFC54442789FEA600CE9474 /* UILabel+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
@@ -188,6 +192,7 @@
 			children = (
 				1BFC54682789FEF800CE9474 /* Item.swift */,
 				1BBB9816278B644D00EF7E8C /* Section.swift */,
+				1BFB8CE2278E3CB10006C4AF /* ItemData.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -204,6 +209,7 @@
 			isa = PBXGroup;
 			children = (
 				1BBB9819278B64F500EF7E8C /* ItemLoader.swift */,
+				1BFB8CE0278E3C6D0006C4AF /* ItemUpdater.swift */,
 				1BBB981B278B674000EF7E8C /* RemoteItemLoader.swift */,
 				1BFB8CD8278C20970006C4AF /* cache.json */,
 			);
@@ -460,6 +466,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1BFB8CE3278E3CB10006C4AF /* ItemData.swift in Sources */,
 				1B1999CD278A092400423F3D /* GradientBackgroundView.swift in Sources */,
 				1B1999DB278A0A0300423F3D /* UILabel+Ext.swift in Sources */,
 				1B1999D0278A092400423F3D /* RecentlyViewedCellBackgroundView.swift in Sources */,
@@ -475,6 +482,7 @@
 				1B1999CC278A092400423F3D /* ImageTextCell.swift in Sources */,
 				1B1999CE278A092400423F3D /* YourEditCell.swift in Sources */,
 				1B1999CA278A092400423F3D /* RecentlyViewedCell.swift in Sources */,
+				1BFB8CE1278E3C6D0006C4AF /* ItemUpdater.swift in Sources */,
 				1B1999DD278A0A0300423F3D /* UIImage+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

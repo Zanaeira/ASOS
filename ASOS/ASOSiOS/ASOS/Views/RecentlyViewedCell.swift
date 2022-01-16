@@ -23,6 +23,8 @@ public final class RecentlyViewedCell: UICollectionViewCell {
     private lazy var normalImageViewHeightConstraint = imageView.heightAnchor.constraint(lessThanOrEqualToConstant: 200)
     private lazy var accessibilityImageViewHeightConstraint = imageView.heightAnchor.constraint(lessThanOrEqualToConstant: 400)
     
+    public var onLikePressed: ((Bool) -> Void)?
+    
     public override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -66,6 +68,7 @@ public final class RecentlyViewedCell: UICollectionViewCell {
     
     @objc private func favouritePressed() {
         button.isSelected.toggle()
+        onLikePressed?(button.isSelected)
     }
     
     private func setupSubviews() {

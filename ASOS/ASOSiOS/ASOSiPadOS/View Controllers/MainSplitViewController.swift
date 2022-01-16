@@ -16,9 +16,11 @@ public final class MainSplitViewController: UISplitViewController {
     }
     
     private let itemLoader: ItemLoader
+    private let itemUpdater: ItemUpdater
     
-    public init(itemLoader: ItemLoader) {
+    public init(itemLoader: ItemLoader, itemUpdater: ItemUpdater) {
         self.itemLoader = itemLoader
+        self.itemUpdater = itemUpdater
         
         super.init(style: .doubleColumn)
     }
@@ -34,11 +36,17 @@ public final class MainSplitViewController: UISplitViewController {
         
         let sidebar = Sidebar()
         let detailViewController = DetailViewController(itemLoader: itemLoader)
+        detailViewController.itemLiked = updateItemLiked
         let tabBarControllerForCompact = MainTabBarController(itemLoader: itemLoader)
+        tabBarControllerForCompact.itemLiked = updateItemLiked
         
         setViewController(sidebar, for: .primary)
         setViewController(detailViewController, for: .secondary)
         setViewController(tabBarControllerForCompact, for: .compact)
+    }
+    
+    private func updateItemLiked(itemId: String, liked: Bool) {
+        itemUpdater.update(itemId: itemId, updateData: .init(itemLiked: liked))
     }
     
 }

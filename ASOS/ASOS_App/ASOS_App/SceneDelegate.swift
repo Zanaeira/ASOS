@@ -17,7 +17,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
         
         let remoteItemLoader = RemoteItemLoader()
-        let mainViewController = MainSplitViewController(itemLoader: remoteItemLoader)
+        let mainViewController = MainSplitViewController(itemLoader: remoteItemLoader, itemUpdater: remoteItemLoader)
         
         window = UIWindow(frame: windowScene.coordinateSpace.bounds)
         window?.windowScene = windowScene

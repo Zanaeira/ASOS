@@ -24,6 +24,8 @@ public final class HomeViewController: UIViewController {
         }
     }
     
+    var itemLiked: ((String, Bool) -> Void)?
+    
     init(itemLoader: ItemLoader) {
         self.itemLoader = itemLoader
         
@@ -113,6 +115,9 @@ extension HomeViewController {
         
         let recentlyViewedCellRegistration = UICollectionView.CellRegistration<RecentlyViewedCell, Item> { (cell, indexPath, item) in
             cell.configure(with: item)
+            cell.onLikePressed = { liked in
+                self.itemLiked?(item.id.uuidString, liked)
+            }
         }
         
         let recentSectionHeaderRegistration = UICollectionView.SupplementaryRegistration<RecentlyViewedHeader>(elementKind: UICollectionView.elementKindSectionHeader) { (_, _, _) in }
