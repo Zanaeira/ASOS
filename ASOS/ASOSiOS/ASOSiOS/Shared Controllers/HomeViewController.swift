@@ -14,6 +14,8 @@ public final class HomeViewController: UIViewController {
         fatalError("Not implemented")
     }
     
+    private let searchController = UISearchController()
+    
     private lazy var collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: makeLayout())
     private lazy var dataSource: UICollectionViewDiffableDataSource<Section, Item> = makeDataSource()
     
@@ -35,6 +37,7 @@ public final class HomeViewController: UIViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupSearchBar()
         configureHierarchy()
         loadItems()
     }
@@ -75,6 +78,25 @@ public final class HomeViewController: UIViewController {
         }
         
         dataSource.apply(snapshot, animatingDifferences: true)
+    }
+    
+}
+
+// MARK: - Search Controller
+private extension HomeViewController {
+    
+    private func setupSearchBar() {
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.searchBar.placeholder = "Search"
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc
+    private func dismissKeyboard() {
+        searchController.isActive = false
     }
     
 }

@@ -14,6 +14,8 @@ final class DetailViewController: UIViewController {
         fatalError("Not implemented")
     }
     
+    private let searchController = UISearchController()
+    
     private lazy var collectionView = UICollectionView(frame: view.bounds, collectionViewLayout: makeLayout())
     private lazy var dataSource: UICollectionViewDiffableDataSource<DetailViewControllerSection, Item> = makeDataSource()
     
@@ -35,6 +37,7 @@ final class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        setupSearchBar()
         configureHierarchy()
         loadItems()
     }
@@ -79,6 +82,26 @@ final class DetailViewController: UIViewController {
     }
     
 }
+
+// MARK: - Search Controller
+private extension DetailViewController {
+    
+    private func setupSearchBar() {
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+        searchController.searchBar.placeholder = "Search"
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(dismissKeyboard))
+        view.addGestureRecognizer(tapGestureRecognizer)
+    }
+    
+    @objc
+    private func dismissKeyboard() {
+        searchController.isActive = false
+    }
+    
+}
+
 
 // MARK: - UICollectionView Helpers
 extension DetailViewController {
