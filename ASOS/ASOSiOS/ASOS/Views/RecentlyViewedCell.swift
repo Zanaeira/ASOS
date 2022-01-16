@@ -17,9 +17,6 @@ public final class RecentlyViewedCell: UICollectionViewCell {
     private let button = UIButton()
     private let imageView = UIImageView()
     
-    private lazy var buttonWrapperStackView = UIStackView(arrangedSubviews: [UIView(), button])
-    private lazy var stackView = UIStackView(arrangedSubviews: [imageView, buttonWrapperStackView, label])
-    
     private lazy var normalImageViewHeightConstraint = imageView.heightAnchor.constraint(lessThanOrEqualToConstant: 200)
     private lazy var accessibilityImageViewHeightConstraint = imageView.heightAnchor.constraint(lessThanOrEqualToConstant: 400)
     
@@ -30,7 +27,6 @@ public final class RecentlyViewedCell: UICollectionViewCell {
         
         setupBackgroundView()
         setupSubviewProperties()
-        setupSubviews()
         addSubviews()
         updateImageHeightConstraint()
     }
@@ -75,25 +71,22 @@ public final class RecentlyViewedCell: UICollectionViewCell {
         button.isSelected.toggle()
     }
     
-    private func setupSubviews() {
-        stackView.axis = .vertical
-        stackView.spacing = 10
-        
-        let padding: CGFloat = 10
-        stackView.layoutMargins = .init(top: padding, left: padding, bottom: padding, right: padding)
-        stackView.isLayoutMarginsRelativeArrangement = true
-        
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-    }
-    
     private func addSubviews() {
-        contentView.addSubview(stackView)
+        [imageView, button, label].forEach(contentView.addSubview)
+        button.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor),
-            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
-            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor),
-            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor)
+            imageView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 10),
+            imageView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 10),
+            imageView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -10),
+            
+            button.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 10),
+            button.trailingAnchor.constraint(equalTo: imageView.trailingAnchor),
+            
+            label.leadingAnchor.constraint(equalTo: contentView.readableContentGuide.leadingAnchor),
+            label.topAnchor.constraint(equalTo: button.bottomAnchor, constant: 10),
+            label.trailingAnchor.constraint(equalTo: contentView.readableContentGuide.trailingAnchor),
+            label.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -10)
         ])
     }
     
@@ -112,8 +105,7 @@ public final class RecentlyViewedCell: UICollectionViewCell {
     public override func traitCollectionDidChange(_ previousTraitCollection: UITraitCollection?) {
         super.traitCollectionDidChange(previousTraitCollection)
         
-        let isAccessibilityCategory = traitCollection.preferredContentSizeCategory.isAccessibilityCategory
-        if isAccessibilityCategory != previousTraitCollection?.preferredContentSizeCategory.isAccessibilityCategory {
+        if traitCollection != previousTraitCollection {
             updateImageHeightConstraint()
             updateButtonImages()
         }
