@@ -9,6 +9,10 @@ import UIKit
 
 final class Sidebar: UIViewController {
     
+    required init?(coder: NSCoder) {
+        fatalError("Not implemented")
+    }
+    
     private enum Section { case main }
     fileprivate struct Item: Hashable {
         let image: UIImage?
@@ -25,12 +29,23 @@ final class Sidebar: UIViewController {
     private let collectionView = UICollectionView(frame: .zero, collectionViewLayout: makeSidebarLayout())
     private lazy var dataSource = makeDataSource()
     
+    private let onSidebarItemSelected: ((String) -> Void)
+    private var currentIndex: Int = -1
+
+    init(onSidebarItemSelected: @escaping ((String) -> Void)) {
+        self.onSidebarItemSelected = onSidebarItemSelected
+
+        super.init(nibName: nil, bundle: nil)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
         configureUI()
         configureHierarchy()
         loadSidebarItems()
+        collectionView.delegate = self
+        setFirstItemInSidebar()
     }
     
     private func configureUI() {
@@ -52,6 +67,12 @@ final class Sidebar: UIViewController {
         dataSource.apply(snapshot, animatingDifferences: false)
     }
     
+    private func setFirstItemInSidebar() {
+        let indexPath = IndexPath(item: 0, section: 0)
+        collectionView.selectItem(at: indexPath, animated: false, scrollPosition: [])
+        self.collectionView(collectionView, didSelectItemAt: indexPath)
+    }
+    
     private func makeDataSource() -> UICollectionViewDiffableDataSource<Section, Item> {
         let cellRegistration = UICollectionView.CellRegistration<UICollectionViewListCell, Item> { (cell, indexPath, item) in
             cell.configure(with: item)
@@ -68,6 +89,18 @@ final class Sidebar: UIViewController {
             
             return NSCollectionLayoutSection.list(using: config, layoutEnvironment: layoutEnvironment)
         }
+    }
+    
+}
+
+extension Sidebar: UICollectionViewDelegate {
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        guard let sidebarItem = dataSource.itemIdentifier(for: indexPath),
+              currentIndex != indexPath.item else { return }
+        
+        currentIndex = indexPath.item
+        onSidebarItemSelected(sidebarItem.title)
     }
     
 }

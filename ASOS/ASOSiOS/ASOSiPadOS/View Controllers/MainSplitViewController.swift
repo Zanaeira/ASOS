@@ -34,14 +34,28 @@ public final class MainSplitViewController: UISplitViewController {
     private func configureUI() {
         view.backgroundColor = .systemBackground
         
-        let sidebar = Sidebar()
-        let detailViewController = DetailViewController(itemLoader: itemLoader, itemUpdater: itemUpdater)
+        primaryBackgroundStyle = .sidebar
+        preferredDisplayMode = .oneBesideSecondary
+        
+        let sidebar = Sidebar(onSidebarItemSelected: setDetailViewController)
         let tabBarControllerForCompact = MainTabBarController(itemLoader: itemLoader, itemUpdater: itemUpdater)
         
         setViewController(sidebar, for: .primary)
-        setViewController(detailViewController, for: .secondary)
         setViewController(tabBarControllerForCompact, for: .compact)
     }
     
+    private func setDetailViewController(title: String) {
+        let vc: UIViewController
+        if title == "ASOS" {
+            vc = DetailViewController(itemLoader: itemLoader, itemUpdater: itemUpdater)
+        } else {
+            vc = UIViewController()
+            vc.view.backgroundColor = .systemBackground
+            vc.title = title.uppercased()
+        }
+        
+        vc.navigationItem.hidesBackButton = true
+        showDetailViewController(vc, sender: self)
+    }
+    
 }
-
