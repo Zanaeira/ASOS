@@ -8,7 +8,7 @@
 import UIKit
 import ASOS
 
-public final class HomeViewController: UIViewController {
+final class HomeViewController: UIViewController {
     
     public required init?(coder: NSCoder) {
         fatalError("Not implemented")
@@ -34,7 +34,7 @@ public final class HomeViewController: UIViewController {
         super.init(nibName: nil, bundle: nil)
     }
     
-    public override func viewDidLoad() {
+    override func viewDidLoad() {
         super.viewDidLoad()
         
         setupSearchBar()
@@ -42,7 +42,7 @@ public final class HomeViewController: UIViewController {
         loadItems()
     }
     
-    public override func viewDidLayoutSubviews() {
+    override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         
         collectionView.collectionViewLayout.invalidateLayout()

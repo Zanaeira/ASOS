@@ -252,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				1BFC543F2789FEA600CE9474 /* MainTabBarController.swift */,
+				1BFC54552789FEA600CE9474 /* HomeViewController.swift */,
 			);
 			path = "Compact | iPhone Controllers";
 			sourceTree = "<group>";
@@ -295,7 +296,6 @@
 		1BFC54532789FEA600CE9474 /* Shared Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				1BFC54552789FEA600CE9474 /* HomeViewController.swift */,
 				1BB97C702794F1D400F41050 /* SearchViewController.swift */,
 			);
 			path = "Shared Controllers";
