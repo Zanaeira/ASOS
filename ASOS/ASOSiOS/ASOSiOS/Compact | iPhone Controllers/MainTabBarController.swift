@@ -45,10 +45,10 @@ public final class MainTabBarController: UITabBarController {
     }
     
     private func makeSearchViewController() -> UINavigationController {
-        let viewController = makeSampleViewController()
+        let viewController = SearchViewController()
         viewController.tabBarItem.image = UIImage(systemName: "magnifyingglass.circle.fill")
         
-        return viewController
+        return UINavigationController(rootViewController: viewController)
     }
     
     private func makeBagViewController() -> UINavigationController {

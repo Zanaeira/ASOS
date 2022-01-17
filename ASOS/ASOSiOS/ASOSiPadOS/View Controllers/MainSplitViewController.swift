@@ -48,6 +48,8 @@ public final class MainSplitViewController: UISplitViewController {
         let vc: UIViewController
         if title == "ASOS" {
             vc = DetailViewController(itemLoader: itemLoader, itemUpdater: itemUpdater)
+        } else if title == "Search" {
+            vc = SearchViewController()
         } else {
             vc = UIViewController()
             vc.view.backgroundColor = .systemBackground
